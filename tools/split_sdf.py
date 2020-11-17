@@ -1,0 +1,1 @@
+../database/DrugBank/split_sdf.py
