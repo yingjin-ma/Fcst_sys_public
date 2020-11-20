@@ -1,6 +1,7 @@
 # A Forecasting System under the Multiverse ansatz via Machine Learning and Cheminformatics
 
 ## Specific scope : Computational Time of DFT/TDDFT Calculations for this version
+  - Thank PARATERA company for the cooperations
 
 ### 1. Catalogue
   - database : 
@@ -34,12 +35,20 @@
       - *now: python Fcst_kernel_A1.py should work*
 
 ### 3. Usage
-    - to be updated
+    - **python TRmod_kernel_A1.py** for training
+    - **python Fcst_kernel_A1.py** for predicting
+    - more to be updated
     
 ### 4. Citation
     - https://arxiv.org/abs/1911.05569v2
 
-### 5. Corresponding authors
+### 5. Acknowledgement
+    - National Key Research and Development Program of China (Grant No.2018YFB0203805)
+    - National Natural Science Foundation of China (Grant No.21703260)
+    - Informationization Program of the Chinese Academy of Science (Grant No.XXH13506-403)
+    - Guangdong Provincial Key Laboratory of Biocomputing (Grant No.2016B030301007)
+
+### 6. Corresponding authors
     - yingjin_ma@163.com and zjin@sccas.cn
 
 
