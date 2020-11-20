@@ -1,7 +1,7 @@
 # A Forecasting System under the Multiverse ansatz via Machine Learning and Cheminformatics
 
 ## Specific scope : Computational Time of DFT/TDDFT Calculations for this version
-  - Thank PARATERA company for the cooperations
+  - Thank PARATERA company (https://www.paratera.com/) for the cooperations
 
 ### 1. Catalogue
   - database : 
