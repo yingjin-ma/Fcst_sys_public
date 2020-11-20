@@ -40,8 +40,7 @@
     - https://arxiv.org/abs/1911.05569v2
 
 ### 5. Corresponding authors
-    - yingjin_ma@163.com or yingjin.ma@sccas.cn
-    - zjin@sccas.cn
+    - yingjin_ma@163.com and zjin@sccas.cn
 
 
 
