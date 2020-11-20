@@ -35,9 +35,9 @@
       - *now: python Fcst_kernel_A1.py should work*
 
 ### 3. Usage
-    - **python TRmod_kernel_A1.py** for training
-    - **python Fcst_kernel_A1.py** for predicting
-    - more to be updated
+  - *python TRmod_kernel_A1.py* for training
+  - *python Fcst_kernel_A1.py* for predicting
+  - more to be updated
     
 ### 4. Citation
     - https://arxiv.org/abs/1911.05569v2
