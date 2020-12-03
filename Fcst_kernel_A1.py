@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import socket
+import getopt
 
 hostname = socket.gethostname()
 PWD=os.getcwd()
@@ -21,83 +22,119 @@ import PredictTime
 import Magnification
 import DecideRefSpace
 
+
 # rdkit for chem-informatics
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-# parameters to be used (IO later)
-QC_packages  =  ["G09"]
-Machines     =  ["ERA"]
-functionals  =  ["LC-BLYP"]
-bases        =  ["cc-pVTZ"    ]
-target_mols  =  ["./example/46507409.sdf"]
-ML_models    =  ["MPNN"]  # Maybe bug in MGCN
+def main(argv):
 
-# rdkit treatment of input molecule
-mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]
-mol   =  mols[0]
+   # parameters to be used (IO later)
+   QC_packages  =  ["G09"]
+   Machines     =  ["ERA"]
+   functionals  =  ["LC-BLYP"]
+   bases        =  ["cc-pVTZ"]
+   target_mols  =  ["./example/46507409.sdf"]
+   ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 
-npath =  len(target_mols[0].split("/"))
-if target_mols[0][0]=='/':
-   PWDmol="/"
-else: 
-   PWDmol=""
-for i in range(npath-1):
-   PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
-NAMmol=  target_mols[0].split("/")[npath-1]
+   Ncores       =  [1]
 
-print("PWDmol : ",PWDmol)
-print("NAMmol : ",NAMmol)
-print("BAKmod : ",BAK   )
+   usage_str="usage: python Fcst_kernel_A1.py -f|--func <functional> \
+         -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores>"
+   try:
+      opts,args=getopt.getopt(argv[1:],
+      "hf:b:i:m:n:",
+      ["help","func=","basis=","input=","model=","ncores="])
+   except getopt.GetoptError:
+      print(usage_str)
+      sys.exit(2)
 
-# chemical space and many-world interpretation for predicting
 
-for qc in QC_packages:
-   for imachine in Machines: 
-      # QC_package@Machine  
-      print("  ===>                                             " ) 
-      print("  ===>   QC_package : ", qc, "     |     Machine : " , imachine) 
-      print("  ===>                                             " ) 
+   for opt,arg in opts:
+      if opt in ("-h","--help"):
+         print(usage_str)
+         sys.exit()
+      elif opt in ("-f","--func"):
+         functionals[0]=arg
+      elif opt in ("-b","--basis"):
+         bases[0]=arg
+      elif opt in ("-i","--input"):
+         target_mols[0]=arg
+      elif opt in ("-m","--model"):
+         ML_models[0]=arg
+      elif opt in ("-n","--ncores"):
+         Ncores[0]=int(opt)
 
-      for mod in ML_models:    # models
-         #Models.prepare(mod)
 
-         print("  ")
-         print("  =====================================================")
-         print("  ===",mod,"===",mod,"===",mod,"===",mod,"===",mod,"===")
-         print("  =====================================================")
-         print("  ")
+   
 
-         for funct in functionals:   # functionals
-            for basis in bases:      
-               # ==   the target chemspace   == *  
-               chemspace=funct+'_'+basis   
+   # rdkit treatment of input molecule
+   mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]
+   mol   =  mols[0]
 
-               # == decide the ref_chemspace == *
-               # ref_funct & ref_basis
-               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol)
+   npath =  len(target_mols[0].split("/"))
+   if target_mols[0][0]=='/':
+      PWDmol="/"
+   else: 
+      PWDmol=""
+   for i in range(npath-1):
+      PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
+   NAMmol=  target_mols[0].split("/")[npath-1]
 
-               print("  ===>   Target    Space : ", funct,"/",basis)
-               print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
+   print("PWDmol : ",PWDmol)
+   print("NAMmol : ",NAMmol)
+   print("BAKmod : ",BAK   )
 
-               # ref_chemspace = ref_funct + ref_basis 
-               ref_chemspace=ref_funct+"_"+ref_basis
+   # chemical space and many-world interpretation for predicting
 
-               # Predict basing on the ref_chemspace 
-               Ptime = PredictTime.Eval(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+   for qc in QC_packages:
+      for imachine in Machines: 
+         # QC_package@Machine  
+         print("  ===>                                             " ) 
+         print("  ===>   QC_package : ", qc, "     |     Machine : " , imachine) 
+         print("  ===>                                             " ) 
 
-               # MWI correction for the predicted results
-               corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
-               corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
+         for mod in ML_models:    # models
+            #Models.prepare(mod)
 
-               print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+            print("  ")
+            print("  =====================================================")
+            print("  ===",mod,"===",mod,"===",mod,"===",mod,"===",mod,"===")
+            print("  =====================================================")
+            print("  ")
 
-               Ptime=Ptime*corr1*corr2
-               print("  ===>   The predicted computational CPU time is ", Ptime)
+            for funct in functionals:   # functionals
+               for basis in bases:      
+                  # ==   the target chemspace   == *  
+                  chemspace=funct+'_'+basis   
 
-         print("  ")
-         print("  ")
+                  # == decide the ref_chemspace == *
+                  # ref_funct & ref_basis
+                  ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol)
 
-exit(0)
+                  print("  ===>   Target    Space : ", funct,"/",basis)
+                  print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
+
+                  # ref_chemspace = ref_funct + ref_basis 
+                  ref_chemspace=ref_funct+"_"+ref_basis
+
+                  # Predict basing on the ref_chemspace 
+                  Ptime = PredictTime.Eval(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+
+                  # MWI correction for the predicted results
+                  corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
+                  corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
+
+                  print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+
+                  Ptime=Ptime*corr1*corr2
+                  print("  ===>   The predicted computational CPU time is ", Ptime)
+
+            print("  ")
+            print("  ")
+   exit()
+   
+if __name__=="__main__":
+   main(sys.argv)
 
 
