@@ -39,8 +39,8 @@ def main(argv):
 
    Ncores       =  [1]
 
-   usage_str="usage: python Fcst_kernel_A1.py -f|--func <functional> \
-         -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores>"
+   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores>, 
+   if you have more than one input files, use ',' to concatenate them'''
    try:
       opts,args=getopt.getopt(argv[1:],
       "hf:b:i:m:n:",
@@ -59,7 +59,7 @@ def main(argv):
       elif opt in ("-b","--basis"):
          bases[0]=arg
       elif opt in ("-i","--input"):
-         target_mols[0]=arg
+         target_mols=arg.split(',')
       elif opt in ("-m","--model"):
          ML_models[0]=arg
       elif opt in ("-n","--ncores"):
