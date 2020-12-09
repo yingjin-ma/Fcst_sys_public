@@ -51,9 +51,9 @@ class MgcnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname)
+        model = th.load(modelname,map_location=self.device)
         #model.set_mean_std(dataset.mean, dataset.std, self.device)
-        model.to(self.device)
+        #model.to(self.device)
 
         #loss_fn = nn.MSELoss()
         #MAE_fn = nn.L1Loss() 

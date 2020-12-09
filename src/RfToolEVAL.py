@@ -505,9 +505,9 @@ class RfTool(ModelTool):
 
         models=[]
         for i in range(0,4):
-            model=torch.load(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl')
+            model=torch.load(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl',map_location=self.device)
             model.eval()
-            model.to(self.device)
+            #model.to(self.device)
             models.append(model)
 
         eval_set=torch.torch.utils.data.TensorDataset(feats_t,times_t,probs_t)

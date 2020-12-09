@@ -53,8 +53,8 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname)
-        model.to(self.device)
+        model = th.load(modelname,map_location=self.device)
+        #model.to(self.device)
 
         #loss_fn = nn.MSELoss()
         #MAE_fn = nn.L1Loss() 
