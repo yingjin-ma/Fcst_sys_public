@@ -170,9 +170,12 @@ class LstmTool(ModelTool):
 #        if not os.path.exists(modelname):
 #            print(modelname+" does not exist!")
 #            return
-
-        model=torch.load(modelname)
-        model=model.to(self.device)
+        # if torch.cuda.is_available():
+        #     model=torch.load(modelname)
+        #     model=model.to(self.device)
+        # else:
+        #     model=torch.load(modelname,map_location=)
+        model=torch.load(modelname,map_location=self.device)
         model.eval()
         
         #basisnums,times,slist,names=LstmTool.readData(path,self.sdf_dir,tra_size,self.target,basis=basis)
