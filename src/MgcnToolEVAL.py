@@ -71,7 +71,7 @@ class MgcnTool(ModelTool):
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)
-                res = model(th.LongTensor(batch.graph),th.LongTensor(batch.basisnum)) # bug : maybe located
+                res = model(batch.graph,th.LongTensor(batch.basisnum)) # bug : maybe located
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
