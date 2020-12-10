@@ -2,6 +2,7 @@ import torch as th
 import abc
 import matplotlib.pyplot as plt
 import numpy as np
+import Globals
 
 class ModelTool(metaclass=abc.ABCMeta):
 
@@ -20,12 +21,15 @@ class ModelTool(metaclass=abc.ABCMeta):
         self.sdf_dir=sdf_dir
         #self.mol_name=mol_name
         self.target=target
-        if th.cuda.is_available():
-            print("CUDA available")
-            self.device=th.device('cuda:0')
-        else:
-            print("CUDA unavailable")
+        if Globals.get_value("cpu"):
             self.device=th.device('cpu')
+        else:
+            if th.cuda.is_available():
+                print("CUDA available")
+                self.device=th.device('cuda:0')
+            else:
+                print("CUDA unavailable")
+                self.device=th.device('cpu')
 
     def gen_learning_curve(self,tra_losses,tra_mres,tra_maes,val_losses,val_mres,val_maes):
         '''

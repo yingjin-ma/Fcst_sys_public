@@ -21,6 +21,7 @@ import Configs
 import PredictTime
 import Magnification
 import DecideRefSpace
+import Globals
 
 
 # rdkit for chem-informatics
@@ -28,6 +29,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 
 def main(argv):
+   Globals._init()
 
    # parameters to be used (IO later)
    QC_packages  =  ["G09"]
@@ -39,12 +41,12 @@ def main(argv):
 
    Ncores       =  [1]
 
-   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores>, 
+   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores> -c|--cpu, 
    if you have more than one input files, use ',' to concatenate them'''
    try:
       opts,args=getopt.getopt(argv[1:],
-      "hf:b:i:m:n:",
-      ["help","func=","basis=","input=","model=","ncores="])
+      "hcf:b:i:m:n:",
+      ["help","cpu","func=","basis=","input=","model=","ncores="])
    except getopt.GetoptError:
       print(usage_str)
       sys.exit(2)
@@ -54,6 +56,9 @@ def main(argv):
       if opt in ("-h","--help"):
          print(usage_str)
          sys.exit()
+      elif opt in ("-c","--cpu"):
+         print("force using cpu")
+         Globals.set_value("cpu",True)
       elif opt in ("-f","--func"):
          functionals[0]=arg
       elif opt in ("-b","--basis"):
