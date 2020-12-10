@@ -54,6 +54,7 @@ class MpnnTool(ModelTool):
             print(modelname+" does not exist!")
             return
         model = th.load(modelname,map_location=self.device)
+        model.device=self.device
         #model.to(self.device)
 
         #loss_fn = nn.MSELoss()
