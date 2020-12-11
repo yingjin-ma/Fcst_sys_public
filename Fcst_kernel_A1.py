@@ -3,6 +3,7 @@ import os
 import time
 import socket
 import getopt
+import openbabel
 
 hostname = socket.gethostname()
 PWD=os.getcwd()
@@ -41,8 +42,7 @@ def main(argv):
 
    Ncores       =  [1]
 
-   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores> -c|--cpu, 
-   if you have more than one input files, use ',' to concatenate them'''
+   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    try:
       opts,args=getopt.getopt(argv[1:],
       "hcf:b:i:m:n:",
@@ -64,14 +64,31 @@ def main(argv):
       elif opt in ("-b","--basis"):
          bases[0]=arg
       elif opt in ("-i","--input"):
-         target_mols=arg.split(',')
+         #target_mols=arg.split(',')
+         target_mols[0]=arg
       elif opt in ("-m","--model"):
          ML_models[0]=arg
       elif opt in ("-n","--ncores"):
          Ncores[0]=int(opt)
 
 
-   
+   # file format conversion
+   informat=target_mols[0].split('.')[-1]
+   if informat!='sdf':
+      sdf_str_list=target_mols[0].split('.')
+      sdf_str_list[-1]='sdf'
+      sdf_str=".".join(sdf_str_list)
+      obConversion = openbabel.OBConversion()
+      obConversion.SetInAndOutFormats(informat, "sdf")
+      inmol=openbabel.OBMol()
+      try:
+         obConversion.ReadFile(inmol, target_mols[0])
+         obConversion.WriteFile(inmol,sdf_str)
+         target_mols[0]=sdf_str
+      except Exception:
+         print("invalid input format of "+informat)
+      
+      
 
    # rdkit treatment of input molecule
    mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]
