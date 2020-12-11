@@ -87,6 +87,7 @@ def main(argv):
          target_mols[0]=sdf_str
       except Exception:
          print("invalid input format of "+informat)
+         exit()
       
       
 
