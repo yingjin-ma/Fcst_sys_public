@@ -23,6 +23,7 @@ import PredictTime
 import Magnification
 import DecideRefSpace
 import Globals
+import Convertor
 
 
 # rdkit for chem-informatics
@@ -74,7 +75,13 @@ def main(argv):
 
    # file format conversion
    informat=target_mols[0].split('.')[-1]
-   if informat!='sdf':
+   if informat=="gjf":
+      try:
+         target_mols[0]=Convertor.GjfToSdf(target_mols[0])
+      except Exception as e:
+         print(e)
+         return
+   elif informat!='sdf':
       sdf_str_list=target_mols[0].split('.')
       sdf_str_list[-1]='sdf'
       sdf_str=".".join(sdf_str_list)
@@ -87,7 +94,7 @@ def main(argv):
          target_mols[0]=sdf_str
       except Exception:
          print("invalid input format of "+informat)
-         exit()
+         return
       
       
 
@@ -155,7 +162,7 @@ def main(argv):
 
             print("  ")
             print("  ")
-   exit()
+   return
    
 if __name__=="__main__":
    main(sys.argv)
