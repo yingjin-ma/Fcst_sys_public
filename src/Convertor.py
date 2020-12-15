@@ -1,7 +1,7 @@
 import openbabel
 
 
-def GjfToXYZ(infile):
+def GjfToXyz(infile):
     if infile.split(".")[-1]!="gjf":
         raise Exception("invalid input format "+infile.split(".")[-1])
     gjf_register=[]
@@ -21,7 +21,7 @@ def GjfToXYZ(infile):
 
 def GjfToSdf(infile):
     try:
-        xyzfile=GjfToXYZ(infile)
+        xyzfile=GjfToXyz(infile)
         obConversion = openbabel.OBConversion()
         obConversion.SetInAndOutFormats("xyz", "sdf")
         inmol=openbabel.OBMol()
