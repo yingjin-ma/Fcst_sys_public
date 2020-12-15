@@ -42,7 +42,7 @@ def main(argv):
 
    Ncores       =  [1]
 
-   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <sdffile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
+   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    try:
       opts,args=getopt.getopt(argv[1:],
       "hcf:b:i:m:n:",
