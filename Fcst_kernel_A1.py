@@ -23,7 +23,7 @@ import PredictTime
 import Magnification
 import DecideRefSpace
 import Globals
-import Convertor
+import FileProcessor
 
 
 # rdkit for chem-informatics
@@ -39,15 +39,17 @@ def main(argv):
    functionals  =  ["LC-BLYP"]
    bases        =  ["cc-pVTZ"]
    target_mols  =  ["./example/46507409.sdf"]
-   ML_models    =  ["MPNN"]  # Maybe bug in MGCN
+   ML_models    =  ["MPNN"]  
 
-   Ncores       =  [1]
+   Ncores       =  24
+   Nnodes       =  1
+   Freq         =  1.0
 
    usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    try:
       opts,args=getopt.getopt(argv[1:],
-      "hcf:b:i:m:n:",
-      ["help","cpu","func=","basis=","input=","model=","ncores="])
+      "hcf:b:i:m:n:q",
+      ["help","cpu","func=","basis=","input=","model=","ncores=","freq="])
    except getopt.GetoptError:
       print(usage_str)
       sys.exit(2)
@@ -70,14 +72,22 @@ def main(argv):
       elif opt in ("-m","--model"):
          ML_models[0]=arg
       elif opt in ("-n","--ncores"):
-         Ncores[0]=int(opt)
+         Ncores=int(arg)
+      elif opt in ("-d","--nnodes"):
+         Nnodes=int(arg)
+      elif opt in ("-q","--freq"):
+         Freq=int(arg)
 
 
    # file format conversion
    informat=target_mols[0].split('.')[-1]
    if informat=="gjf":
       try:
-         target_mols[0]=Convertor.GjfToSdf(target_mols[0])
+         target_mols[0],results=FileProcessor.GjfToSdf(target_mols[0])
+         Ncores=results["nproc"]
+         Nnodes=results["nprocl"]
+         functionals[0]=results["func"]
+         bases[0]=results["basis"]
       except Exception as e:
          print(e)
          return
