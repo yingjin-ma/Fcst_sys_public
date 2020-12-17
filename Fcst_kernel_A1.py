@@ -48,8 +48,8 @@ def main(argv):
    usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    try:
       opts,args=getopt.getopt(argv[1:],
-      "hcf:b:i:m:n:q",
-      ["help","cpu","func=","basis=","input=","model=","ncores=","freq="])
+      "hcf:b:i:m:n:d:q:",
+      ["help","cpu","func=","basis=","input=","model=","ncores=","nnodes=","freq="])
    except getopt.GetoptError:
       print(usage_str)
       sys.exit(2)

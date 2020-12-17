@@ -1,36 +1,43 @@
 import openbabel
 import re
+import getopt
+import sys
 
 
 
 def GjfParser(infile):
     if infile.split(".")[-1]!="gjf":
         raise Exception("invalid input format "+infile.split(".")[-1])
-    patterns=[]
+    
     flag=False
-    patterns[0]=re.compile("nprocs?=(\d+)") # number of cores
-    patterns[1]=re.compile("nprocl=(\d+)") # number of nodes
-    patterns[2]=re.compile("#[a-zA-Z]\s([a-zA-Z0-9\+\*-]+)/([a-zA-Z0-9\+\*-]+)") #functional and basis set
-    patterns[3]=re.compile("[a-zA-Z]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+")
+    pattern0=re.compile("[0-9]\s+[0-9]")
+    pattern1=re.compile("nprocs?=(\d+)") # number of cores
+    pattern2=re.compile("nprocl=(\d+)") # number of nodes
+    pattern3=re.compile("#[a-zA-Z]\s([a-zA-Z0-9\+\*-]+)/([a-zA-Z0-9\+\*-]+)") #functional and basis set
+    pattern4=re.compile("[a-zA-Z]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+")
     results={"nproc":24,"nprocl":1,"func":"","basis":"","coords":[]} # nproc,nprocl,func,basis,coordinates
     with open(infile,"r") as inf:
         for line in inf.readlines():
             if flag==False:
-                shobj=re.search(patterns[0],line)
+                shobj=re.match(pattern0,line)
                 if shobj is not None:
-                    results["nproc"]=int(shobj.group())
+                    flag=True
                     continue
-                shobj=re.search(patterns[1],line)
+                shobj=re.search(pattern1,line)
                 if shobj is not None:
-                    results["nprocl"]=int(shobj.group())
+                    results["nproc"]=int(shobj.group(1))
                     continue
-                shobj=re.search(patterns[2],line)
+                shobj=re.search(pattern2,line)
+                if shobj is not None:
+                    results["nprocl"]=int(shobj.group(1))
+                    continue
+                shobj=re.search(pattern3,line)
                 if shobj is not None:
                     results["func"]=shobj.group(1)
                     results["basis"]=shobj.group(2)
                     flag=True
             else:
-                shobj=re.match(patterns[3],line)
+                shobj=re.match(pattern4,line)
                 if shobj is not None:
                     results["coords"].append(line)
     return results    
@@ -86,10 +93,21 @@ def GjfToSdf(infile):
         raise
 
 
-
+def main(argv):
+    try:
+        opts,args=getopt.getopt(argv[1:],"i:",["input="])
+    except getopt.GetoptError:
+        exit()
+    for opt,arg in opts:
+        if opt in ("-i","--input"):
+            name,results=GjfToSdf(arg)
+            print("basis set: ",results["basis"])
+            print("functional: ",results["func"])
+        
 
 
 
 
 if __name__=="__main__":
-    GjfToXYZ("example/mv.gjf")
+    #GjfToXYZ("example/mv.gjf")
+    main(sys.argv)
