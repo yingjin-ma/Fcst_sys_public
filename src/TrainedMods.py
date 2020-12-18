@@ -21,16 +21,17 @@ def _init(BAK):
         for mach in Machines:
             for func in Functionals:
                 for basis in Basis_sets:
-                    mod_dir=BAK+"/"+pack+"_"+mach+"_"+func+"_"+basis+"/"
                     for mod in Mod_types:
                         if mod=="rf":
+                            mod_dir=BAK+"/"+pack+"_"+mach+"_"+func+"_"+basis+"/"
                             mod_dir+="rfmodel_tot/"
                             for i in range(1,5):
-                                mod_name=func+"_"+basis+"_"+str(i)+".pkl"
+                                mod_name=mod_dir+func+"_"+basis+"_"+str(i)+".pkl"
                                 mod=torch.load(mod_name,map_location=device)
                                 _mods_dict[mod_name]=mod
                             _mods_dict["RFC"]=joblib.load(BAK+"/RFC.m")
                         else:
+                            mod_dir=BAK+"/"+pack+"_"+mach+"_"+func+"_"+basis+"/"
                             mod_name=mod_dir+mod+"_"+func+"_"+basis+"_tot.pkl"
                             mod=torch.load(mod_name,map_location=device)
                             _mods_dict[mod_name]=mod
