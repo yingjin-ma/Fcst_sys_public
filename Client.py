@@ -39,6 +39,6 @@ def main(argv):
     time=s.recv(1024).decode('utf-8')
     return time
 
-if __name__=="_main__":
+if __name__=="__main__":
     time=main(sys.argv)
     print(time)
