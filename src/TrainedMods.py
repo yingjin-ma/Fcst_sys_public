@@ -6,8 +6,8 @@ import joblib
 Functionals=("B3LYP","bhandhlyp","BLYP","CAM-B3LYP","LC-BLYP","M06","M062x","PBE1PBE","wb97xd")
 Basis_sets=("6-31g","6-31gs","6-31pgs")
 Mod_types=("rf","lstm","mpnn","mgcn")
-Qc_packages=("G09")
-Machines=("ERA")
+Qc_packages=("G09",)
+Machines=("ERA",)
 
 
 
