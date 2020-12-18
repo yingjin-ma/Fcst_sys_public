@@ -19,6 +19,7 @@ from ModelTool import ModelTool
 
 import basis_set_exchange as bse
 from Magnification import getNbasis
+import TrainedMods
 
 torch.manual_seed(2)
 
@@ -36,8 +37,10 @@ class RfTool(ModelTool):
         ModelTool.__init__(self,chemspace,config,sdf_dir,target)
         self.suits1=suits1
         
-        if os.path.exists(BAK+"/RFC.m"):
-            self.clf = joblib.load(BAK+"/RFC.m")
+        # if os.path.exists(BAK+"/RFC.m"):
+        #     self.clf = joblib.load(BAK+"/RFC.m")
+        if TrainedMods.mod_exists("RFC"):
+            self.clf = TrainedMods.getModel("RFC")
 
     #     alkene - 1 
     #     branch - 2 
@@ -505,7 +508,8 @@ class RfTool(ModelTool):
 
         models=[]
         for i in range(0,4):
-            model=torch.load(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl',map_location=self.device)
+            #model=torch.load(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl',map_location=self.device)
+            model=TrainedMods.getModel(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl')
             model.eval()
             #model.to(self.device)
             models.append(model)

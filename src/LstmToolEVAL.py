@@ -10,6 +10,7 @@ import torch.optim as optim
 import numpy as np
 import xlsxwriter
 from ModelTool import ModelTool
+import TrainedMods
 
 torch.manual_seed(2)
 
@@ -175,7 +176,8 @@ class LstmTool(ModelTool):
         #     model=model.to(self.device)
         # else:
         #     model=torch.load(modelname,map_location=)
-        model=torch.load(modelname,map_location=self.device)
+        #model=torch.load(modelname,map_location=self.device)
+        model=TrainedMods.getModel(modelname)
         model.eval()
         
         #basisnums,times,slist,names=LstmTool.readData(path,self.sdf_dir,tra_size,self.target,basis=basis)

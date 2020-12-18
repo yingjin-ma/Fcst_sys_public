@@ -24,6 +24,7 @@ import Magnification
 import DecideRefSpace
 import Globals
 import FileProcessor
+import TrainedMods
 
 
 # rdkit for chem-informatics
@@ -32,6 +33,7 @@ from rdkit.Chem import AllChem
 
 def main(argv):
    Globals._init()
+   TrainedMods._init(BAK)
 
    # parameters to be used (IO later)
    QC_packages  =  ["G09"]

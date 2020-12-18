@@ -8,6 +8,7 @@ from GDataSetEVAL import TADataset, batcher
 import os
 import xlsxwriter
 from ModelTool import ModelTool
+import TrainedMods
 
 th.manual_seed(2)
 
@@ -51,7 +52,8 @@ class MgcnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname,map_location=self.device)
+        #model = th.load(modelname,map_location=self.device)
+        model=TrainedMods.getModel(modelname)
         #model.set_mean_std(dataset.mean, dataset.std, self.device)
         #model.to(self.device)
 

@@ -1,7 +1,8 @@
 
+
 def _init():
     global _globals
-    _globals={'cpu':False}
+    _globals={'cpu':True}
 
 def set_value(key,value):
     # define a global variable
