@@ -12,6 +12,7 @@ def main(argv):
         return
     
     msg_list=["none" for i in range(8)]
+    msg_list.append("END")
     for opt,arg in opts:
         if opt in ("-h","--help"):
             print(usage_str)

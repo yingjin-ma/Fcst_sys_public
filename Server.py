@@ -182,10 +182,10 @@ def tcplink(sock,addr):
    while True:
       try:
          msg=sock.recv(1024)
-         if not msg:
-            break
          msg=msg.decode('utf-8')
          msg_all.append(msg)
+         if "END" in msg:
+            break
       except:
          sock.send("fails".encode('utf-8'))
          break
