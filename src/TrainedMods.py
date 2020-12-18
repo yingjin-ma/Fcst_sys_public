@@ -26,7 +26,7 @@ def _init(BAK):
                         if mod=="rf":
                             mod_dir+="rfmodel_tot/"
                             for i in range(1,5):
-                                mod_name=mod_dir+func+"_"+basis+"_"+str(i)+".pkl"
+                                mod_name=func+"_"+basis+"_"+str(i)+".pkl"
                                 mod=torch.load(mod_name,map_location=device)
                                 _mods_dict[mod_name]=mod
                             _mods_dict["RFC"]=joblib.load(BAK+"/RFC.m")
