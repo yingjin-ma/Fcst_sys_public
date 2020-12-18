@@ -33,11 +33,13 @@ import threading
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+Globals._init()
+
 # load all models
 TrainedMods._init(BAK)
 
 # initialize global variables
-Globals._init()
+
 
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.bind(('127.0.0.1',10001))
