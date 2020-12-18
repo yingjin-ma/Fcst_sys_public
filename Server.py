@@ -25,16 +25,27 @@ import DecideRefSpace
 import Globals
 import FileProcessor
 import TrainedMods
+import socket
+import threading
 
 
 # rdkit for chem-informatics
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-def main(argv):
-   Globals._init()
-   TrainedMods._init(BAK)
+# load all models
+TrainedMods._init(BAK)
 
+# initialize global variables
+Globals._init()
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.bind(('127.0.0.1',10001))
+s.listen(1)
+
+def main(msg_str):
+   msg_list=msg_str.split(",")
+   
    # parameters to be used (IO later)
    QC_packages  =  ["G09"]
    Machines     =  ["ERA"]
@@ -47,38 +58,24 @@ def main(argv):
    Nnodes       =  1
    Freq         =  1.0
 
-   usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
-   try:
-      opts,args=getopt.getopt(argv[1:],
-      "hcf:b:i:m:n:d:q:",
-      ["help","cpu","func=","basis=","input=","model=","ncores=","nnodes=","freq="])
-   except getopt.GetoptError:
-      print(usage_str)
-      return
-
-
-   for opt,arg in opts:
-      if opt in ("-h","--help"):
-         print(usage_str)
-         return
-      elif opt in ("-c","--cpu"):
-         print("force using cpu")
-         Globals.set_value("cpu",True)
-      elif opt in ("-f","--func"):
-         functionals[0]=arg
-      elif opt in ("-b","--basis"):
-         bases[0]=arg
-      elif opt in ("-i","--input"):
-         #target_mols=arg.split(',')
-         target_mols[0]=arg
-      elif opt in ("-m","--model"):
-         ML_models[0]=arg
-      elif opt in ("-n","--ncores"):
-         Ncores=int(arg)
-      elif opt in ("-d","--nnodes"):
-         Nnodes=int(arg)
-      elif opt in ("-q","--freq"):
-         Freq=int(arg)
+   #usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
+   if msg_list[0]=="cpu":
+      print("force using cpu")
+      Globals.set_value("cpu",True)
+   if msg_list[1]!="none":
+      functionals[0]=msg_list[1]
+   if msg_list[2]!="none":
+      bases[0]=msg_list[2]
+   if msg_list[3]!="none":
+      target_mols[0]=msg_list[3]
+   if msg_list[4]!="none":
+      ML_models[0]=msg_list[4]
+   if msg_list[5]!="none":
+      Ncores=int(msg_list[5])
+   if msg_list[6]!="none":
+      Nnodes=int(msg_list[6])
+   if msg_list[7]!="none":
+      Freq=float(msg_list[7])
 
 
    # file format conversion
@@ -92,7 +89,7 @@ def main(argv):
          bases[0]=results["basis"]
       except Exception as e:
          print(e)
-         return
+         return None
    elif informat!='sdf':
       sdf_str_list=target_mols[0].split('.')
       sdf_str_list[-1]='sdf'
@@ -106,7 +103,7 @@ def main(argv):
          target_mols[0]=sdf_str
       except Exception:
          print("invalid input format of "+informat)
-         return
+         return None
       
       
 
@@ -128,7 +125,7 @@ def main(argv):
    print("BAKmod : ",BAK   )
 
    # chemical space and many-world interpretation for predicting
-
+   Ptimes=[]
    for qc in QC_packages:
       for imachine in Machines: 
          # QC_package@Machine  
@@ -170,13 +167,40 @@ def main(argv):
                   print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
                   Ptime=Ptime*corr1*corr2
+                  Ptimes.append(Ptime)
                   print("  ===>   The predicted computational CPU time is ", Ptime)
 
             print("  ")
             print("  ")
-   return
+   return Ptimes[0]
+
+
+def tcplink(sock,addr):
+   msg_all=[]
+   while True:
+      try:
+         msg=sock.recv(1024)
+         if not msg:
+            break
+         msg=msg.decode('utf-8')
+         msg_all.append(msg)
+      except:
+         sock.send("fails".encode('utf-8'))
+         break
    
+   msg_str=''.join(msg_all)
+   result=main(msg_str)
+   sock.send(str(result).encode('utf-8'))
+   sock.close()      
+         
+            
+
+
+
 if __name__=="__main__":
-   main(sys.argv)
+   while True:
+      msg,addr=s.accept()
+      t=threading.Thread(target=tcplink,args=(msg,addr))
+      t.start()
 
 
