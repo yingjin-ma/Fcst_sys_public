@@ -40,4 +40,5 @@ def main(argv):
     return time
 
 if __name__=="_main__":
-    main(sys.argv)
+    time=main(sys.argv)
+    print(time)
