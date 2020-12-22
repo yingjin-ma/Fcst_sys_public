@@ -162,7 +162,7 @@ class LstmTool(ModelTool):
 
         molecule = path+"/"+mol
         nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis, " path ",path)
+        #print(" nbasis ", nbasis, " path ",path)
         pdata=[[molecule],[nbasis]]
 
 #        if modelname==None:

@@ -455,14 +455,14 @@ class RfTool(ModelTool):
         write: if write into xlsx tables
         '''
         modeldir=modelname
-        print("modeldir",modeldir)
-        print("chemspace",chemspace)
+        #print("modeldir",modeldir)
+        #print("chemspace",chemspace)
         dft  =chemspace.split("_")[0]
         basis=chemspace.split("_")[1]
 
         molecule = path+"/"+mol
         nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis, " path ",path)
+        #print(" nbasis ", nbasis, " path ",path)
 
         assert self.clf!=None
 
@@ -485,7 +485,7 @@ class RfTool(ModelTool):
            slist.append(smiles)
 
         # debug or check 
-        print("basisnums",basisnums)
+        #print("basisnums",basisnums)
 
         struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
         struct_fts_np=np.array(struct_fts)

@@ -107,7 +107,7 @@ def MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile):
 
    dv_magn    = fitted_magns([nbasis_ref],[nbasis_tar],ref_chemspace,ployfitted=PLYfile) 
 
-   print("nbasis_ref",nbasis_ref, "nbasis_tar",nbasis_tar,"dv_magns",dv_magn)
+   #print("nbasis_ref",nbasis_ref, "nbasis_tar",nbasis_tar,"dv_magns",dv_magn)
 
    return dv_magn[0]
 

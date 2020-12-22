@@ -85,8 +85,8 @@ def main(msg_str):
    if informat=="gjf":
       try:
          target_mols[0],results=FileProcessor.GjfToSdf(target_mols[0])
-         Ncores=results["nproc"]
-         Nnodes=results["nprocl"]
+         #Ncores=results["nproc"]
+         #Nnodes=results["nprocl"]
          functionals[0]=results["func"]
          bases[0]=results["basis"]
       except Exception as e:
@@ -122,27 +122,27 @@ def main(msg_str):
       PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
    NAMmol=  target_mols[0].split("/")[npath-1]
 
-   print("PWDmol : ",PWDmol)
-   print("NAMmol : ",NAMmol)
-   print("BAKmod : ",BAK   )
+   # print("PWDmol : ",PWDmol)
+   # print("NAMmol : ",NAMmol)
+   # print("BAKmod : ",BAK   )
 
    # chemical space and many-world interpretation for predicting
    Ptimes=[]
    for qc in QC_packages:
       for imachine in Machines: 
          # QC_package@Machine  
-         print("  ===>                                             " ) 
-         print("  ===>   QC_package : ", qc, "     |     Machine : " , imachine) 
-         print("  ===>                                             " ) 
+         # print("  ===>                                             " ) 
+         # print("  ===>   QC_package : ", qc, "     |     Machine : " , imachine) 
+         # print("  ===>                                             " ) 
 
          for mod in ML_models:    # models
             #Models.prepare(mod)
 
-            print("  ")
-            print("  =====================================================")
-            print("  ===",mod,"===",mod,"===",mod,"===",mod,"===",mod,"===")
-            print("  =====================================================")
-            print("  ")
+            # print("  ")
+            # print("  =====================================================")
+            # print("  ===",mod,"===",mod,"===",mod,"===",mod,"===",mod,"===")
+            # print("  =====================================================")
+            # print("  ")
 
             for funct in functionals:   # functionals
                for basis in bases:      
@@ -153,8 +153,8 @@ def main(msg_str):
                   # ref_funct & ref_basis
                   ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol)
 
-                  print("  ===>   Target    Space : ", funct,"/",basis)
-                  print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
+                  #print("  ===>   Target    Space : ", funct,"/",basis)
+                  #print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
 
                   # ref_chemspace = ref_funct + ref_basis 
                   ref_chemspace=ref_funct+"_"+ref_basis
@@ -166,7 +166,7 @@ def main(msg_str):
                   corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
                   corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
 
-                  print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+                  #print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
                   Ptime=Ptime*corr1*corr2
                   Ptimes.append(Ptime)

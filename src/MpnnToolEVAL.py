@@ -40,7 +40,7 @@ class MpnnTool(ModelTool):
         tra_size = self.config.tra_size
         molecule = path+"/"+mol
         nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis)
+        #print(" nbasis ", nbasis)
         pdata=[[molecule],[nbasis]]
         #exit(0)
 

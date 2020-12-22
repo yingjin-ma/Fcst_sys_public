@@ -39,7 +39,7 @@ class MgcnTool(ModelTool):
         tra_size=self.config.tra_size
         molecule = path+"/"+mol
         nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis, "molecule", molecule,"modelname",modelname)
+        #print(" nbasis ", nbasis, "molecule", molecule,"modelname",modelname)
         pdata=[[molecule],[nbasis]]
 
         dataset=TADataset(mode='test',rootdir=path,suits=molecule,chemspace=chemspace,pdata=pdata,tra_size=tra_size,target = self.target)
@@ -69,7 +69,7 @@ class MgcnTool(ModelTool):
             j=0
             mae=0.0
             for idx,batch in enumerate(loader):
-                print("idx,batch",idx,batch,batch.graph,batch.basisnum)
+                #print("idx,batch",idx,batch,batch.graph,batch.basisnum)
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)

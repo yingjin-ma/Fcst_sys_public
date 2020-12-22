@@ -225,11 +225,11 @@ class TADataset(Dataset):
         self.suits      = suits
         self.chemspace  = chemspace
         self.target     = target
-        print("GdataSet:     chemspace  is: ", self.chemspace)
-        print("GdataSet:       rootdir  is: ", self.rootdir)
-        print("GdataSet:    folder_sdf  is: ", self.folder_sdf)
-        print("GdataSet: working suits  is: ", self.suits)
-        print("GdataSet: targeting prop is: ", self.target)
+        # print("GdataSet:     chemspace  is: ", self.chemspace)
+        # print("GdataSet:       rootdir  is: ", self.rootdir)
+        # print("GdataSet:    folder_sdf  is: ", self.folder_sdf)
+        # print("GdataSet: working suits  is: ", self.suits)
+        # print("GdataSet: targeting prop is: ", self.target)
         self.pdata=pdata #pdata : to be predicted data, pdata=[[sdf1,sdf2,...],[basisum1,basisnum2,...]]
 
         self._load(tra_size,basis)
@@ -245,7 +245,7 @@ class TADataset(Dataset):
 
         count=0
         if self.mode=='train':
-            print("loading the training suits ",target_file)
+            #print("loading the training suits ",target_file)
             for line in open(target_file,'r'):
                 count+=1
                 if count>tra_size:
@@ -267,7 +267,7 @@ class TADataset(Dataset):
                 sdfnames.append(sdfname)
 
         if self.mode=='valid':
-            print("loading the validing suits ",target_file)
+            #print("loading the validing suits ",target_file)
 
             for line in open(target_file,'r'):
                 temp=line.strip(os.linesep).split()
@@ -303,27 +303,27 @@ class TADataset(Dataset):
 
         i=0
         for sdf_file in sdfs:
-            print("sdf_file ",sdf_file)
-            print("bnums[i] ",bnums[i]," with i = ",i )
-            print("times[i] ",times[i]," with i = ",i )
+            # print("sdf_file ",sdf_file)
+            # print("bnums[i] ",bnums[i]," with i = ",i )
+            # print("times[i] ",times[i]," with i = ",i )
             result = self.sdf_to_dgl(sdf_file,bnums[i],times[i])
             if result is None:
                 continue
-            print("sdf_file",sdf_file)
+            #print("sdf_file",sdf_file)
             self.graphs.append(result[0])
             self.basisnums.append(result[1])
 
 #            basisnum2=float(Magnification.getNbasis(basis,sdf_file))
 #            self.basisnums2.append(basisnum2)
 
-            print("sdfnames ", sdfnames[i]," with i = ",i) 
+            #print("sdfnames ", sdfnames[i]," with i = ",i) 
             self.labels.append(result[2])
             self.sdfnames.append(sdfnames[i])
             i+=1
-            if i%50 ==0 :
-               print(i, " loaded")
+            # if i%50 ==0 :
+            #    print(i, " loaded")
         self.normalize()
-        print("Totally ", len(self.graphs), " samples loaded!")
+        #print("Totally ", len(self.graphs), " samples loaded!")
 
     def normalize(self, mean=None, std=None):  #标准化
         labels = np.array([i.numpy() for i in self.labels])
@@ -355,13 +355,13 @@ if __name__ == '__main__':
                                 num_workers=0)
 
     for step, batch in enumerate(alchemy_loader):
-        print("bs =", batch.graph.batch_size)
-        print('feature size =', batch.graph.ndata['n_feat'].size())
-        print('pos size =', batch.graph.ndata['pos'].size())
-        print('edge feature size =', batch.graph.edata['e_feat'].size())
-        print('edge distance size =', batch.graph.edata['distance'].size())
-        print('label size=', batch.label.size())
-        print(dgl.sum_nodes(batch.graph, 'n_feat').size())
+        # print("bs =", batch.graph.batch_size)
+        # print('feature size =', batch.graph.ndata['n_feat'].size())
+        # print('pos size =', batch.graph.ndata['pos'].size())
+        # print('edge feature size =', batch.graph.edata['e_feat'].size())
+        # print('edge distance size =', batch.graph.edata['distance'].size())
+        # print('label size=', batch.label.size())
+        # print(dgl.sum_nodes(batch.graph, 'n_feat').size())
         break
 
 
