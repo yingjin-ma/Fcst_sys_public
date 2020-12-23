@@ -171,7 +171,7 @@ class TADataset(Dataset):
         sdf = open(str(sdf_file)).read()
         mol = Chem.MolFromMolBlock(sdf, removeHs=False)
 
-        g = dgl.graph()
+        g = dgl.DGLGraph()
 
         # add nodes
         num_atoms = mol.GetNumAtoms()

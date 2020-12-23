@@ -120,7 +120,7 @@ class MGCNModel(nn.Module):
 
 
 if __name__ == "__main__":
-    g = dgl.graph()
+    g = dgl.DGLGraph()
     g.add_nodes(2)
     g.add_edges([0, 0, 1, 1], [1, 0, 1, 0])
     g.edata["distance"] = th.tensor([1.0, 3.0, 2.0, 4.0]).reshape(-1, 1)
