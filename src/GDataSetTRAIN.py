@@ -176,7 +176,7 @@ class TencentAlchemyDataset(Dataset):
         sdf = open(str(sdf_file)).read()
         mol = Chem.MolFromMolBlock(sdf, removeHs=False)
 
-        g = dgl.DGLGraph()
+        g = dgl.graph()
 
         # add nodes
         num_atoms = mol.GetNumAtoms()
