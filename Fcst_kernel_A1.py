@@ -114,14 +114,18 @@ def main(argv):
    mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]
    mol   =  mols[0]
 
-   npath =  len(target_mols[0].split("/"))
-   if target_mols[0][0]=='/':
-      PWDmol="/"
-   else: 
-      PWDmol=""
-   for i in range(npath-1):
-      PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
-   NAMmol=  target_mols[0].split("/")[npath-1]
+   # npath =  len(target_mols[0].split("/"))
+   # if target_mols[0][0]=='/':
+   #    PWDmol="/"
+   # else: 
+   #    PWDmol=""
+   # for i in range(npath-1):
+   #    PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
+   # NAMmol=  target_mols[0].split("/")[npath-1]
+   Prefix_mol=target_mols[0].split("/")[:-2]
+   PWDmol="/".join(Prefix_mol)
+   NAMmol=target_mols[0].split("/")[-1]
+
 
    print("PWDmol : ",PWDmol)
    print("NAMmol : ",NAMmol)
