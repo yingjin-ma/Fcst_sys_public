@@ -1,6 +1,5 @@
 import sys,getopt
 import socket
-from time import time
 
 def main(argv):
     usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
@@ -42,8 +41,5 @@ def main(argv):
     return time
 
 if __name__=="__main__":
-    start=time()
     res=main(sys.argv)
-    stop=time()
     print(res)
-    print("running duration: "+str(stop-start))
