@@ -122,7 +122,7 @@ def main(msg_str):
    # for i in range(npath-1):
    #    PWDmol = PWD + "/" + target_mols[0].split("/")[i] 
    # NAMmol=  target_mols[0].split("/")[npath-1]
-   Prefix_mol=target_mols[0].split("/")[:-2]
+   Prefix_mol=target_mols[0].split("/")[:-1]
    PWDmol="/".join(Prefix_mol)
    NAMmol=target_mols[0].split("/")[-1]
 
