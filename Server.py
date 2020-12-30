@@ -54,7 +54,7 @@ def main(msg_str):
    functionals  =  ["LC-BLYP"]
    bases        =  ["cc-pVTZ"]
    target_mols  =  ["./example/46507409.sdf"]
-   ML_models    =  ["MPNN"]  
+   ML_models    =  ["MGCN"]  
 
    Ncores       =  24
    Nnodes       =  1
