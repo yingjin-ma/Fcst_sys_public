@@ -13,7 +13,7 @@ def GjfParser(infile):
     pattern0=re.compile("[0-9]\s+[0-9]")
     pattern1=re.compile("nprocs?=(\d+)") # number of cores
     pattern2=re.compile("nprocl=(\d+)") # number of nodes
-    pattern3=re.compile("#[a-zA-Z]\s([a-zA-Z0-9\+\*-]+)/([a-zA-Z0-9\+\*-]+)") #functional and basis set
+    pattern3=re.compile("#[a-zA-Z]\s([a-zA-Z]\s)*([a-zA-Z0-9\+\*-]+)/([a-zA-Z0-9\+\*-]+)") #functional and basis set
     pattern4=re.compile("[a-zA-Z]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+\s+-?[0-9]+\.?[0-9]+")
     results={"nproc":24,"nprocl":1,"func":"","basis":"","coords":[]} # nproc,nprocl,func,basis,coordinates
     with open(infile,"r") as inf:
@@ -33,8 +33,8 @@ def GjfParser(infile):
                     continue
                 shobj=re.search(pattern3,line)
                 if shobj is not None:
-                    results["func"]=shobj.group(1)
-                    results["basis"]=shobj.group(2)
+                    results["func"]=shobj.group(2)
+                    results["basis"]=shobj.group(3)
                     flag=True
             else:
                 shobj=re.search(pattern4,line)
