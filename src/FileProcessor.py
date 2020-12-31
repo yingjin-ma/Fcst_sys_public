@@ -37,7 +37,7 @@ def GjfParser(infile):
                     results["basis"]=shobj.group(2)
                     flag=True
             else:
-                shobj=re.match(pattern4,line)
+                shobj=re.search(pattern4,line)
                 if shobj is not None:
                     results["coords"].append(line)
     return results    
