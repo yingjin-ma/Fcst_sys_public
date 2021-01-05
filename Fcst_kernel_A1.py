@@ -177,7 +177,7 @@ def main(argv):
 
                   Ptime=Ptime*corr1*corr2/24
 
-                  if Ncores!=24:
+                  if Ncores<24:
                      Ptime=Ptime*trate*24/Ncores
 
                   print("  ===>   The predicted computational CPU time is ", Ptime)
