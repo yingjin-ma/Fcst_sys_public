@@ -173,10 +173,8 @@ def main(argv):
 
                   print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-                  Ptime=Ptime*corr1*corr2
+                  Ptime=Ptime*corr1*corr2/Ncores
 
-                  if Ncores!=24:
-                     Ptime=Ptime*24/Ncores
                   print("  ===>   The predicted computational CPU time is ", Ptime)
 
             print("  ")
