@@ -31,6 +31,8 @@ import TrainedMods
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+trate=1.008 #IPC(Ivy bridge)*2.8GHz/(IPC(Haswell)*2.5GHz)
+
 def main(argv):
    Globals._init()
    TrainedMods._init(BAK)
@@ -173,7 +175,10 @@ def main(argv):
 
                   print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-                  Ptime=Ptime*corr1*corr2/Ncores
+                  Ptime=Ptime*corr1*corr2/24
+
+                  if Ncores!=24:
+                     Ptime=Ptime*trate*24/Ncores
 
                   print("  ===>   The predicted computational CPU time is ", Ptime)
 
