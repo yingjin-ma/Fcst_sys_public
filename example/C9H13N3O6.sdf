@@ -1,0 +1,185 @@
+
+ OpenBabel01062110313D
+
+ 31 32  0  0  1  0  0  0  0  0999 V2000
+   -0.6052   -0.8223   -0.3978 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.4376    0.7716    1.7645 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.2253    2.5635    0.7568 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.4285   -0.2931   -0.2933 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.2592   -3.4842   -0.4757 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2790   -3.5588   -4.5091 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.5404   -1.6370   -0.9800 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8730   -3.7719   -2.0190 N   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6039   -4.1766   -3.4543 N   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1745    0.5857    0.3581 C   0  0  2  0  0  0  0  0  0  0  0  0
+   -0.0566    1.3991   -0.0367 C   0  0  1  0  0  0  0  0  0  0  0  0
+    0.7831   -0.8811    0.0149 C   0  0  1  0  0  0  0  0  0  0  0  0
+   -1.1612    0.3835    0.1528 C   0  0  1  0  0  0  0  0  0  0  0  0
+   -2.4633    0.7273   -0.5570 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6744   -1.1589   -1.5988 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1704   -2.9890   -1.1325 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4109   -1.9296   -2.3968 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9296   -3.3092   -2.6151 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0550    0.9809   -0.1442 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0170    1.6896   -1.0916 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8072   -1.4741    0.9389 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.3730    0.2051    1.2156 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.8707    1.6786   -0.2028 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.3292    0.7763   -1.6419 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.7401    0.3223    2.2779 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5022    2.5697    1.4121 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9996   -0.1438   -1.4229 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9856   -1.1424   -0.4898 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3165   -1.5943   -2.8812 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0062   -4.9554   -3.7359 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1624   -3.9743   -4.4738 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 12  1  0  0  0  0
+  1 13  1  0  0  0  0
+  2 25  1  0  0  0  0
+  3 26  1  0  0  0  0
+  4 14  1  0  0  0  0
+  4 28  1  0  0  0  0
+  5 16  2  0  0  0  0
+  6  9  1  0  0  0  0
+  6 31  1  0  0  0  0
+  7 15  1  0  0  0  0
+  7 16  1  0  0  0  0
+  8 16  1  0  0  0  0
+  8 18  2  0  0  0  0
+  9 18  1  0  0  0  0
+  9 30  1  0  0  0  0
+ 10  2  1  0  0  0  0
+ 10 11  1  6  0  0  0
+ 10 19  1  0  0  0  0
+ 11  3  1  0  0  0  0
+ 11 13  1  1  0  0  0
+ 11 20  1  0  0  0  0
+ 12 10  1  1  0  0  0
+ 12 21  1  0  0  0  0
+ 12  7  1  0  0  0  0
+ 13 14  1  0  0  0  0
+ 13 22  1  1  0  0  0
+ 14 23  1  0  0  0  0
+ 14 24  1  0  0  0  0
+ 15 17  2  0  0  0  0
+ 15 27  1  0  0  0  0
+ 17 18  1  0  0  0  0
+ 17 29  1  0  0  0  0
+M  END
+>  <MOL Chiral Flag>
+1
+
+>  <PUBCHEM_COMPOUND_CID>
+197020
+
+>  <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+>  <PUBCHEM_CACTVS_COMPLEXITY>
+398
+
+>  <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+6
+
+>  <PUBCHEM_CACTVS_HBOND_DONOR>
+5
+
+>  <PUBCHEM_CACTVS_ROTATABLE_BOND>
+3
+
+>  <PUBCHEM_CACTVS_SUBSKEYS>
+AAADccBzOAAAAAAAAAAAAAAAAAAAASAAAAAgAAAAAAAAAAAAAAAAHgAUCAAACBThgAYBAANQBgCoACJmdACAAAEAAgAoAAAYABCDEAIAgAAOQAAHFgITAADwMAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+
+>  <PUBCHEM_IUPAC_OPENEYE_NAME>
+1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-(hydroxymethyl)tetrahydrofuran-2-yl]-4-(hydroxyamino)pyrimidin-2-one
+
+>  <PUBCHEM_IUPAC_CAS_NAME>
+1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-(hydroxymethyl)-2-oxolanyl]-4-(hydroxyamino)-2-pyrimidinone
+
+>  <PUBCHEM_IUPAC_NAME_MARKUP>
+1-[(2<I>R</I>,3<I>R</I>,4<I>S</I>,5<I>R</I>)-3,4-dihydroxy-5-(hydroxymethyl)oxolan-2-yl]-4-(hydroxyamino)pyrimidin-2-one
+
+>  <PUBCHEM_IUPAC_NAME>
+1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-(hydroxymethyl)oxolan-2-yl]-4-(hydroxyamino)pyrimidin-2-one
+
+>  <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+1-[(2R,3R,4S,5R)-5-(hydroxymethyl)-3,4-bis(oxidanyl)oxolan-2-yl]-4-(oxidanylamino)pyrimidin-2-one
+
+>  <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-methylol-tetrahydrofuran-2-yl]-4-(hydroxyamino)pyrimidin-2-one
+
+>  <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C9H13N3O6/c13-3-4-6(14)7(15)8(18-4)12-2-1-5(11-17)10-9(12)16/h1-2,4,6-8,13-15,17H,3H2,(H,10,11,16)/t4-,6-,7-,8-/m1/s1
+
+>  <PUBCHEM_IUPAC_INCHIKEY>
+XCUAIINAJCDIPM-XVFCMESISA-N
+
+>  <PUBCHEM_XLOGP3>
+-2.2
+
+>  <PUBCHEM_EXACT_MASS>
+259.080435
+
+>  <PUBCHEM_MOLECULAR_FORMULA>
+C9H13N3O6
+
+>  <PUBCHEM_MOLECULAR_WEIGHT>
+259.22
+
+>  <PUBCHEM_OPENEYE_CAN_SMILES>
+C1=CN(C(=O)N=C1NO)C2C(C(C(O2)CO)O)O
+
+>  <PUBCHEM_OPENEYE_ISO_SMILES>
+C1=CN(C(=O)N=C1NO)[C@H]2[C@@H]([C@@H]([C@H](O2)CO)O)O
+
+>  <PUBCHEM_CACTVS_TPSA>
+135
+
+>  <PUBCHEM_MONOISOTOPIC_WEIGHT>
+259.080435
+
+>  <PUBCHEM_TOTAL_CHARGE>
+0
+
+>  <PUBCHEM_HEAVY_ATOM_COUNT>
+18
+
+>  <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+4
+
+>  <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+>  <PUBCHEM_COMPONENT_COUNT>
+1
+
+>  <PUBCHEM_CACTVS_TAUTO_COUNT>
+-1
+
+>  <PUBCHEM_COORDINATE_TYPE>
+1
+5
+255
+
+>  <PUBCHEM_BONDANNOTATIONS>
+13  14  6
+15  17  8
+17  18  8
+10  2  5
+11  3  5
+12  7  6
+7  15  8
+7  16  8
+8  16  8
+8  18  8
+
+$$$$
