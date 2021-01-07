@@ -179,7 +179,7 @@ def main(msg_str):
                   Ptime=Ptime*corr1*corr2
 
                   #calculate the cpu speed rate
-                  rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value['base_speed'])
+                  rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value('base_speed'))
                   Ptime=Ptime*rate
 
                   Ptimes.append(Ptime)
