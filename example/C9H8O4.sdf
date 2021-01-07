@@ -1,0 +1,160 @@
+
+ OpenBabel01062121163D
+
+ 21 21  0  0  0  0  0  0  0  0999 V2000
+    1.2962    0.3531   -0.3332 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6882    4.1430   -0.8490 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2702    2.3538   -2.1664 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9973   -1.1621   -0.1421 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5797    1.4774    0.1340 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8488    2.7786   -0.3019 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.5014    1.2131    0.9787 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0148    3.8255    0.1195 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.3131    2.2632    1.4074 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.0582    3.5662    0.9768 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9724    3.0587   -1.2202 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5151   -0.0815    0.1840 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1932    0.8394    1.1562 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.7253    0.1934    1.2829 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.1642    4.8399   -0.2450 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1635    2.0621    2.0562 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.7136    4.3768    1.2901 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5768    1.7212    0.6404 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5247    1.1138    1.9744 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0465    0.3141    1.5980 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4319    4.5493    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  5  1  0  0  0  0
+  1 12  1  0  0  0  0
+  2 11  1  0  0  0  0
+  2 21  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4 12  2  0  0  0  0
+  5  6  1  0  0  0  0
+  5  7  2  0  0  0  0
+  6  8  2  0  0  0  0
+  6 11  1  0  0  0  0
+  7  9  1  0  0  0  0
+  7 14  1  0  0  0  0
+  8 10  1  0  0  0  0
+  8 15  1  0  0  0  0
+  9 10  2  0  0  0  0
+  9 16  1  0  0  0  0
+ 10 17  1  0  0  0  0
+ 12 13  1  0  0  0  0
+ 13 18  1  0  0  0  0
+ 13 19  1  0  0  0  0
+ 13 20  1  0  0  0  0
+M  END
+>  <MOL Chiral Flag>
+0
+
+>  <PUBCHEM_COMPOUND_CID>
+2244
+
+>  <PUBCHEM_COMPOUND_CANONICALIZED>
+1
+
+>  <PUBCHEM_CACTVS_COMPLEXITY>
+212
+
+>  <PUBCHEM_CACTVS_HBOND_ACCEPTOR>
+4
+
+>  <PUBCHEM_CACTVS_HBOND_DONOR>
+1
+
+>  <PUBCHEM_CACTVS_ROTATABLE_BOND>
+3
+
+>  <PUBCHEM_CACTVS_SUBSKEYS>
+AAADccBwOAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAABAAAAGgAACAAADASAmAAyDoAABgCIAiDSCAACCAAkIAAIiAEGCMgMJzaENRqCe2Cl4BEIuYeIyCCOAAAAAAAIAAAAAAAAABAAAAAAAAAAAA==
+
+>  <PUBCHEM_IUPAC_OPENEYE_NAME>
+2-acetoxybenzoic acid
+
+>  <PUBCHEM_IUPAC_CAS_NAME>
+2-acetyloxybenzoic acid
+
+>  <PUBCHEM_IUPAC_NAME_MARKUP>
+2-acetyloxybenzoic acid
+
+>  <PUBCHEM_IUPAC_NAME>
+2-acetyloxybenzoic acid
+
+>  <PUBCHEM_IUPAC_SYSTEMATIC_NAME>
+2-acetyloxybenzoic acid
+
+>  <PUBCHEM_IUPAC_TRADITIONAL_NAME>
+2-acetoxybenzoic acid
+
+>  <PUBCHEM_IUPAC_INCHI>
+InChI=1S/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)
+
+>  <PUBCHEM_IUPAC_INCHIKEY>
+BSYNRYMUTXBXSQ-UHFFFAOYSA-N
+
+>  <PUBCHEM_XLOGP3>
+1.2
+
+>  <PUBCHEM_EXACT_MASS>
+180.042259
+
+>  <PUBCHEM_MOLECULAR_FORMULA>
+C9H8O4
+
+>  <PUBCHEM_MOLECULAR_WEIGHT>
+180.16
+
+>  <PUBCHEM_OPENEYE_CAN_SMILES>
+CC(=O)OC1=CC=CC=C1C(=O)O
+
+>  <PUBCHEM_OPENEYE_ISO_SMILES>
+CC(=O)OC1=CC=CC=C1C(=O)O
+
+>  <PUBCHEM_CACTVS_TPSA>
+63.6
+
+>  <PUBCHEM_MONOISOTOPIC_WEIGHT>
+180.042259
+
+>  <PUBCHEM_TOTAL_CHARGE>
+0
+
+>  <PUBCHEM_HEAVY_ATOM_COUNT>
+13
+
+>  <PUBCHEM_ATOM_DEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_ATOM_UDEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_BOND_DEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_BOND_UDEF_STEREO_COUNT>
+0
+
+>  <PUBCHEM_ISOTOPIC_ATOM_COUNT>
+0
+
+>  <PUBCHEM_COMPONENT_COUNT>
+1
+
+>  <PUBCHEM_CACTVS_TAUTO_COUNT>
+-1
+
+>  <PUBCHEM_COORDINATE_TYPE>
+1
+5
+255
+
+>  <PUBCHEM_BONDANNOTATIONS>
+5  6  8
+5  7  8
+6  8  8
+7  9  8
+8  10  8
+9  10  8
+
+$$$$
