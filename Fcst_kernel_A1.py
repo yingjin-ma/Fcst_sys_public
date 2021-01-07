@@ -4,7 +4,7 @@ import time
 import socket
 import getopt
 import openbabel
-import Machine
+
 
 hostname = socket.gethostname()
 PWD=os.getcwd()
@@ -26,6 +26,7 @@ import DecideRefSpace
 import Globals
 import FileProcessor
 import TrainedMods
+import Machine
 
 
 # rdkit for chem-informatics

@@ -1,6 +1,6 @@
 
 # queue info
-queues={'cpu-1':['zjin'],'cpu-2':['c_soft']}
+queues={'cpu-1':['c_zjin'],'cpu-2':['c_soft']}
 
 # calculate the speed rate of E5-2680V3 and the target cpu 
 def GetSpeedRate(ncores,queue,ref_speed):
