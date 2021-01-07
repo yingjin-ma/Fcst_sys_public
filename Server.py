@@ -4,6 +4,7 @@ import time
 import socket
 import getopt
 import openbabel
+import Machine
 
 hostname = socket.gethostname()
 PWD=os.getcwd()
@@ -59,7 +60,7 @@ def main(msg_str):
 
    Ncores       =  24
    Nnodes       =  1
-   Freq         =  1.0
+   Queue         =  'c_soft'
 
    #usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    if msg_list[0]=="cpu":
@@ -78,7 +79,7 @@ def main(msg_str):
    if msg_list[6]!="none":
       Nnodes=int(msg_list[6])
    if msg_list[7]!="none":
-      Freq=float(msg_list[7])
+      Queue=msg_list[7]
 
 
    # file format conversion
@@ -174,9 +175,12 @@ def main(msg_str):
 
                   #print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-                  Ptime=Ptime*corr1*corr2/24
-                  if Ncores<24:
-                     Ptime=Ptime*trate*24/Ncores
+                  Ptime=Ptime*corr1*corr2
+
+                  #calculate the cpu speed rate
+                  rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value['base_speed'])
+                  Ptime=Ptime*rate
+
                   Ptimes.append(Ptime)
                   print("  ===>   The predicted computational CPU time is ", Ptime)
 

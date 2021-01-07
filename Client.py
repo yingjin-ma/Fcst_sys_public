@@ -31,7 +31,7 @@ def main(argv):
             msg_list[5]=arg
         elif opt in ("-d","--nnodes"):
             msg_list[6]=arg
-        elif opt in ("-q","--freq"):
+        elif opt in ("-q","--queue"):
             msg_list[7]=arg
     msg=",".join(msg_list)
     s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)

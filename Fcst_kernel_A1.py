@@ -4,6 +4,7 @@ import time
 import socket
 import getopt
 import openbabel
+import Machine
 
 hostname = socket.gethostname()
 PWD=os.getcwd()
@@ -31,7 +32,8 @@ import TrainedMods
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-trate=1.008 #IPC(Ivy bridge)*2.8GHz/(IPC(Haswell)*2.5GHz)
+#trate=1.008 #IPC(Ivy bridge)*2.8GHz/(IPC(Haswell)*2.5GHz)
+
 
 def main(argv):
    Globals._init()
@@ -47,7 +49,7 @@ def main(argv):
 
    Ncores       =  24
    Nnodes       =  1
-   Freq         =  1.0
+   Queue        =  'c_soft'
 
    usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
    try:
@@ -79,8 +81,8 @@ def main(argv):
          Ncores=int(arg)
       elif opt in ("-d","--nnodes"):
          Nnodes=int(arg)
-      elif opt in ("-q","--freq"):
-         Freq=int(arg)
+      elif opt in ("-q","--queue"):
+         Freq=arg
 
 
    # file format conversion
@@ -175,10 +177,11 @@ def main(argv):
 
                   print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-                  Ptime=Ptime*corr1*corr2/24
+                  Ptime=Ptime*corr1*corr2
 
-                  if Ncores<24:
-                     Ptime=Ptime*trate*24/Ncores
+                  #calculate the cpu speed rate
+                  rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value['base_speed'])
+                  Ptime=Ptime*rate
 
                   print("  ===>   The predicted computational CPU time is ", Ptime)
 

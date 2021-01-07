@@ -2,7 +2,7 @@
 
 def _init():
     global _globals
-    _globals={'cpu':True}
+    _globals={'cpu':True,'base_speed':59.45232}
 
 def set_value(key,value):
     # define a global variable
