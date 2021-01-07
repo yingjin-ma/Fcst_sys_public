@@ -176,7 +176,7 @@ def main(msg_str):
 
                   #print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-                  Ptime=Ptime*corr1*corr2
+                  Ptime=Ptime*corr1*corr2/24
 
                   #calculate the cpu speed rate
                   rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value('base_speed'))
