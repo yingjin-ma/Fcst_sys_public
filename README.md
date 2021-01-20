@@ -37,10 +37,13 @@
 ### 3. Usage
   - *python TRmod_kernel_A1.py* for training
   - *python Fcst_kernel_A1.py* for predicting
-  - more to be updated
+  - *python Fcst_kernel_A1_LB_wrapper.py* for load-balancing
+    - *The "Predicted_Loads.txt" will be generated for later usage*
+  - *More will be added*
     
 ### 4. Citation
-  - https://arxiv.org/abs/1911.05569v2
+  - https://arxiv.org/abs/1911.05569v3
+  - https://pubs.acs.org/doi/10.1021/acsomega.0c04981
 
 ### 5. Acknowledgement
   - National Key Research and Development Program of China (Grant No.2018YFB0203805)
