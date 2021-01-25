@@ -2,7 +2,7 @@
 
 def _init():
     global _globals
-    _globals={'cpu':True,'base_speed':59.45232}
+    _globals={'cpu':True,'base_speed':59.45232} # max-core turbo frequency of E5-2680V3 is 2.9Ghz
 
 def set_value(key,value):
     # define a global variable

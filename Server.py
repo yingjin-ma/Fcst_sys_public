@@ -78,9 +78,7 @@ def main(msg_str):
    if msg_list[5]!="none":
       Ncores=int(msg_list[5])
    if msg_list[6]!="none":
-      Nnodes=int(msg_list[6])
-   if msg_list[7]!="none":
-      Queue=msg_list[7]
+      Queue=msg_list[6]
 
 
    # file format conversion

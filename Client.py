@@ -2,16 +2,16 @@ import sys,getopt
 import socket
 
 def main(argv):
-    usage_str='''example: python Fcst_kernel_A1.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -c|--cpu'''
+    usage_str='''example: python Client.py -f|--func <functional> -b|--basis <basis> -i|--input <inputfile> -m|--model <model> -n|--ncores <ncores> -q|--queue <queue> -c|--cpu'''
     try:
         opts,args=getopt.getopt(argv[1:],
         "hcf:b:i:m:n:d:q:",
-        ["help","cpu","func=","basis=","input=","model=","ncores=","nnodes=","freq="])
+        ["help","cpu","func=","basis=","input=","model=","ncores=","queue="])
     except getopt.GetoptError:
         print(usage_str)
         return
     
-    msg_list=["none" for i in range(8)]
+    msg_list=["none" for i in range(7)]
     msg_list.append("END")
     for opt,arg in opts:
         if opt in ("-h","--help"):
@@ -29,10 +29,8 @@ def main(argv):
             msg_list[4]=arg
         elif opt in ("-n","--ncores"):
             msg_list[5]=arg
-        elif opt in ("-d","--nnodes"):
-            msg_list[6]=arg
         elif opt in ("-q","--queue"):
-            msg_list[7]=arg
+            msg_list[6]=arg
     msg=",".join(msg_list)
     s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     s.connect(('127.0.0.1',10001))
