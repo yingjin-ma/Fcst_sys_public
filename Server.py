@@ -178,7 +178,7 @@ def main(msg_str):
 
                   #calculate the cpu speed rate
                   rate= Machine.GetSpeedRate(Ncores,Queue,Globals.get_value('base_speed'))
-                  Ptime=Ptime*rate
+                  Ptime=round(Ptime*rate,3)
 
                   Ptimes.append(Ptime)
                   print("  ===>   The predicted computational CPU time is ", Ptime)

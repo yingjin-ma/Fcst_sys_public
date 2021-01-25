@@ -40,4 +40,4 @@ def main(argv):
 
 if __name__=="__main__":
     res=main(sys.argv)
-    print("%.3f"%res)
+    print(res)
