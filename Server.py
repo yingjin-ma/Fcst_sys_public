@@ -1,8 +1,6 @@
 import sys
 import os
-import time
 import socket
-import getopt
 import openbabel
 
 
