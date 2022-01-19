@@ -92,7 +92,7 @@ class MPNNModel(nn.Module):
                  num_step_message_passing=6,
                  num_step_set2set=6,
                  num_layer_set2set=3,
-                 device=torch.device("cuda")
+                 device=torch.device('cuda')
                  ):
         """model parameters setting
         Paramters
@@ -127,7 +127,6 @@ class MPNNModel(nn.Module):
 
     def forward(self, g,basisnum):
         h = g.ndata['n_feat']
-        #print(h)
         h = h.to(self.device)
         out = F.relu(self.lin0(h))
         h = out.unsqueeze(0)

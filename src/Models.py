@@ -1,5 +1,6 @@
 import torch
 import Configs
+import os
 
 def prepare(model):
 
@@ -26,8 +27,16 @@ def ModelLoad(model,BAK,ref_chemspace,QC_packages,Machines):
    elif model=="RF":       
       modelName1="/rfmodel_tot"
 
-   modelName=modelName0+modelName1
-#   print(modelName)
+   is_local_model = input("Did you have trained local? [y]/n:")
+   if is_local_model == "y":
+      model_name = input("model name:")
+      if model == "MPNN":
+         modelName = os.getcwd() + "/database/" + model_name
+      else:
+         modelName = os.getcwd() + "/database/training-models/" + model_name
+   else:
+      modelName=modelName0+modelName1
+   print(modelName)
 
    return modelName
 
@@ -40,6 +49,8 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
    aimming=2 # The 2nd parameter, i.e. total CPU times
    if model=="MPNN": 
       import MpnnToolTRAIN 
+      import pdb
+      pdb.set_trace()
       tool=MpnnToolTRAIN.MpnnTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
       tool.train(path=setsDir)
    elif model=="MGCN":

@@ -64,7 +64,7 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname)
+        model = th.load(modelname,map_location=th.device('cpu'))
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
@@ -182,7 +182,7 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname)
+        model = th.load(modelname,map_location=th.device('cpu'))
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
@@ -452,7 +452,7 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model=th.load(modelname).to(self.device)
+        model=th.load(modelname,map_location=th.device('cpu')).to(self.device)
         model.eval()
         preds=[]
 

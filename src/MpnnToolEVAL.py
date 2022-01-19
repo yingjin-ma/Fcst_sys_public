@@ -32,6 +32,8 @@ class MpnnTool(ModelTool):
         path: data upper folder, default folder, data with data
         write:  can be xlsx file
         '''
+        import pdb
+        pdb.set_trace()
         dft      = chemspace.split("_")[0]
         basis    = chemspace.split("_")[1]
         #print("dft ", dft ,"  basis", basis)        
@@ -53,6 +55,7 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
+        #model = th.load(modelname,map_location=th.device('cpu'))
         model = th.load(modelname)
         model.to(self.device)
 

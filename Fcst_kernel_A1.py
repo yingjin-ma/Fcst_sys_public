@@ -85,6 +85,7 @@ for qc in QC_packages:
 
                # Predict basing on the ref_chemspace 
                Ptime = PredictTime.Eval(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+               #print("  ===>   The predicted computational CPU time with no correction is ", Ptime)
 
                # MWI correction for the predicted results
                corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
