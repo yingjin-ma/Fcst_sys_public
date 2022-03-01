@@ -9,7 +9,12 @@ import JacobLadder
 hostname = socket.gethostname()
 PWD=os.getcwd()
 BASE=PWD+"/database"
-TRAINED=BASE+"/trained-models"
+is_local_model = input("Did you have trained locally? [y]/n:")
+if is_local_model == "y":
+   TRAINED=BASE+"/training-models"
+else:
+   TRAINED=BASE+"/trained-models"
+
 
 def getknownbasisfunct():
 

@@ -29,7 +29,7 @@ import Configs
 # ML models, related
 ML_models   =  ["MPNN"]
 TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
-TR_dir      = PWD + "/database/training-models"
+TRM_dir      = PWD + "/database/training-models"
 # SDFs and Crawled folder, related
 sdfsH       = RAW + "/Arxiv1911.05569v1_sdfs_H"
 setsDir     = RAW + "/G09data.01"
@@ -78,6 +78,7 @@ for mod in ML_models:    # models
             valid_tmp.append(tmp)
 
          # Mkdir the "training" folder for usage
+         TR_dir = TRM_dir + "/" + "G09_ERA_" + funct + "_" + basis
          if not os.path.exists(TR_dir):
             os.mkdir(TR_dir)
 

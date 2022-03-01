@@ -26,16 +26,8 @@ def ModelLoad(model,BAK,ref_chemspace,QC_packages,Machines):
       modelName1="/lstm_"+ref_chemspace+"_tot.pkl"
    elif model=="RF":       
       modelName1="/rfmodel_tot"
-
-   is_local_model = input("Did you have trained local? [y]/n:")
-   if is_local_model == "y":
-      model_name = input("model name:")
-      if model == "MPNN":
-         modelName = os.getcwd() + "/database/" + model_name
-      else:
-         modelName = os.getcwd() + "/database/training-models/" + model_name
-   else:
-      modelName=modelName0+modelName1
+      
+   modelName=modelName0+modelName1
    print(modelName)
 
    return modelName
@@ -70,7 +62,7 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
          if series[i]=='ring':  # the ring type has two componments
             suits_train.append(setsDir+'/'+chemspace+'/ring_sub') 
          suits_train.append(setsDir+'/'+chemspace+'/'+series[i]) 
-         modelName=TR_dir+'/'+chemspace+'_'+str(i+1)+'.pkl'
+         modelName=TR_dir+'/'+'rfmodel_tot'+'/'+chemspace+'_'+str(i+1)+'.pkl'
          tool.train(path=suits_train,moltype=i+1,modelloc=modelName)
          
       #eval_res_tot=tool.eval(path=suits_valid,modeldir=TR_dir)  

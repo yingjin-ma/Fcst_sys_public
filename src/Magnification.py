@@ -39,7 +39,7 @@ def getNbasis(bas="6-31g",sdf=""):
       bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
       ao=bs_str.split()[8].strip('[').strip(']').split(',')
       n2=len(ao)
-#      print("basis : ",ao)
+      print("basis : ",ao)
       for n in range(n2):
          if ao[n][1] == 's':
             naos=naos+ int(ao[n][:-1])

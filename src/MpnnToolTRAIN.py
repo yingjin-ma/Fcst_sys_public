@@ -297,8 +297,8 @@ class MpnnTool(ModelTool):
         elif self.target==6:
             targetName='ave'
 
-        modelName     = self.folder_mod + 'mpnn_' + self.chemspace + '_' + targetName + '.pkl'    
-        modelName_tmp = self.folder_mod + 'mpnn_' + self.chemspace + '_' + targetName + '_tmp.pkl'
+        modelName     = self.folder_mod + '/' + 'mpnn_' + self.chemspace + '_' + targetName + '.pkl'    
+        modelName_tmp = self.folder_mod + '/' + 'mpnn_' + self.chemspace + '_' + targetName + '_tmp.pkl'
 
         minMre=100.0
         bestEpoch=0

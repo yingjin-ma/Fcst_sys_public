@@ -516,7 +516,7 @@ class LstmTool(ModelTool):
         save_step=10
         minMre=100.0
         bestEpoch=0
-        modelloc_tmp=self.folder_mod+'/'+ self.chemspace + '_tmp.pkl'
+        modelloc_tmp=self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tmp.pkl'
         for epoch in range(self.config.tra_num_epochs):
             #start=systime.time()
             train_loss=0.0
@@ -560,7 +560,7 @@ class LstmTool(ModelTool):
                 torch.save(model,modelloc_tmp)
                 eval_res=self.eval(modelname=modelloc_tmp,path=self.suits2)
                 if eval_res[0]<minMre:
-                    torch.save(model,self.folder_mod+'/'+ self.chemspace + '.pkl')
+                    torch.save(model,self.folder_mod+'/'+ 'lstm_' + self.chemspace + '.pkl')
                     minMre=eval_res[0]
                     bestEpoch=epoch
 
