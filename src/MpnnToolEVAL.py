@@ -39,13 +39,15 @@ class MpnnTool(ModelTool):
         #print("dft ", dft ,"  basis", basis)        
         tra_size = self.config.tra_size
         molecule = path+"/"+mol
-        nbasis   = getNbasis(bas=basis,sdf=molecule)
+        nbasis = getNbasis(bas=basis,sdf=molecule)
         print(" nbasis ", nbasis)
         pdata=[[molecule],[nbasis]]
         #exit(0)
 
         #dataset = TencentAlchemyDataset(mode='valid',rootdir=path,chemspace=self.chemspace,tra_size=tra_size)
         dataset=TADataset(mode='test',rootdir=path,suits=molecule,chemspace=chemspace,pdata=pdata,tra_size=tra_size,target=self.target)
+        import pdb
+        pdb.set_trace()
         loader = DataLoader(dataset     = dataset,
                             batch_size  = self.config.batch_size,
                             collate_fn  = batcher(),

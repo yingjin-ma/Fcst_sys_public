@@ -115,14 +115,15 @@ class MPNNModel(nn.Module):
         self.gru = nn.GRU(node_hidden_dim, node_hidden_dim)
         
         self.bn1=nn.BatchNorm1d(node_hidden_dim)
-        self.bn2=nn.BatchNorm1d(output_dim+1)
+        self.bn2=nn.BatchNorm1d(output_dim+6)
+        #self.bn2=nn.BatchNorm1d(1)
         self.bn3=nn.BatchNorm1d(5)
     
 
         self.set2set = dgl_nn.glob.Set2Set(node_hidden_dim, num_step_set2set, num_layer_set2set)
         self.lin1 = nn.Linear(2 * node_hidden_dim, node_hidden_dim)
         self.lin2 = nn.Linear(node_hidden_dim, output_dim)
-        self.lin3 =nn.Linear(output_dim+1,5)
+        self.lin3 =nn.Linear(output_dim+6,5)
         self.lin4 = nn.Linear(5,1)
 
     def forward(self, g,basisnum):
@@ -135,11 +136,17 @@ class MPNNModel(nn.Module):
             m = F.relu(self.conv(g, out, g.edata['e_feat']))
             out, h = self.gru(m.unsqueeze(0), h)
             out = out.squeeze(0)
-
+        '''
+        import pdb
+        pdb.set_trace()
+        '''
         s2sout = self.set2set(g, out)
         out = self.bn1(self.tanh(self.lin1(s2sout)))
         out = self.lin2(out)
+        #out = out.unsqueeze(1)
+        basisnum = basisnum.squeeze(1)
         out = torch.cat((out,basisnum),1)
+        #out = torch.cat((out,basisnum),2)
         out = self.bn2(out)
         #out= self.bn3(self.tanh(self.lin3(out)))
         out= self.lin3(out)

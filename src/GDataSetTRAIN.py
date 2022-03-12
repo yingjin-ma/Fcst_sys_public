@@ -110,11 +110,9 @@ class TencentAlchemyDataset(Dataset):
             h_u.append(num_h)
             atom_feats_dict['n_feat'].append(torch.FloatTensor(h_u))
 
-        atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'],
-                                                dim=0)
+        atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'],dim=0)
         atom_feats_dict['pos'] = torch.stack(atom_feats_dict['pos'], dim=0)
-        atom_feats_dict['node_type'] = torch.LongTensor(
-            atom_feats_dict['node_type'])
+        atom_feats_dict['node_type'] = torch.LongTensor(atom_feats_dict['node_type'])
 
         return atom_feats_dict
 
@@ -155,10 +153,8 @@ class TencentAlchemyDataset(Dataset):
                 bond_feats_dict['distance'].append(
                     np.linalg.norm(geom[u] - geom[v]))
 
-        bond_feats_dict['e_feat'] = torch.FloatTensor(
-            bond_feats_dict['e_feat'])
-        bond_feats_dict['distance'] = torch.FloatTensor(
-            bond_feats_dict['distance']).reshape(-1, 1)
+        bond_feats_dict['e_feat'] = torch.FloatTensor(bond_feats_dict['e_feat'])
+        bond_feats_dict['distance'] = torch.FloatTensor(bond_feats_dict['distance']).reshape(-1, 1)
 
         return bond_feats_dict
 
@@ -250,7 +246,7 @@ class TencentAlchemyDataset(Dataset):
         print("target :", self.target)
         print("self.mode :", self.mode)
         print("folder_sdf : ",self.folder_sdf) 
- 
+
         count=0
         if self.mode=='train':
             print("loading the training suits ",target_file) 
@@ -258,9 +254,21 @@ class TencentAlchemyDataset(Dataset):
                 count+=1
                 if count>tra_size:
                     break
+                
                 temp=line.strip(os.linesep).split()
                 time=float(temp[self.target])#
-                basisnum=float(temp[0])
+
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
                 
                 bnums.append(basisnum)
 
@@ -279,8 +287,19 @@ class TencentAlchemyDataset(Dataset):
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf+'/'+sdfname+'.sdf'
 
-                basisnum=float(temp[0])
-                basisnum2=float(Magnification.getNbasis(basis,loc))
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+                        
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                
+                basisnum2 = Magnification.getNbasis(basis,loc)
 #                if dv_magn_each=='false':
 #                   bnums.append(basisnum)
 #                else :

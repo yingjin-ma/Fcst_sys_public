@@ -41,8 +41,6 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
    aimming=2 # The 2nd parameter, i.e. total CPU times
    if model=="MPNN": 
       import MpnnToolTRAIN 
-      import pdb
-      pdb.set_trace()
       tool=MpnnToolTRAIN.MpnnTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
       tool.train(path=setsDir)
    elif model=="MGCN":

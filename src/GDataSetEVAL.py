@@ -56,35 +56,35 @@ class TADataset(Dataset):
             atom_feats_dict : dict
               Dictionary for atom features
         """
-        atom_feats_dict = defaultdict(list)
+        atom_feats_dict = defaultdict(list) # 创建元素为list的字典
         is_donor = defaultdict(int)
         is_acceptor = defaultdict(int)
 
-        fdef_name = osp.join(RDConfig.RDDataDir, 'BaseFeatures.fdef')
-        mol_featurizer = ChemicalFeatures.BuildFeatureFactory(fdef_name)
-        mol_feats = mol_featurizer.GetFeaturesForMol(mol)
-        mol_conformers = mol.GetConformers()
+        fdef_name = osp.join(RDConfig.RDDataDir, 'BaseFeatures.fdef') # 获取特征库，fdef_name 特征库文件
+        mol_featurizer = ChemicalFeatures.BuildFeatureFactory(fdef_name) # 构建特征工厂
+        mol_feats = mol_featurizer.GetFeaturesForMol(mol) # 使用特征工厂搜索特征
+        mol_conformers = mol.GetConformers() # 返回分子的所有构象
         assert len(mol_conformers) == 1
-        geom = mol_conformers[0].GetPositions()
+        geom = mol_conformers[0].GetPositions() # 返回分子中各个原子的坐标
 
         for i in range(len(mol_feats)):
-            if mol_feats[i].GetFamily() == 'Donor':
-                node_list = mol_feats[i].GetAtomIds()
+            if mol_feats[i].GetFamily() == 'Donor': # 获取特征所属的族，判断是否为电子供体
+                node_list = mol_feats[i].GetAtomIds() # 获取参与特征的原子id
                 for u in node_list:
                     is_donor[u] = 1
-            elif mol_feats[i].GetFamily() == 'Acceptor':
+            elif mol_feats[i].GetFamily() == 'Acceptor': # 获取特征所属的族，判断是否为电子受体
                 node_list = mol_feats[i].GetAtomIds()
                 for u in node_list:
                     is_acceptor[u] = 1
 
-        num_atoms = mol.GetNumAtoms()
+        num_atoms = mol.GetNumAtoms() # 获取分子中的原子数目
         for u in range(num_atoms):
-            atom = mol.GetAtomWithIdx(u)
-            symbol = atom.GetSymbol()
-            atom_type = atom.GetAtomicNum()
-            aromatic = atom.GetIsAromatic()
-            hybridization = atom.GetHybridization()
-            num_h = atom.GetTotalNumHs()
+            atom = mol.GetAtomWithIdx(u) # 获取特定的原子对象，u从0开始
+            symbol = atom.GetSymbol() # 获取原子元素符号
+            atom_type = atom.GetAtomicNum() # 获取原子序号
+            aromatic = atom.GetIsAromatic() # 判断该原子是否在芳香烃内
+            hybridization = atom.GetHybridization() # 返回原子杂交方式
+            num_h = atom.GetTotalNumHs() # 返回H原子总数
             atom_feats_dict['pos'].append(torch.FloatTensor(geom[u]))
             atom_feats_dict['node_type'].append(atom_type)
 
@@ -198,7 +198,7 @@ class TADataset(Dataset):
 
         bond_feats = self.alchemy_edges(mol, self_loop)
         g.edata.update(bond_feats)
-        bnm =torch.FloatTensor([bnum])
+        bnm = torch.FloatTensor([bnum])
         # for val/test set, labels are molecule ID
         l = torch.FloatTensor([time]) #if self.mode == 'train' or self.mode=='valid' else torch.LongTensor([int(sdf_file.stem)])
         return (g, bnm, l)
@@ -252,14 +252,27 @@ class TADataset(Dataset):
                     break
                 temp=line.strip(os.linesep).split()
                 time=float(temp[self.target])#时间
-                basisnum=float(temp[0])
-                basisnum2=float(Magnification.getNbasis(basis,sdf))
+
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnum2=Magnification.getNbasis(basis,sdf)
+                '''
                 if dv_magn_each=='false':
                    bnums.append(basisnum)
                 else :
                    bnums.append(basisnum2)
                    bnums2.append(basisnum)
-
+                '''   
+                bnums.append(basisnum)
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf[0]+'/'+sdfname+'.sdf'
                 sdfs.append(loc)
@@ -276,8 +289,18 @@ class TADataset(Dataset):
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf[0]+'/'+sdfname+'.sdf'
 
-                basisnum=float(temp[0])
-#                basisnum2=float(Magnification.getNbasis(basis,loc))
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+                        
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnum2= Magnification.getNbasis(basis,loc)
 #                if dv_magn_each=='false':
 #                   bnums.append(basisnum)
 #                else :
@@ -291,6 +314,8 @@ class TADataset(Dataset):
                 sdfnames.append(sdfname)
 
         if self.mode=='test' or self.mode=='pred':
+            import pdb
+            pdb.set_trace()
             sdfs=self.pdata[0]
             bnums=self.pdata[1]
             print(sdfs,bnums)

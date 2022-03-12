@@ -9,16 +9,16 @@ import JacobLadder
 hostname = socket.gethostname()
 PWD=os.getcwd()
 BASE=PWD+"/database"
-is_local_model = input("Did you have trained locally? [y]/n:")
-if is_local_model == "y":
-   TRAINED=BASE+"/training-models"
-else:
-   TRAINED=BASE+"/trained-models"
 
 
-def getknownbasisfunct():
+def getknownbasisfunct(is_local_model):
 
-    TRmodels=[] 
+    TRmodels=[]
+    if is_local_model == "y":
+      TRAINED=BASE+"/training-models"
+    else:
+      TRAINED=BASE+"/trained-models"
+    
     print(TRAINED)
     for roots,dirs,files in os.walk(TRAINED):
        #print(roots," ++ ",dirs) 
@@ -43,10 +43,10 @@ def getknownbasisfunct():
     
     return TRbasis,TRfunct
 
-def RefBasisfunct(basis,funct,mol):
+def RefBasisfunct(basis,funct,mol,is_local_model):
 
     # obtain the trained basis & functional 
-    TRbasis,TRfunct=getknownbasisfunct()
+    TRbasis,TRfunct=getknownbasisfunct(is_local_model)
 
 
     # || BASIS || Decide the reference basis
