@@ -310,6 +310,7 @@ class MgcnTool(ModelTool):
             errs   = []
             j      = 0
             for idx, batch in enumerate(loader):
+                
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)

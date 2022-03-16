@@ -261,11 +261,17 @@ class RfTool(ModelTool):
 
                     sdf=sdf_dir + "/" + temp[4].split('_')[0]+".sdf"
 
-                    if float(temp[1]) == 0 :
-                      basisnum=float(temp[0])
-                    else:  
-                      basisnum=float(temp[1])
+                    for i in range(len(temp)):
+                        if temp[i] == 'contracted':
+                           basisnum_s = float(temp[i+2])
+                           basisnum_p = float(temp[i+3])
+                           basisnum_d = float(temp[i+4])
+                           basisnum_f = float(temp[i+5])
+                           basisnum_g = float(temp[i+6])
+                           basisnum_h = float(temp[i+7].strip(']'))
+                           break
 
+                    basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
                     #else  :
                     basisnums.append(basisnum)
                         
@@ -320,7 +326,7 @@ class RfTool(ModelTool):
         feats=[]
         for i in range(len(basisnums)):
             feat=[]
-            feat.append(basisnums[i])
+            feat.extend(basisnums[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
         feats_t=torch.tensor(feats)
@@ -370,10 +376,14 @@ class RfTool(ModelTool):
         tra_size=self.config.tra_size
         basisnums,times,slist,names=RfTool.readData(path,self.sdf_dir,tra_size,target=self.target)
         struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
+        '''
+        import pdb
+        pdb.set_trace()
+        '''
         feats=[]
         for i in range(len(basisnums)):
             feat=[]
-            feat.append(basisnums[i])
+            feat.extend(basisnums[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
         t_feats=torch.tensor(feats)
@@ -416,6 +426,7 @@ class RfTool(ModelTool):
                 mre+=re
             mre/=j
             print("epoch: %d, loss: %.5f, mre: %.5f"%(epoch,train_loss,mre))
+            
             modelloc_tmp=modelloc.split('.')[0]+'_tmp.pkl'
             if epoch%save_step==0:
                 torch.save(model,modelloc_tmp)
