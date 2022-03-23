@@ -10,6 +10,7 @@ import torch.optim as optim
 import numpy as np
 import xlsxwriter
 from ModelTool import ModelTool
+import matplotlib.pyplot as plt
 
 torch.manual_seed(2)
 
@@ -57,7 +58,17 @@ class LstmTool(ModelTool):
                 time=float(temp[target])#时间
 
                 sdf=sdf_dir + "/" + temp[4].split('_')[0]+".sdf"
-                basisnum=float(temp[0])#基组数目
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
                 
                 #print("sdf ",temp[4].split('_')[0], "basis", basisnum, basisnum2)
                 
@@ -71,9 +82,9 @@ class LstmTool(ModelTool):
                 #s=sdf_dir+'/'+name+'.sdf'   # updated in YJMA version
                 s=sdf_dir+'/'+name.split('_')[0]+'.sdf'
                 #print("modified s : ",s)
-                suppl=Chem.SDMolSupplier(s)
+                suppl=Chem.SDMolSupplier(s) # 读取单个sdf文件,存成的是一个列表的形式，支持列表的操作。
                 for mol in suppl:
-                    smiles=Chem.MolToSmiles(mol)
+                    smiles=Chem.MolToSmiles(mol) # 读取单个smiles字符串
                     slist.append(smiles)
         return basisnums,times,slist,names
 
@@ -364,7 +375,8 @@ class LstmTool(ModelTool):
                 timelist=timelist.tolist()
                 print("len(resultlist)",len(resultlist),"len(ftmplines)",len(ftmplines)) 
                 for i in range(len(resultlist)):
-                    print("基组: %d, 预测值: %.5f, 预测值(corrected): %.5f, 真实值: %.5f" %(basislist[i],resultlist[i],resultlist[i],timelist[i]))
+                    #print("基组:", basislist[i])
+                    #print(" 预测值: %.5f, 预测值(corrected): %.5f, 真实值: %.5f" %(resultlist[i],resultlist[i],timelist[i]))
                     j+=1
                     #print("i : ", i)
                     #print("resultlist[i] : ", resultlist[i]) 
@@ -377,8 +389,11 @@ class LstmTool(ModelTool):
             err_mean=err_mean/j
             mae=ae/j
             errs=np.array(errs)
-            variance=errs.var() 
-
+            variance=errs.var()
+            '''
+            import pdb
+            pdb.set_trace() 
+            '''
             print("MRE：%.4f, MAE: %.4F, 方差: %.4f"%(err_mean,mae,variance))
 
 
@@ -403,7 +418,6 @@ class LstmTool(ModelTool):
         return [err_mean,mae,variance] 
     
     def train(self,path=None):
-
         dft  = self.chemspace.split("_")[0]
         basis= self.chemspace.split("_")[1]
 
@@ -516,8 +530,9 @@ class LstmTool(ModelTool):
         save_step=10
         minMre=100.0
         bestEpoch=0
-        modelloc_tmp=self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tmp.pkl'
-        for epoch in range(self.config.tra_num_epochs):
+        modelloc_tmp=self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tot_tmp.pkl'
+        y = []
+        for epoch in range(1,self.config.tra_num_epochs+1):
             #start=systime.time()
             train_loss=0.0
             # if err<0.2:
@@ -551,6 +566,7 @@ class LstmTool(ModelTool):
             mae=mae/j
             tra_maes.append(mae)
             tra_losses.append(train_loss/len_train_data)
+            y.append(err)
             #end=systime.time()
             #runtime=end-start
             #print("epoch: %d, train loss: %.4f, mre: %.4f, mae:%.4f, time: %.2f"%(epoch+1,train_loss,err,mae,runtime))
@@ -560,7 +576,7 @@ class LstmTool(ModelTool):
                 torch.save(model,modelloc_tmp)
                 eval_res=self.eval(modelname=modelloc_tmp,path=self.suits2)
                 if eval_res[0]<minMre:
-                    torch.save(model,self.folder_mod+'/'+ 'lstm_' + self.chemspace + '.pkl')
+                    torch.save(model,self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tot.pkl')
                     minMre=eval_res[0]
                     bestEpoch=epoch
 
@@ -601,10 +617,17 @@ class LstmTool(ModelTool):
         
         #modelloc='model/'+self.chemspace+'_lstm.pkl'
         #torch.save(model, self.modelloc)
+         
         print("trainning done! best epoch is "+str(bestEpoch))
         print("trainning completed!")
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
+        x = np.arange(0, 100)
+        plt.title("Result-LSTM") 
+        plt.xlabel("epoch") 
+        plt.ylabel("mre") 
+        plt.plot(x,y) 
+        plt.show()
 
         return minMre    
 

@@ -6,17 +6,21 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
-folder0 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01/B3LYP_6-31g"
-folder1 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01.updated/B3LYP_6-31g"
+folder0 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01/wb97xd_6-31pgs"
+folder1 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01.updated/wb97xd_6-31pgs"
 sdf0    = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/Arxiv1911.05569v1_sdfs_H"
 
 lists=[]
+
+
 for root,dirs,files in os.walk(folder0):
     for f in files:
         lists.append(str(f))
 
 print(lists)
-
+if not os.path.exists(folder1):
+    os.mkdir(folder1)
+            
 
 bas="6-31g"
 
@@ -37,6 +41,8 @@ if bas == "SV":
 elemdict = {'H': 1, 'He': 2, 'Li': 3, 'Be': 4, 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Ne': 10, 'S': 16, 'Cl': 17}
 
 
+#import pdb
+#pdb.set_trace()
 for ilist in lists:
     
     ifile=folder0+"/"+ilist
@@ -76,8 +82,6 @@ for ilist in lists:
                         if i0>4 : 
                             if len(line1.split())>15:
                                 #print(line1.split()[3])
-                                import pdb
-                                pdb.set_trace()
                                 natom=elemdict[line1.split()[3]]
                                 bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
                                 #print(bs_str) 
@@ -85,6 +89,7 @@ for ilist in lists:
                                 ao2=bs_str.split()[9].strip('[').strip(']').split(',')
                                 #print("ao1",ao1) 
                                 #print("ao2",ao2) 
+                                
                                 n2=len(ao2)
                                 for n in range(n2):
                                     if ao2[n][1] == 's':
@@ -94,6 +99,8 @@ for ilist in lists:
                                         naop1 = naop1 +3*int(ao1[n][:-1])
                                         naop2 = naop2 +3*int(ao2[n][:-1])
                                     if ao2[n][1] == 'd':
+                                        import pdb
+                                        pdb.set_trace()
                                         if D56 == -1:
                                             naod1= naod1+ 6*int(ao1[n][:-1])
                                             naod2= naod2+ 6*int(ao2[n][:-1])
