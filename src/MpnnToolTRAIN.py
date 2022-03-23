@@ -359,12 +359,17 @@ class MpnnTool(ModelTool):
 
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
-        os.remove(modelName_tmp) 
+        os.remove(modelName_tmp)
+        pic_dir = os.getcwd() + '/Result/mpnn'
+        if not os.path.exists(pic_dir):
+            os.mkdir(pic_dir) 
+        pic_name = pic_dir + self.chemspace + '_' + targetName + '.png'
         x = np.arange(0, 200)
         plt.title("Result") 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
-        plt.plot(x,y) 
+        plt.plot(x,y)
+        plt.savefig('./test2.jpg') 
         plt.show()
         return minMre
 
