@@ -35,7 +35,7 @@ QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
 functionals  =  ["B3LYP"]
 bases        =  ["6-31g"]
-target_mols  =  ["./example/46508200.sdf"]
+target_mols  =  ["./example/404771460.sdf"]
 ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 
 # rdkit treatment of input molecule

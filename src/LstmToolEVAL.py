@@ -51,8 +51,17 @@ class LstmTool(ModelTool):
                 time=float(temp[target])#时间
 
                 sdf=sdf_dir + "/" + temp[4].split('_')[0]+".sdf"
-                basisnum=float(temp[0])#基组数目
-                basisnums.append(basisnum)
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnums = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
                 name=temp[4]#.split('_')[1]
                 names.append(name)
                 times.append(time)
@@ -181,7 +190,7 @@ class LstmTool(ModelTool):
         times=[]
         slist=[]
         names=[]
-        basisnums.append(nbasis*1.0)
+        basisnums.append(nbasis)
         times.append(1.0)
         names.append(mol)
         suppl=Chem.SDMolSupplier(molecule)
@@ -190,7 +199,7 @@ class LstmTool(ModelTool):
            slist.append(smiles)
 
         clist=LstmTool.seg(slist)
-        with open(BAK+'/wordToIndex.json','r',encoding='utf8') as f:
+        with open('./tmp/wordToIndex.json','r',encoding='utf8') as f:
             word_to_idx=json.load(f)
         features=LstmTool.wToIdx(clist,word_to_idx)
         padded_features=LstmTool.pad(features)

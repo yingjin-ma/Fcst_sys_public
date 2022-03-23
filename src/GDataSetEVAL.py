@@ -314,8 +314,6 @@ class TADataset(Dataset):
                 sdfnames.append(sdfname)
 
         if self.mode=='test' or self.mode=='pred':
-            import pdb
-            pdb.set_trace()
             sdfs=self.pdata[0]
             bnums=self.pdata[1]
             print(sdfs,bnums)

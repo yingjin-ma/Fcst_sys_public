@@ -8,6 +8,7 @@ from GDataSetTRAIN import TencentAlchemyDataset, batcher
 import os
 import xlsxwriter
 from ModelTool import ModelTool
+import matplotlib.pyplot as plt
 
 th.manual_seed(2)
 
@@ -303,7 +304,8 @@ class MpnnTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         save_step=10
-        for epoch in range(self.config.tra_num_epochs):
+        y = []
+        for epoch in range(1,self.config.tra_num_epochs+1):
             w_loss = 0
             err    = 0
             errs   = []
@@ -344,6 +346,7 @@ class MpnnTool(ModelTool):
             err_mean=err/j
             errs=np.array(errs)
             variance=errs.var()
+            y.append(err_mean)
             print("Epoch {:2d}, loss: {:.7f}, mre: {:.7f},variance: {:.4f}".format(epoch, w_loss/j, err_mean,variance))
 
             if epoch%save_step==0:
@@ -357,7 +360,12 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp) 
-
+        x = np.arange(0, 200)
+        plt.title("Result") 
+        plt.xlabel("epoch") 
+        plt.ylabel("mre") 
+        plt.plot(x,y) 
+        plt.show()
         return minMre
 
 
@@ -431,8 +439,7 @@ class MpnnTool(ModelTool):
             err_mean=err/j
             errs=np.array(errs)
             variance=errs.var()
-            print("Epoch {:2d}, loss: {:.7f},  mre: {:.7f},variance: {:.4f}".format(
-                epoch, w_loss, err_mean,variance))
+            print("Epoch {:2d}, loss: {:.7f},  mre: {:.7f},variance: {:.4f}".format(epoch, w_loss, err_mean,variance))
         th.save(model,modeldir+self.chemspace+'_mpnn_f.pkl')
 
 
