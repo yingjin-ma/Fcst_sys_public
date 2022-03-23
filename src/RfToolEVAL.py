@@ -473,7 +473,7 @@ class RfTool(ModelTool):
         times=[]
         slist=[]
         names=[]
-        basisnums.append(nbasis)
+        basisnums.append(nbasis*1.0)
         times.append(1.0)
         names.append(mol)
         suppl=Chem.SDMolSupplier(molecule)
@@ -491,10 +491,10 @@ class RfTool(ModelTool):
         feats=[]
         for i in range(len(basisnums)):
             feat=[]
-            feat.extend(basisnums[i])
+            feat.append(basisnums[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
-        feats_t=torch.tensor(feats,dtype=torch.float)
+        feats_t=torch.tensor(feats)
         times_t=torch.tensor(times) 
         #slist_t=torch.tensor(slist)
         #names_t=torch.tensor(names)

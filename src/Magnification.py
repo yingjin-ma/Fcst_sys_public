@@ -57,7 +57,7 @@ def getNbasis(bas="6-31g",sdf=""):
       bas_atom[natom] = ao #e.g. bas_atom = {7 : ['3s','2p']}
       '''
       n2=len(ao)
-      #print("basis : ",ao)
+      print("basis : ",ao)
       for n in range(n2):
          if ao[n][1] == 's':
             nao_s = nao_s + int(ao[n][:-1])

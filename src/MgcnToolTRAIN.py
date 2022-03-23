@@ -8,8 +8,6 @@ from GDataSetTRAIN import TencentAlchemyDataset, batcher
 import os
 import xlsxwriter
 from ModelTool import ModelTool
-import matplotlib.pyplot as plt
-
 
 th.manual_seed(2)
 
@@ -306,14 +304,12 @@ class MgcnTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         save_step=10
-        y = []
-        for epoch in range(1, self.config.tra_num_epochs+1):
+        for epoch in range(self.config.tra_num_epochs):
             w_loss = 0
             err    = 0
             errs   = []
             j      = 0
             for idx, batch in enumerate(loader):
-                
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)
@@ -349,7 +345,6 @@ class MgcnTool(ModelTool):
             err_mean=err/j
             errs=np.array(errs)
             variance=errs.var()
-            y.append(err_mean)
             print("Epoch {:2d}, loss: {:.7f}, mre: {:.7f},variance: {:.4f}".format(epoch, w_loss/j, err_mean,variance))
             
             if epoch%save_step==0:
@@ -363,12 +358,6 @@ class MgcnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        x = np.arange(0, 200)
-        plt.title("Result_MGCN") 
-        plt.xlabel("epoch") 
-        plt.ylabel("mre") 
-        plt.plot(x,y) 
-        plt.show()
         
         return minMre
 
