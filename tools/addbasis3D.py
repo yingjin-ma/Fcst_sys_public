@@ -6,8 +6,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
-folder0 = "/home/yingjin/Work/Fcst_sys_public/database/rawdata/G09data.01/B3LYP_6-31pgs"
-folder1 = "/home/yingjin/Work/Fcst_sys_public/database/rawdata/G09data.01.updated/B3LYP_6-31pgs"
+folder0 = "/home/yingjin/Work/Fcst_sys_public/database/rawdata/G09data.01/B3LYP_6-31g"
+folder1 = "/home/yingjin/Work/Fcst_sys_public/database/rawdata/G09data.01.updated2/B3LYP_6-31g"
 sdf0    = "/home/yingjin/Work/Fcst_sys_public/database/rawdata/Arxiv1911.05569v1_sdfs_H"
 
 lists=[]
@@ -18,7 +18,7 @@ for root,dirs,files in os.walk(folder0):
 print(lists)
 
 
-bas="6-31pgs"
+bas="6-31g"
 
 D56=-1
 if bas == "cc-pVDZ":
@@ -37,6 +37,8 @@ if bas == "SV":
 elemdict = {'H': 1, 'He': 2, 'Li': 3, 'Be': 4, 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Ne': 10, 'S': 16, 'Cl': 17}
 
 
+MOLbasis3D1=[]
+MOLbasis3D2=[]
 for ilist in lists:
     ifile=folder0+"/"+ilist
 #    print(ifile) 
@@ -70,10 +72,24 @@ for ilist in lists:
                 with open(risdf,"r") as data1:
                     lines1 = data1.readlines()
                     i0=0 
+                    basvec1=[]
+                    basvec2=[] 
                     for line1 in lines1:
                         i0=i0+1
-                        if i0>4 : 
+                        if i0>4 :
                             if len(line1.split())>15:
+                                naos3=0 
+                                naop3=0 
+                                naod3=0 
+                                naof3=0 
+                                naog3=0 
+                                naoh3=0 
+                                naos4=0 
+                                naop4=0 
+                                naod4=0 
+                                naof4=0 
+                                naog4=0 
+                                naoh4=0 
                                 #print(line1.split()[3])
                                 natom=elemdict[line1.split()[3]]
                                 bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
@@ -87,31 +103,64 @@ for ilist in lists:
                                     if ao2[n][1] == 's':
                                         naos1 = naos1 +  int(ao1[n][:-1])
                                         naos2 = naos2 +  int(ao2[n][:-1])
+                                        naos3 = int(ao1[n][:-1])
+                                        naos4 = int(ao2[n][:-1])
                                     if ao2[n][1] == 'p':
                                         naop1 = naop1 +3*int(ao1[n][:-1])
                                         naop2 = naop2 +3*int(ao2[n][:-1])
+                                        naop3 = 3*int(ao1[n][:-1])
+                                        naop4 = 3*int(ao2[n][:-1])
                                     if ao2[n][1] == 'd':
                                         if D56 == -1:
                                             naod1= naod1+ 6*int(ao1[n][:-1])
                                             naod2= naod2+ 6*int(ao2[n][:-1])
+                                            naod3= 6*int(ao1[n][:-1])
+                                            naod4= 6*int(ao2[n][:-1])
                                         elif D56 == 1:
                                             naod1= naod1+5*int(ao1[n][:-1])
                                             naod2= naod2+5*int(ao2[n][:-1])
+                                            naod3=5*int(ao1[n][:-1])
+                                            naod4=5*int(ao2[n][:-1])
                                     if ao2[n][1] == 'f':
                                         naof1=naof1+ 7*int(ao1[n][:-1])
                                         naof2=naof2+ 7*int(ao2[n][:-1])
+                                        naof3= 7*int(ao1[n][:-1])
+                                        naof4= 7*int(ao2[n][:-1])
                                     if ao2[n][1] == 'g':
                                         naog1= naog1+9*int(ao1[n][:-1])
                                         naog2= naog2+9*int(ao2[n][:-1])
+                                        naog3= 9*int(ao1[n][:-1])
+                                        naog4= 9*int(ao2[n][:-1])
                                     if ao2[n][1] == 'h':
                                         naoh1=naoh1+11*int(ao1[n][:-1])
                                         naoh2=naoh2+11*int(ao2[n][:-1])
-                           
+                                        naoh3=11*int(ao1[n][:-1])
+                                        naoh4=11*int(ao2[n][:-1])
+                                
+                                bas3=[naos3,naop3,naod3,naof3,naog3,naoh3]
+                                bas4=[naos4,naop4,naod4,naof4,naog4,naoh4]
+                                
+
+
+                                print("bas3 : ", bas3) 
+                                print("bas4 : ", bas4) 
+                     
+                            basvec1.append(bas3) 
+                            basvec2.append(bas4) 
+
                 print("uncontracted : ",naos1,naop1,naod1,naof1,naog1,naoh1)
                 print("  contracted : ",naos2,naop2,naod2,naof2,naog2,naoh2)
 
-                lineupdated=line.replace("\n", "") + " [" + "uncontracted : " + str(naos1) + " " + str(naop1) + " " +str(naod1) + " " +str(naof1) +" " + str(naog1) + " " +str(naoh1) + "]" + " [" + "  contracted : " + str(naos2) +" " + str(naop2) + " " +str(naod2) + " " +str(naof2) + " " +str(naog2) + " " +str(naoh2) + "]\n"
-                data2.write(lineupdated)    
+                MOLbasis3D1.append(basvec1)            
+                MOLbasis3D2.append(basvec2)            
+
+                lineupdated=line.replace("\n", "") + " [" + "uncontracted : " + str(naos1) + " " + str(naop1) + " " +str(naod1) + " " +str(naof1) +" " + str(naog1) + " " +str(naoh1) + "]" + " [" + "  contracted : " + str(naos2) +" " + str(naop2) + " " +str(naod2) + " " +str(naof2) + " " +str(naog2) + " " +str(naoh2) + "]"
+                data2.write(lineupdated) 
+
+                data2.write(str(basvec1)) 
+                data2.write(str(basvec2))
+                data2.write("\n") 
+
 
 
 #            print(risdf)
