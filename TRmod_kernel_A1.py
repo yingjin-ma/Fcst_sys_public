@@ -27,17 +27,17 @@ import Configs
 
 # ==> parameters to be used (IO later) 
 # ML models, related
-ML_models   =  ["MPNN"]
-TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
+ML_models   =  ["RF"]
+TR_para     =  [25,350,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
 TRM_dir      = PWD + "/database/training-models"
 # SDFs and Crawled folder, related
 sdfsH       = RAW + "/Arxiv1911.05569v1_sdfs_H"
 setsDir     = RAW + "/G09data.01.updated"
 # Functionals and basis sets, related
-functionals = ['B3LYP','bhandhlyp','BLYP','CAM-B3LYP','LC-BLYP','M06','M062x','PBE1PBE','wb97xd']
-bases       = ['6-31g','6-31gs','6-31pgs']
-#functionals = ['B3LYP']
-#bases       = ['6-31g']
+#functionals = ['B3LYP','bhandhlyp','BLYP','CAM-B3LYP','LC-BLYP','M06','M062x','PBE1PBE','wb97xd']
+#bases       = ['6-31g','6-31gs','6-31pgs']
+functionals = ['CAM-B3LYP']
+bases       = ['6-31pgs']
 
 # training/validing/testing sets
 # ==> training sets, manual selections for adjusting the training models
@@ -56,7 +56,7 @@ suits_train.append("Gaussian_inputs_training5")
 # ==> validing/testing sets, manual selections for adjusting 
 suits_valid = []
 suits_valid.append("Gaussian_inputs_validing")
-suits_valid.append("Gaussian_inputs_validing2")
+#suits_valid.append("Gaussian_inputs_validing2")
 #suits_valid.append("Gaussian_inputs_testing")
 #suits_valid.append("Gaussian_inputs_testing2")
 

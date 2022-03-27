@@ -448,11 +448,17 @@ class RfTool(ModelTool):
         print("training done ! best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
-        x = np.arange(0, 200)
-        plt.title("Result_RF") 
+        pic_dir = os.getcwd() + '/Result/rf'
+        if not os.path.exists(pic_dir):
+            os.mkdir(pic_dir) 
+        pic_name = pic_dir + '/' + self.chemspace + '_' + str(moltype) + '.png'
+        title = "RF_" + self.chemspace + str(moltype)
+        x = np.arange(0, 350)
+        plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
-        plt.plot(x,y) 
+        plt.plot(x,y)
+        plt.savefig(pic_name) 
         plt.show() 
 
         

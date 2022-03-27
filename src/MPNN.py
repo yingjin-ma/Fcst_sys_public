@@ -110,8 +110,7 @@ class MPNNModel(nn.Module):
         )
 
         self.tanh=nn.Tanh()
-        self.conv = NNConvLayer(in_channels=node_hidden_dim, out_channels=node_hidden_dim, edge_net=edge_network,
-                                 root_weight=False)
+        self.conv = NNConvLayer(in_channels=node_hidden_dim, out_channels=node_hidden_dim, edge_net=edge_network, root_weight=False)
         self.gru = nn.GRU(node_hidden_dim, node_hidden_dim)
         
         self.bn1=nn.BatchNorm1d(node_hidden_dim)

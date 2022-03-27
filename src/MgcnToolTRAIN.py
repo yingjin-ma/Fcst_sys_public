@@ -363,11 +363,17 @@ class MgcnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        x = np.arange(0, 200)
-        plt.title("Result_MGCN") 
+        pic_dir = os.getcwd() + '/Result/mgcn'
+        if not os.path.exists(pic_dir):
+            os.mkdir(pic_dir) 
+        pic_name = pic_dir + '/' + self.chemspace + '.png'
+        title = "MGCN_" + self.chemspace
+        x = np.arange(0, 350)
+        plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
-        plt.plot(x,y) 
+        plt.plot(x,y)
+        plt.savefig(pic_name) 
         plt.show()
         
         return minMre

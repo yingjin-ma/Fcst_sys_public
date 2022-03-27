@@ -6,8 +6,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
-folder0 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01/wb97xd_6-31pgs"
-folder1 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01.updated/wb97xd_6-31pgs"
+folder0 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01/PBE1PBE_6-31pgs"
+folder1 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01.updated/PBE1PBE_6-31pgs"
 sdf0    = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/Arxiv1911.05569v1_sdfs_H"
 
 lists=[]
@@ -22,7 +22,7 @@ if not os.path.exists(folder1):
     os.mkdir(folder1)
             
 
-bas="6-31g"
+bas="6-31pgs"
 
 D56=-1
 if bas == "cc-pVDZ":
@@ -99,8 +99,6 @@ for ilist in lists:
                                         naop1 = naop1 +3*int(ao1[n][:-1])
                                         naop2 = naop2 +3*int(ao2[n][:-1])
                                     if ao2[n][1] == 'd':
-                                        import pdb
-                                        pdb.set_trace()
                                         if D56 == -1:
                                             naod1= naod1+ 6*int(ao1[n][:-1])
                                             naod2= naod2+ 6*int(ao2[n][:-1])

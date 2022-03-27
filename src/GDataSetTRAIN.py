@@ -219,8 +219,7 @@ class TencentAlchemyDataset(Dataset):
         basis=chemspace.split("_")[1]
         
 
-        assert mode in ['train', 'valid',
-                        'test','pred'] #"mode should be train/valid/test/pred"
+        assert mode in ['train', 'valid','test','pred'] #"mode should be train/valid/test/pred"
         self.mode       = mode
         self.transform  = transform
         self.rootdir    = rootdir
@@ -279,6 +278,8 @@ class TencentAlchemyDataset(Dataset):
                 sdfnames.append(sdfname)
         
         if self.mode=='valid':
+            #import pdb
+            #pdb.set_trace()
             print("loading the validing suits ",target_file)
             for line in open(target_file,'r'):
                 temp=line.strip(os.linesep).split()
@@ -305,7 +306,7 @@ class TencentAlchemyDataset(Dataset):
 #                else :
 
                 # Assuming always use the reference basis
-                bnums.append(basisnum2)
+                bnums.append(basisnum)
 #                bnums2.append(basisnum)
 
                 sdfs.append(loc)

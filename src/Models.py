@@ -60,6 +60,8 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
          if series[i]=='ring':  # the ring type has two componments
             suits_train.append(setsDir+'/'+chemspace+'/ring_sub') 
          suits_train.append(setsDir+'/'+chemspace+'/'+series[i])
+         if not os.path.exists(TR_dir+'/'+'rfmodel_tot'):
+            os.mkdir(TR_dir+'/'+'rfmodel_tot')
          modelName=TR_dir+'/'+'rfmodel_tot'+'/'+chemspace+'_'+str(i+1)+'.pkl'
          tool.train(path=suits_train,moltype=i+1,modelloc=modelName)
          

@@ -304,7 +304,8 @@ class MpnnTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         save_step=10
-        y = []
+        y_1 = []
+        y_2 = []
         for epoch in range(1,self.config.tra_num_epochs+1):
             w_loss = 0
             err    = 0
@@ -346,12 +347,14 @@ class MpnnTool(ModelTool):
             err_mean=err/j
             errs=np.array(errs)
             variance=errs.var()
-            y.append(err_mean)
+            y_2.append(err_mean)
+            
             print("Epoch {:2d}, loss: {:.7f}, mre: {:.7f},variance: {:.4f}".format(epoch, w_loss/j, err_mean,variance))
 
             if epoch%save_step==0:
                 th.save(model,modelName_tmp)
-                eval_res=self.eval(modelname=modelName_tmp,path=path)
+                eval_res=self.eval(modelname=modelName_tmp,chemspace=self.chemspace,path=path)
+                y_1.append(eval_res[0])
                 if eval_res[0]<minMre:
                     th.save(model,modelName)
                     minMre=eval_res[0]
@@ -363,13 +366,18 @@ class MpnnTool(ModelTool):
         pic_dir = os.getcwd() + '/Result/mpnn'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + self.chemspace + '_' + targetName + '.png'
-        x = np.arange(0, 200)
-        plt.title("Result") 
+        pic_name = pic_dir + '/' + self.chemspace + '.png'
+        title = "MPNN_" + self.chemspace
+        x_1 = np.arange(0, 250, 10)
+        x_2 = np.arange(0, 250)
+        plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
-        plt.plot(x,y)
-        plt.savefig('pic_name') 
+        #plt.plot(x_1,y_1,color='r',label='mre')
+        #plt.plot(x_2,y_2,color='b',label='MRE')
+        plt.plot(x_2,y_2)
+        plt.legend()
+        plt.savefig(pic_name) 
         plt.show()
         return minMre
 
