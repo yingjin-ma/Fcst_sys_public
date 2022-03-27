@@ -531,8 +531,12 @@ class LstmTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         modelloc_tmp=self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tot_tmp.pkl'
+<<<<<<< HEAD
         y = []
         for epoch in range(1,self.config.tra_num_epochs+1):
+=======
+        for epoch in range(self.config.tra_num_epochs):
+>>>>>>> 43b15b78073cef881baf08c498e3bc9e36bcb579
             #start=systime.time()
             train_loss=0.0
             # if err<0.2:

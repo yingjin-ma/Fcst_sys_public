@@ -27,8 +27,13 @@ import Configs
 
 # ==> parameters to be used (IO later) 
 # ML models, related
+<<<<<<< HEAD
 ML_models   =  ["RF"]
 TR_para     =  [25,350,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
+=======
+ML_models   =  ["MGCN"]
+TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
+>>>>>>> 43b15b78073cef881baf08c498e3bc9e36bcb579
 TRM_dir      = PWD + "/database/training-models"
 # SDFs and Crawled folder, related
 sdfsH       = RAW + "/Arxiv1911.05569v1_sdfs_H"
@@ -56,7 +61,7 @@ suits_train.append("Gaussian_inputs_training5")
 # ==> validing/testing sets, manual selections for adjusting 
 suits_valid = []
 suits_valid.append("Gaussian_inputs_validing")
-#suits_valid.append("Gaussian_inputs_validing2")
+suits_valid.append("Gaussian_inputs_validing2")
 #suits_valid.append("Gaussian_inputs_testing")
 #suits_valid.append("Gaussian_inputs_testing2")
 
