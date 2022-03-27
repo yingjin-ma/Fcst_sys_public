@@ -531,12 +531,8 @@ class LstmTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         modelloc_tmp=self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tot_tmp.pkl'
-<<<<<<< HEAD
         y = []
         for epoch in range(1,self.config.tra_num_epochs+1):
-=======
-        for epoch in range(self.config.tra_num_epochs):
->>>>>>> 43b15b78073cef881baf08c498e3bc9e36bcb579
             #start=systime.time()
             train_loss=0.0
             # if err<0.2:
@@ -626,11 +622,20 @@ class LstmTool(ModelTool):
         print("trainning completed!")
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
-        x = np.arange(0, 100)
-        plt.title("Result-LSTM") 
+        pic_dir = os.getcwd() + '/Result/lstm'
+        if not os.path.exists(pic_dir):
+            os.mkdir(pic_dir) 
+        pic_name = pic_dir + '/' + self.chemspace + '.png'
+        title = "LSTM_" + self.chemspace
+        x = np.arange(0, 210)
+        plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
-        plt.plot(x,y) 
+        #plt.plot(x_1,y_1,color='r',label='mre')
+        #plt.plot(x_2,y_2,color='b',label='MRE')
+        plt.plot(x,y)
+        plt.legend()
+        plt.savefig(pic_name) 
         plt.show()
 
         return minMre    

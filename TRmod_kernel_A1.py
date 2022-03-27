@@ -27,13 +27,8 @@ import Configs
 
 # ==> parameters to be used (IO later) 
 # ML models, related
-<<<<<<< HEAD
-ML_models   =  ["RF"]
-TR_para     =  [25,350,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
-=======
-ML_models   =  ["MGCN"]
-TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
->>>>>>> 43b15b78073cef881baf08c498e3bc9e36bcb579
+ML_models   =  ["LSTM"]
+TR_para     =  [50,210,50,0.01,0.3,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
 TRM_dir      = PWD + "/database/training-models"
 # SDFs and Crawled folder, related
 sdfsH       = RAW + "/Arxiv1911.05569v1_sdfs_H"
@@ -41,7 +36,7 @@ setsDir     = RAW + "/G09data.01.updated"
 # Functionals and basis sets, related
 #functionals = ['B3LYP','bhandhlyp','BLYP','CAM-B3LYP','LC-BLYP','M06','M062x','PBE1PBE','wb97xd']
 #bases       = ['6-31g','6-31gs','6-31pgs']
-functionals = ['CAM-B3LYP']
+functionals = ['wb97xd']
 bases       = ['6-31pgs']
 
 # training/validing/testing sets
