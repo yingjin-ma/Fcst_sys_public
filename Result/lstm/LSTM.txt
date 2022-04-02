@@ -1,27 +1,27 @@
 MGCN:
-functional     bases     tra_size    epoch
-B3LYP         6-31g         50         250
-B3LYP         6-31gs        50         250
-B3LYP         6-31pgs       25         350
-bhandhlyp     6-31g         50         250
-bhandhlyp     6-31gs        50         250
-bhandhlyp     6-31pgs       25         350
-BLYP          6-31g         50         250
-BLYP          6-31gs        50         250
-BLYP          6-31pgs       25         350
-CAM-B3LYP     6-31g         50         250
-CAM-B3LYP     6-31gs        50         250
-CAM-B3LYP     6-31pgs       25         350
-LC-BLYP       6-31g         50         250
-LC-BLYP       6-31g         50         250
-LC-BLYP       6-31pgs       25         350
-M06           6-31g         50         250
-M06           6-31gs        50         250
-M06           6-31pgs       25         350
-M062x         6-31pgs       25         350
-PBE1PBE       6-31g         50         250
-PBE1PBE       6-31gs        50         250
-PBE1PBE       6-31pgs       25         350
-wb97xd        6-31g         50         250
-wb97xd        6-31gs        50         250
-wb97xd        6-31pgs       25         350
+functional     bases     tra_size    epoch       TrainRatio
+B3LYP         6-31g         50         180            0.3
+B3LYP         6-31gs        50         180            0.3
+B3LYP         6-31pgs       50         180            0.3
+bhandhlyp     6-31g         50         180            0.3
+bhandhlyp     6-31gs        50         180            0.3
+bhandhlyp     6-31pgs       50         180            0.3
+BLYP          6-31g         50         180            0.3
+BLYP          6-31gs        50         180            0.3
+BLYP          6-31pgs       50         180            0.3
+CAM-B3LYP     6-31g         50         180            0.3
+CAM-B3LYP     6-31gs        50         180            0.3
+CAM-B3LYP     6-31pgs       50         180            0.3
+LC-BLYP       6-31g         50         180            0.3
+LC-BLYP       6-31g         50         180            0.3
+LC-BLYP       6-31pgs       50         180            0.3
+M06           6-31g         50         180            0.3
+M06           6-31gs        50         180            0.3
+M06           6-31pgs       50         180            0.3
+M062x         6-31pgs       50         180            0.3
+PBE1PBE       6-31g         50         180            0.3
+PBE1PBE       6-31gs        50         180            0.3
+PBE1PBE       6-31pgs       50         180            0.3
+wb97xd        6-31g         50         180            0.3
+wb97xd        6-31gs        50         180            0.3
+wb97xd        6-31pgs       50         180            0.3

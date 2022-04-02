@@ -41,9 +41,8 @@ class LstmTool(ModelTool):
         
         print(" ==> sdf_dir in readData",sdf_dir)
         print(" ==> paths",paths)
-
-        basisnums = []
-        
+        bnum = []
+        bnums = []
         times = []
         slist = []  # smiles list
         names = []
@@ -69,10 +68,12 @@ class LstmTool(ModelTool):
                         break
 
                 basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
+                basisnums = float(temp[0])
                 
                 #print("sdf ",temp[4].split('_')[0], "basis", basisnum, basisnum2)
                 
-                basisnums.append(basisnum)
+                bnum.append(basisnum)
+                bnums.append(basisnums)
                 
                 name=temp[4]#.split('_')[1]
                 #print("name : ",name)
@@ -86,7 +87,7 @@ class LstmTool(ModelTool):
                 for mol in suppl:
                     smiles=Chem.MolToSmiles(mol) # 读取单个smiles字符串
                     slist.append(smiles)
-        return basisnums,times,slist,names
+        return bnum,bnums,times,slist,names
 
 
     @staticmethod
@@ -333,7 +334,7 @@ class LstmTool(ModelTool):
         model=model.to(self.device)
         model.eval()
         
-        basisnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
+        bnum,bnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
 
         clist=LstmTool.seg(slist)
         with open('./tmp/wordToIndex.json','r',encoding='utf8') as f:
@@ -341,13 +342,14 @@ class LstmTool(ModelTool):
         features=LstmTool.wToIdx(clist,word_to_idx)
         padded_features=LstmTool.pad(features)
         eval_features=torch.tensor(padded_features)
-        eval_basis=torch.tensor(basisnums)
+        eval_basis=torch.tensor(bnum)
+        eval_basis_s = torch.tensor(bnums)
         eval_time=torch.tensor(times)
         #eval_names=torch.tensor(names)
         #nameDic={idx:name for idx,name in enumerate(names)}
         #eval_names=torch.tensor(nameDic.keys())
 
-        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_time)
+        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_basis_s,eval_time)
         eval_iter=torch.utils.data.DataLoader(eval_set,batch_size=self.config.batch_size,shuffle=False)
 
         preds=[]
@@ -361,16 +363,18 @@ class LstmTool(ModelTool):
             j=0
 
             ae=0.0
-            for feature,basisnum,time in eval_iter:
+            for feature,basisnum,basisnums,time in eval_iter:
                 #j=0
                 feature=feature.to(self.device)
                 basisnum=basisnum.to(self.device)
+                basisnums=basisnums.to(self.device)
 
-                result=model(feature,basisnum)
+                result=model(feature,basisnum,basisnums)
                 result=result.to('cpu')
                 resultlist=result.numpy().tolist()
                 preds.extend(resultlist)
                 basislist=basisnum.to('cpu').numpy().tolist()
+                basislist_s=basisnums.to('cpu').numpy().tolist()
                 timelist=time.numpy()
                 timelist=timelist.tolist()
                 print("len(resultlist)",len(resultlist),"len(ftmplines)",len(ftmplines)) 
@@ -381,7 +385,7 @@ class LstmTool(ModelTool):
                     #print("i : ", i)
                     #print("resultlist[i] : ", resultlist[i]) 
                     err1=(float(resultlist[i])-float(timelist[i]))/float(timelist[i])
-                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',basislist[i],' real time : ',timelist[i],' predicted time: ',resultlist[i], 'err', err1)
+                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',basislist[i],'basis sum num',basislist_s[i],' real time : ',timelist[i],' predicted time: ',resultlist[i], 'err', err1)
                     single_err=abs((resultlist[i]-timelist[i])/timelist[i])
                     ae=ae+abs(resultlist[i]-timelist[i]) 
                     errs.append(single_err)
@@ -417,7 +421,7 @@ class LstmTool(ModelTool):
         
         return [err_mean,mae,variance] 
     
-    def train(self,path=None):
+    def train(self,path=None,mol_size="small"):
         dft  = self.chemspace.split("_")[0]
         basis= self.chemspace.split("_")[1]
 
@@ -425,24 +429,44 @@ class LstmTool(ModelTool):
 
         if not os.path.exists("tmp"):
            os.mkdir("tmp")
-        icount=0
+        icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        tmp1="./tmp/train-tmp"
-        with open(tmp1,'w') as ftmp:
-           for suit in self.suits1:
-              #print(suit)
-              with open(suit,'r') as fsuits:
-                 for line in fsuits:
-                    icount=icount+1
-                    ftmp.write(line)
-              print(suit, " : ", icount)
-        print("Total molecules in training suit : ", icount)
+        tmp1="./tmp/train-tmp_s"
+        tmp2="./tmp/train-tmp_m"
+        tmp3="./tmp/train-tmp_l"
+        with open(tmp1,'w') as ftmp_s:
+            with open(tmp2,'w') as ftmp_m:
+                with open(tmp3,'w') as ftmp_l:
+                    for suit in self.suits1:
+                        with open(suit,'r') as fsuits:
+                            for line in fsuits:
+                                temp=line.strip(os.linesep).split()
+                                if float(temp[0]) < 200.0 :
+                                    icount_s = icount_s + 1
+                                    ftmp_s.write(line)
+                                elif float(temp[0]) > 400.0 :
+                                    icount_l = icount_l + 1
+                                    ftmp_l.write(line)
+                                else:
+                                    icount_m = icount_m + 1
+                                    ftmp_m.write(line)
+                        
+        print("Molecules in small training suit : ", icount_s)
+        print("Molecules in middle training suit : ", icount_m)
+        print("Molecules in large training suit : ", icount_l)
+        print("Total molecules in training suit : ", icount_s + icount_m + icount_l)
 
         if path is None:
            path=tmp1
 
         #读取原始数据
-        basisnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
+        if mol_size == "small":
+            bnum,bnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
+        elif mol_size == "middle":
+            bnum,bnums,times,slist,names=LstmTool.readData([tmp2],self.sdf_dir,tra_size,self.target,basis=basis)
+        else:
+            bnum,bnums,times,slist,names=LstmTool.readData([tmp3],self.sdf_dir,tra_size,self.target,basis=basis) 
+        
 
         #对smiles分词
         clist=LstmTool.seg(slist)
@@ -467,15 +491,18 @@ class LstmTool(ModelTool):
         data_length=len(padded_features)
         border=int(ratio*data_length)
         train_features=torch.tensor(padded_features[0:border])
-        train_basis=torch.tensor(basisnums[0:border])
+        train_basis=torch.tensor(bnum[0:border])
+        train_basis_s = torch.tensor(bnums[0:border])
         train_time=torch.tensor(times[0:border])
 
         valid_features=None
         valid_basis=None
+        valid_basis_s = None
         valid_time=None
         if ratio<1:
             valid_features=torch.tensor(padded_features[border:])
-            valid_basis=torch.tensor(basisnums[border:])
+            valid_basis=torch.tensor(bnum[border:])
+            valid_basis_s=torch.tensor(bnums[border:])
             valid_time=torch.tensor(times[border:])
 
         #读取预训练词向量
@@ -504,11 +531,11 @@ class LstmTool(ModelTool):
         optimizer=optim.Adam(model.parameters(),lr=self.config.lr)
         scheduler = optim.lr_scheduler.StepLR(optimizer,step_size=6,gamma = 0.8)
 
-        train_set=torch.utils.data.TensorDataset(train_features,train_basis,train_time)
+        train_set=torch.utils.data.TensorDataset(train_features,train_basis,train_basis_s,train_time)
         train_iter=torch.utils.data.DataLoader(train_set,batch_size=self.config.batch_size,shuffle=True)
 
         if valid_features is not None:
-            valid_set=torch.utils.data.TensorDataset(valid_features,valid_basis,valid_time)
+            valid_set=torch.utils.data.TensorDataset(valid_features,valid_basis,valid_basis_s,valid_time)
             valid_iter=torch.utils.data.DataLoader(valid_set,batch_size=self.config.batch_size,shuffle=True)
 
         #start trainning
@@ -540,12 +567,13 @@ class LstmTool(ModelTool):
             j=0
             err=0.0
             mae=0.0
-            for feature,basisnum,time in train_iter:
+            for feature,basisnum,basisnums,time in train_iter:
                 model.zero_grad()
                 feature=feature.to(self.device)
                 basisnum=basisnum.to(self.device)
+                basisnums=basisnums.to(self.device)
                 time=time.to(self.device)
-                result=model(feature,basisnum)
+                result=model(feature,basisnum,basisnums)
 
                 loss=loss_function(result,time)
                 loss.backward()
@@ -574,7 +602,7 @@ class LstmTool(ModelTool):
 
             if epoch%save_step==0:
                 torch.save(model,modelloc_tmp)
-                eval_res=self.eval(modelname=modelloc_tmp,path=self.suits2)
+                eval_res=self.eval(modelname=modelloc_tmp,chemspace=self.chemspace,path=self.suits2)
                 if eval_res[0]<minMre:
                     torch.save(model,self.folder_mod+'/'+ 'lstm_' + self.chemspace + '_tot.pkl')
                     minMre=eval_res[0]
@@ -622,12 +650,12 @@ class LstmTool(ModelTool):
         print("trainning completed!")
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
-        pic_dir = os.getcwd() + '/Result/lstm'
+        pic_dir = os.getcwd() + '/Result_c/lstm'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + '.png'
-        title = "LSTM_" + self.chemspace
-        x = np.arange(0, 210)
+        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
+        title = "LSTM_" + self.chemspace + "_" + mol_size
+        x = np.arange(0, 180)
         plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 

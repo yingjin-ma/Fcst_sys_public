@@ -13,7 +13,7 @@ class FNN(nn.Module):
         num_layers: 隐藏层数目
         '''
         super().__init__()
-        self.input_dim=12
+        self.input_dim=13
         self.hidden_dim=hidden_dim
         self.output_dim=output_dim
         self.num_layers=num_layers #隐藏层的数目

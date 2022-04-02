@@ -27,7 +27,7 @@ def getNbasis(bas="6-31g",sdf=""):
    if bas == "SV":   
       bas=bas.replace('SV','SV (Dunning-Hay)')
 
-   Nbasis=[]
+   basis_num=[]
    nao_s = nao_p = nao_d = nao_f = nao_g = nao_h = 0 # the number of s,p,d,f,g,h each in total
    suppl=Chem.SDMolSupplier(sdf)
    mols = [x for x in suppl]
@@ -76,11 +76,12 @@ def getNbasis(bas="6-31g",sdf=""):
             nao_h = nao_h +11*int(ao[n][:-1])
 
 #   print("sdf \n",sdf," \n naos \n",naos)
-   Nbasis=[nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
+   basis_num=[nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
+   basis_num_s = nao_s + nao_p + nao_d + nao_f + nao_g +nao_h
    
 
 #   return Nbasis, bas_atom
-   return Nbasis
+   return basis_num, basis_num_s
 
 
 def fitted_magns(basisnums,basisnums2,chemspace,ployfitted="test.log"):

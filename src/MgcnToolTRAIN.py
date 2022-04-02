@@ -258,26 +258,45 @@ class MgcnTool(ModelTool):
 
         return [err_mean,mae,variance]        
 
-    def train(self,path='./'):
+    def train(self,path='./',mol_size="small"):
 
         tra_size=self.config.tra_size
 
         if not os.path.exists("tmp"):
            os.mkdir("tmp")
-        icount=0
+        icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        tmp1="./tmp/train-tmp"
-        with open(tmp1,'w') as ftmp:
-           for suit in self.suits1:
-              #print(suit)
-              with open(suit,'r') as fsuits:
-                 for line in fsuits:
-                    icount=icount+1  
-                    ftmp.write(line)
-              print(suit, " : ", icount)
-        print("Total molecules in training suit : ", icount)
+        tmp1="./tmp/train-tmp_s"
+        tmp2="./tmp/train-tmp_m"
+        tmp3="./tmp/train-tmp_l"
+        with open(tmp1,'w') as ftmp_s:
+            with open(tmp2,'w') as ftmp_m:
+                with open(tmp3,'w') as ftmp_l:
+                    for suit in self.suits1:
+                        with open(suit,'r') as fsuits:
+                            for line in fsuits:
+                                temp=line.strip(os.linesep).split()
+                                if float(temp[0]) < 200.0 :
+                                    icount_s = icount_s + 1
+                                    ftmp_s.write(line)
+                                elif float(temp[0]) > 400.0 :
+                                    icount_l = icount_l + 1
+                                    ftmp_l.write(line)
+                                else:
+                                    icount_m = icount_m + 1
+                                    ftmp_m.write(line)
+                        
+        print("Molecules in small training suit : ", icount_s)
+        print("Molecules in middle training suit : ", icount_m)
+        print("Molecules in large training suit : ", icount_l)
+        print("Total molecules in training suit : ", icount_s + icount_m + icount_l)
 
-        dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        if mol_size == "small":
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        elif mol_size == "middle":
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp2,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        else:
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp3,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
 
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
@@ -354,7 +373,7 @@ class MgcnTool(ModelTool):
             
             if epoch%save_step==0:
                 th.save(model,modelName_tmp)
-                eval_res=self.eval(modelname=modelName_tmp,path=path)
+                eval_res=self.eval(modelname=modelName_tmp,chemspace=self.chemspace,path=path)
                 if eval_res[0]<minMre:
                     th.save(model,modelName)
                     minMre=eval_res[0]
@@ -363,12 +382,12 @@ class MgcnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        pic_dir = os.getcwd() + '/Result/mgcn'
+        pic_dir = os.getcwd() + '/Result_c/mgcn'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + '.png'
-        title = "MGCN_" + self.chemspace
-        x = np.arange(0, 350)
+        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
+        title = "MGCN_" + self.chemspace + "_" + mol_size
+        x = np.arange(0, 250)
         plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 

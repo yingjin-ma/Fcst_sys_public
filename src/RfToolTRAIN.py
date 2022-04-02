@@ -245,7 +245,8 @@ class RfTool(ModelTool):
 
         print("sdf_dir in readData",sdf_dir) 
 
-        basisnums =[]
+        bnum =[]
+        bnums = []
         times=[]
         names=[]
         slist=[]
@@ -275,8 +276,11 @@ class RfTool(ModelTool):
 
                     basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
                     #else  :
-                    basisnums.append(basisnum)
-                        
+                    basisnums = float(temp[0])
+                    
+                    bnum.append(basisnum)
+                    bnums.append(basisnums)
+
                     time=float(temp[target])    
                     times.append(time)
                     if readName==True:
@@ -287,7 +291,7 @@ class RfTool(ModelTool):
                         for mol in suppl:
                             smiles=Chem.MolToSmiles(mol)
                             slist.append(smiles)
-        return basisnums,times,slist,names
+        return bnum, bnums,times,slist,names
 
     @staticmethod
     def sdf_to_smiles(sdfs):#sdfs=[sdf1,sdf2,...]
@@ -323,12 +327,13 @@ class RfTool(ModelTool):
         '''
         assert moltype in (1,2,3,4)
         tra_size=self.config.tra_size
-        basisnums,times,slist,names=RfTool.readData(path,self.sdf_dir,tra_size,target=self.target)
+        bnum,bnums,times,slist,names=RfTool.readData(path,self.sdf_dir,tra_size,target=self.target)
         struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
         feats=[]
-        for i in range(len(basisnums)):
+        for i in range(len(bnum)):
             feat=[]
-            feat.extend(basisnums[i])
+            feat.append(bnums[i])
+            feat.extend(bnum[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
         feats_t=torch.tensor(feats)
@@ -376,16 +381,17 @@ class RfTool(ModelTool):
         '''
         assert moltype in (1,2,3,4)
         tra_size=self.config.tra_size
-        basisnums,times,slist,names=RfTool.readData(path,self.sdf_dir,tra_size,target=self.target)
+        bnum,bnums,times,slist,names=RfTool.readData(path,self.sdf_dir,tra_size,target=self.target)
         struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
         '''
         import pdb
         pdb.set_trace()
         '''
         feats=[]
-        for i in range(len(basisnums)):
+        for i in range(len(bnum)):
             feat=[]
-            feat.extend(basisnums[i])
+            feat.append(bnums[i])
+            feat.extend(bnum[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
         t_feats=torch.tensor(feats)
@@ -448,7 +454,7 @@ class RfTool(ModelTool):
         print("training done ! best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
-        pic_dir = os.getcwd() + '/Result/rf'
+        pic_dir = os.getcwd() + '/Result_b/rf'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
         pic_name = pic_dir + '/' + self.chemspace + '_' + str(moltype) + '.png'

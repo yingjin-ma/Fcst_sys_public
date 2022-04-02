@@ -22,7 +22,7 @@ import Magnification
 
 #该类的实例代表一个batch
 class AlchemyBatcher:
-    def __init__(self, graph=None, basisnum=None, basisnum2=None, label=None):
+    def __init__(self, graph=None, basisnum=None, basisnums=None, label=None):
         '''
         构造方法
         graph: 以图数据结构表示的分子特征集合
@@ -31,18 +31,18 @@ class AlchemyBatcher:
         '''
         self.graph     = graph
         self.basisnum  = basisnum
-        self.basisnum2 = basisnum2
+        self.basisnums = basisnums
         self.label     = label
 
 #用于生成batch，返回一个AlchemyBatcher实例
 def batcher():
     def batcher_dev(batch):
-        graphs, basisnums, labels = zip(*batch)
+        graphs, basisnum, basisnums, labels = zip(*batch)
         batch_graphs = dgl.batch(graphs)
-        basisnums    = torch.stack(basisnums)
-#        basisnums2   = torch.stack(basisnums2)
+        basisnum     = torch.stack(basisnum)
+        basisnums   = torch.stack(basisnums)
         labels       = torch.stack(labels, 0)
-        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnums, label=labels)
+        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnum, basisnums = basisnums, label=labels)
     return batcher_dev
 
 # 该类的实例用于封装图模型的数据集
@@ -158,7 +158,7 @@ class TencentAlchemyDataset(Dataset):
 
         return bond_feats_dict
 
-    def sdf_to_dgl(self, sdf_file,bnum, time,self_loop=False):
+    def sdf_to_dgl(self, sdf_file, bnum, bnum_s, time,self_loop=False):
         """
         Read sdf file and convert to dgl_graph
         Args:
@@ -200,9 +200,10 @@ class TencentAlchemyDataset(Dataset):
         bond_feats = self.alchemy_edges(mol, self_loop)
         g.edata.update(bond_feats)
         bnm =torch.FloatTensor([bnum])
+        bnm_s = torch.FloatTensor([bnum_s])
         # for val/test set, labels are molecule ID
         l = torch.FloatTensor([time]) #if self.mode == 'train' or self.mode=='valid' else torch.LongTensor([int(sdf_file.stem)])
-        return (g, bnm, l)
+        return (g, bnm, bnm_s,l)
 
     def __init__(self, mode='train', rootdir='./',suits='tmp1',chemspace='m062x_6-31G#',folder_sdf='./' ,transform=None,pdata=None,tra_size=4000, target=2):
         '''
@@ -237,8 +238,9 @@ class TencentAlchemyDataset(Dataset):
         self._load(tra_size,basis)
 
     def _load(self,tra_size,basis="6-31g"):
-        sdfs,bnums,times,self.graphs, self.basisnums,self.labels = [], [],[],[],[],[]
+        sdfs,bnum,bnum_s,times,self.graphs, self.basisnum,self.labels = [],[],[],[],[],[],[]
         self.sdfnames = []
+        self.basisnums = []
         sdfnames      = []
         target_file= self.suits
 
@@ -268,8 +270,10 @@ class TencentAlchemyDataset(Dataset):
                         break
 
                 basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnums = float(temp[0])
                 
-                bnums.append(basisnum)
+                bnum.append(basisnum)
+                bnum_s.append(basisnums)
 
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf+'/'+sdfname+'.sdf'
@@ -299,15 +303,16 @@ class TencentAlchemyDataset(Dataset):
                         break
                         
                 basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnums = float(temp[0])
                 
-                basisnum2 = Magnification.getNbasis(basis,loc)
+#              basisnum2 = Magnification.getNbasis(basis,loc)
 #                if dv_magn_each=='false':
 #                   bnums.append(basisnum)
 #                else :
 
                 # Assuming always use the reference basis
-                bnums.append(basisnum)
-#                bnums2.append(basisnum)
+                bnum.append(basisnum)
+                bnum_s.append(basisnums)
 
                 sdfs.append(loc)
                 times.append(time)
@@ -315,23 +320,25 @@ class TencentAlchemyDataset(Dataset):
 
         if self.mode=='test' or self.mode=='pred':
             sdfs=self.pdata[0]
-            bnums=self.pdata[1]
+            bnum=self.pdata[1]
+            bnum_s = self.pdata[2]
             for i in range(len(sdfs)):
                 times.append(1)
 
         i=0
         for sdf_file in sdfs:
             #print("sdf_file",sdf_file)
-            result = self.sdf_to_dgl(sdf_file,bnums[i],times[i])
+            result = self.sdf_to_dgl(sdf_file,bnum[i],bnum_s[i],times[i])
             if result is None:
                 continue
             self.graphs.append(result[0])
-            self.basisnums.append(result[1])
+            self.basisnum.append(result[1])
+            self.basisnums.append(result[2])
 
 #            basisnum2=float(Magnification.getNbasis(basis,sdf_file))
 #            self.basisnums2.append(basisnum2)
 
-            self.labels.append(result[2])
+            self.labels.append(result[3])
             self.sdfnames.append(sdfnames[i])
 #            print(sdfnames[i]) 
             i+=1
@@ -353,10 +360,10 @@ class TencentAlchemyDataset(Dataset):
         return len(self.graphs)
 
     def __getitem__(self, idx):  
-        g,basisnum, l = self.graphs[idx], self.basisnums[idx],self.labels[idx]
+        g,basisnum,basisnums, l = self.graphs[idx], self.basisnum[idx],self.basisnums[idx],self.labels[idx]
         if self.transform:
             g = self.transform(g)
-        return g,basisnum, l
+        return g,basisnum,basisnums, l
 
 if __name__ == '__main__':
     alchemy_dataset = TencentAlchemyDataset()

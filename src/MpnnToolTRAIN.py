@@ -190,6 +190,7 @@ class MpnnTool(ModelTool):
         #MAE_fn = nn.L1Loss() 
         model.eval()
         bnums   = []
+        bnums_s = []
         times   = []
         preds   = []
         with th.no_grad():
@@ -204,7 +205,8 @@ class MpnnTool(ModelTool):
                 batch.graph=batch.graph.to(self.device)
                 batch.label = batch.label.to(self.device)
                 batch.basisnum=batch.basisnum.to(self.device)
-                res = model(batch.graph,batch.basisnum)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res = model(batch.graph,batch.basisnum,batch.basisnums)
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
@@ -213,23 +215,27 @@ class MpnnTool(ModelTool):
                 reslist=res.tolist()
                 batch.label=batch.label.to('cpu')
                 batch.basisnum=batch.basisnum.to('cpu')
+                batch.basisnums = batch.basisnums.to('cpu')
                 timelist=batch.label.numpy()
                 #print(timelist)
                 timelist=timelist.tolist()
                 bnumlist=batch.basisnum.numpy().tolist()
+                bnumslist = batch.basisnums.numpy().tolist()
 
                 for i in range(len(reslist)):
                     
                     time=timelist[i][0]
                     ares=reslist[i]
                     bnum=bnumlist[i][0]
+                    bnum_s = bnumslist[i][0]
                        
                     #print(bnum)
                     times.append(time)
                     preds.append(ares)
                     bnums.append(bnum)
+                    bnums_s.append(bnum_s)
                     err1=(float(time)-float(ares))/float(time)
-                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' real time : ',time,' predicted time: ',ares, 'err', err1)
+                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' basis sum num: ',bnum_s,' real time : ',time,' predicted time: ',ares, 'err', err1)
                     ae=abs(time-ares)
                     single_err=ae/time
                     err+=single_err
@@ -257,15 +263,21 @@ class MpnnTool(ModelTool):
 
         return [err_mean,mae,variance]    
 
-    def train(self,path='./'):
+    def train(self,path='./',mol_size="small"):
 
         tra_size=self.config.tra_size
 
         if not os.path.exists("tmp"):
            os.mkdir("tmp")
-        icount=0
+        icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        tmp1="./tmp/train-tmp"
+        tmp1="./tmp/train-tmp_s"
+        tmp2="./tmp/train-tmp_m"
+        tmp3="./tmp/train-tmp_l"
+        '''
+        import pdb
+        pdb.set_trace()
+        
         with open(tmp1,'w') as ftmp:
            for suit in self.suits1:
               #print(suit)
@@ -274,14 +286,41 @@ class MpnnTool(ModelTool):
                     icount=icount+1  
                     ftmp.write(line)
               print(suit, " : ", icount)
-        print("Total molecules in training suit : ", icount)            
+        '''
 
-        dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        with open(tmp1,'w') as ftmp_s:
+            with open(tmp2,'w') as ftmp_m:
+                with open(tmp3,'w') as ftmp_l:
+                    for suit in self.suits1:
+                        with open(suit,'r') as fsuits:
+                            for line in fsuits:
+                                temp=line.strip(os.linesep).split()
+                                if float(temp[0]) < 200.0 :
+                                    icount_s = icount_s + 1
+                                    ftmp_s.write(line)
+                                elif float(temp[0]) > 400.0 :
+                                    icount_l = icount_l + 1
+                                    ftmp_l.write(line)
+                                else:
+                                    icount_m = icount_m + 1
+                                    ftmp_m.write(line)
+                        
+        print("Molecules in small training suit : ", icount_s)
+        print("Molecules in middle training suit : ", icount_m)
+        print("Molecules in large training suit : ", icount_l)
+        print("Total molecules in training suit : ", icount_s + icount_m + icount_l)            
 
+        if mol_size == "small":
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        elif mol_size == "middle":
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp2,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        else:
+            dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp3,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
                           shuffle     = False,
+                          #drop_last   = True,
                           num_workers = 0)
         model=MPNNModel(device=self.device)
         model.to(self.device)
@@ -312,10 +351,13 @@ class MpnnTool(ModelTool):
             errs   = []
             j      = 0
             for idx, batch in enumerate(loader):
+                #import pdb
+                #pdb.set_trace()
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)
-                res            = model(batch.graph,batch.basisnum)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res            = model(batch.graph,batch.basisnum,batch.basisnums)
                 
                 loss           = loss_fn(res, batch.label.squeeze(-1))
                 #mae = MAE_fn(res, batch.label)
@@ -363,11 +405,11 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        pic_dir = os.getcwd() + '/Result/mpnn'
+        pic_dir = os.getcwd() + '/Result_c/mpnn'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + '.png'
-        title = "MPNN_" + self.chemspace
+        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
+        title = "MPNN_" + self.chemspace + "_" + mol_size
         x_1 = np.arange(0, 250, 10)
         x_2 = np.arange(0, 250)
         plt.title(title) 
