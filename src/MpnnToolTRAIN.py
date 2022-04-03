@@ -271,23 +271,12 @@ class MpnnTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
+        
+        '''
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
-        '''
-        import pdb
-        pdb.set_trace()
         
-        with open(tmp1,'w') as ftmp:
-           for suit in self.suits1:
-              #print(suit)
-              with open(suit,'r') as fsuits:
-                 for line in fsuits:
-                    icount=icount+1  
-                    ftmp.write(line)
-              print(suit, " : ", icount)
-        '''
-
         with open(tmp1,'w') as ftmp_s:
             with open(tmp2,'w') as ftmp_m:
                 with open(tmp3,'w') as ftmp_l:
@@ -316,6 +305,20 @@ class MpnnTool(ModelTool):
             dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp2,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
         else:
             dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp3,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        '''
+        tmp1="./tmp/train-tmp"
+        with open(tmp1,'w') as ftmp:
+           for suit in self.suits1:
+              #print(suit)
+              with open(suit,'r') as fsuits:
+                 for line in fsuits:
+                    icount=icount+1  
+                    ftmp.write(line)
+              print(suit, " : ", icount)
+        print("Total molecules in training suit : ", icount)
+
+        dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
@@ -405,11 +408,11 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        pic_dir = os.getcwd() + '/Result_c/mpnn'
+        pic_dir = os.getcwd() + '/Result_b/mpnn'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
-        title = "MPNN_" + self.chemspace + "_" + mol_size
+        pic_name = pic_dir + '/' + self.chemspace + '.png'#+ "_" + mol_size 
+        title = "MPNN_" + self.chemspace #+ "_" + mol_size
         x_1 = np.arange(0, 250, 10)
         x_2 = np.arange(0, 250)
         plt.title(title) 

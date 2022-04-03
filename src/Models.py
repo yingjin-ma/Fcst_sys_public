@@ -43,28 +43,7 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
       import MpnnToolTRAIN 
       
       tool=MpnnToolTRAIN.MpnnTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
-      for i in range(3):
-         if i == 0:
-            tool.train(path=setsDir,mol_size = "small")
-         elif i == 1:
-            tool.train(path=setsDir,mol_size = "middle")
-         else:
-            tool.train(path=setsDir,mol_size = "large")
-      #tool.train(path=setsDir)
-   elif model=="MGCN":
-      import MgcnToolTRAIN 
-      tool=MgcnToolTRAIN.MgcnTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
-      for i in range(3):
-         if i == 0:
-            tool.train(path=setsDir,mol_size = "small")
-         elif i == 1:
-            tool.train(path=setsDir,mol_size = "middle")
-         else:
-            tool.train(path=setsDir,mol_size = "large")
-   elif model=="LSTM":
-      import LstmToolTRAIN 
-      tool=LstmToolTRAIN.LstmTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
-      
+      ''' 
       for i in range(3):
          if i == 0:
             tool.train(path=setsDir,mol_size = "small")
@@ -74,7 +53,35 @@ def TrainAndEval(TR_para,TR_dir,chemspace,folder_sdf,suits_train,suits_valid,set
             tool.train(path=setsDir,mol_size = "large")
       '''
       tool.train(path=setsDir)
+   elif model=="MGCN":
+      import MgcnToolTRAIN 
+      tool=MgcnToolTRAIN.MgcnTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
+       
+      for i in range(3):
+         if i == 0:
+            tool.train(path=setsDir,mol_size = "small")
+         elif i == 1:
+            tool.train(path=setsDir,mol_size = "middle")
+         else:
+            tool.train(path=setsDir,mol_size = "large")
+      '''
+      tool.train(path=setsDir)
+      '''
+   elif model=="LSTM":
+      import LstmToolTRAIN 
+      tool=LstmToolTRAIN.LstmTool(chemspace=chemspace, config=config, suits1=suits_train, suits2=suits_valid, folder_sdf=folder_sdf, folder_mod=TR_dir, target=aimming)
+      
       ''' 
+      for i in range(3):
+         if i == 0:
+            tool.train(path=setsDir,mol_size = "small")
+         elif i == 1:
+            tool.train(path=setsDir,mol_size = "middle")
+         else:
+            tool.train(path=setsDir,mol_size = "large")
+      '''
+      tool.train(path=setsDir)
+
    elif model=="RF":
       import RfToolTRAIN
       series=['alkane','branch','ring','PE']

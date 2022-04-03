@@ -191,6 +191,7 @@ class MgcnTool(ModelTool):
         #MAE_fn = nn.L1Loss() 
         model.eval()
         bnums=[]
+        bnums_s=[]
         times=[]
         preds=[]
         with th.no_grad():
@@ -205,7 +206,8 @@ class MgcnTool(ModelTool):
                 batch.graph=batch.graph.to(self.device)
                 batch.label = batch.label.to(self.device)
                 batch.basisnum=batch.basisnum.to(self.device)
-                res = model(batch.graph,batch.basisnum)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res = model(batch.graph,batch.basisnum,batch.basisnums)
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
@@ -214,23 +216,27 @@ class MgcnTool(ModelTool):
                 reslist=res.tolist()
                 batch.label=batch.label.to('cpu')
                 batch.basisnum=batch.basisnum.to('cpu')
+                batch.basisnums=batch.basisnums.to('cpu')
                 timelist=batch.label.numpy()
                 #print(timelist)
                 timelist=timelist.tolist()
                 bnumlist=batch.basisnum.numpy().tolist()
+                bnumlist_s=batch.basisnums.numpy().tolist()
 
                 for i in range(len(reslist)):
             
                     time=timelist[i][0]
                     ares=reslist[i]
                     bnum=bnumlist[i][0]
+                    bnum_s=bnumlist[i][0]
                     
                     #print(bnum)
                     times.append(time)
                     preds.append(ares)
                     bnums.append(bnum)
+                    bnums_s.append(bnum_s)
                     err1=(float(time)-float(ares))/float(time)
-                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' real time : ',time,' predicted time: ',ares, 'err', err1)
+                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' basis sum num: ',bnum_s,' real time : ',time,' predicted time: ',ares, 'err', err1)
                     ae=abs(time-ares)
                     single_err=abs(time-ares)/time
                     err+=single_err
@@ -266,6 +272,7 @@ class MgcnTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
+        
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -298,6 +305,20 @@ class MgcnTool(ModelTool):
         else:
             dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp3,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
 
+        '''
+        tmp1="./tmp/train-tmp"
+        with open(tmp1,'w') as ftmp:
+           for suit in self.suits1:
+              #print(suit)
+              with open(suit,'r') as fsuits:
+                 for line in fsuits:
+                    icount=icount+1  
+                    ftmp.write(line)
+              print(suit, " : ", icount)
+        print("Total molecules in training suit : ", icount)
+
+        dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+        '''
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
@@ -336,7 +357,8 @@ class MgcnTool(ModelTool):
                 batch.graph    = batch.graph.to(self.device)
                 batch.label    = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)
-                res            = model(batch.graph,batch.basisnum)
+                batch.basisnums= batch.basisnums.to(self.device)
+                res            = model(batch.graph,batch.basisnum,batch.basisnums)
                 
                 loss           = loss_fn(res, batch.label.squeeze(-1))
                 #mae = MAE_fn(res, batch.label)
@@ -385,9 +407,9 @@ class MgcnTool(ModelTool):
         pic_dir = os.getcwd() + '/Result_c/mgcn'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
+        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'# 
         title = "MGCN_" + self.chemspace + "_" + mol_size
-        x = np.arange(0, 250)
+        x = np.arange(0, 350)
         plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 

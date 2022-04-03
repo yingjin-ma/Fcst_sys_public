@@ -431,6 +431,7 @@ class LstmTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
+        '''
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -466,7 +467,18 @@ class LstmTool(ModelTool):
             bnum,bnums,times,slist,names=LstmTool.readData([tmp2],self.sdf_dir,tra_size,self.target,basis=basis)
         else:
             bnum,bnums,times,slist,names=LstmTool.readData([tmp3],self.sdf_dir,tra_size,self.target,basis=basis) 
-        
+        '''
+        tmp1="./tmp/train-tmp"
+        with open(tmp1,'w') as ftmp:
+           for suit in self.suits1:
+              #print(suit)
+              with open(suit,'r') as fsuits:
+                 for line in fsuits:
+                    icount=icount+1  
+                    ftmp.write(line)
+              print(suit, " : ", icount)
+        print("Total molecules in training suit : ", icount)
+        bnum,bnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
 
         #对smiles分词
         clist=LstmTool.seg(slist)
@@ -653,8 +665,8 @@ class LstmTool(ModelTool):
         pic_dir = os.getcwd() + '/Result_c/lstm'
         if not os.path.exists(pic_dir):
             os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'
-        title = "LSTM_" + self.chemspace + "_" + mol_size
+        pic_name = pic_dir + '/' + self.chemspace + '.png' #+ "_" + mol_size 
+        title = "LSTM_" + self.chemspace #+ "_" + mol_size
         x = np.arange(0, 180)
         plt.title(title) 
         plt.xlabel("epoch") 

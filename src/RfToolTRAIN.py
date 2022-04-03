@@ -459,7 +459,7 @@ class RfTool(ModelTool):
             os.mkdir(pic_dir) 
         pic_name = pic_dir + '/' + self.chemspace + '_' + str(moltype) + '.png'
         title = "RF_" + self.chemspace + str(moltype)
-        x = np.arange(0, 250)
+        x = np.arange(0, 350)
         plt.title(title) 
         plt.xlabel("epoch") 
         plt.ylabel("mre") 
