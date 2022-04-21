@@ -89,7 +89,7 @@ class TencentAlchemyDataset(Dataset):
             hybridization = atom.GetHybridization()
             num_h = atom.GetTotalNumHs()
             atom_feats_dict['pos'].append(torch.FloatTensor(geom[u]))
-            #atom_feats_dict['bnum'].append(torch.FloatTensor(bnum_q[u]))
+            atom_feats_dict['bnum'].append(torch.FloatTensor(bnum_q[u]))
             atom_feats_dict['node_type'].append(atom_type)
 
             h_u = []
@@ -113,7 +113,7 @@ class TencentAlchemyDataset(Dataset):
 
         atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'],dim=0)
         atom_feats_dict['pos'] = torch.stack(atom_feats_dict['pos'], dim=0)
-        #atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
+        atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
         atom_feats_dict['node_type'] = torch.LongTensor(atom_feats_dict['node_type'])
 
         return atom_feats_dict
