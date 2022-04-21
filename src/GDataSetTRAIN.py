@@ -22,11 +22,11 @@ import Magnification
 
 #该类的实例代表一个batch
 class AlchemyBatcher:
-    def __init__(self, graph=None, basisnum=None, basisnums=None, label=None):
+    def __init__(self, graph=None,basisnum=None ,basisnums = None, label=None):
         '''
         构造方法
         graph: 以图数据结构表示的分子特征集合
-        basisnum: 基函数数目集合
+        basisnum: 每个原子的基函数数目集合
         label: 预测目标(时间)集合
         '''
         self.graph     = graph
@@ -49,7 +49,7 @@ def batcher():
 class TencentAlchemyDataset(Dataset):
     fdef_name = osp.join(RDConfig.RDDataDir, 'BaseFeatures.fdef')
     chem_feature_factory = ChemicalFeatures.BuildFeatureFactory(fdef_name)
-    def alchemy_nodes(self, mol):
+    def alchemy_nodes(self, mol, bnum_q):
         """Featurization for all atoms in a molecule. The atom indices
         will be preserved.
         Args:
@@ -89,6 +89,7 @@ class TencentAlchemyDataset(Dataset):
             hybridization = atom.GetHybridization()
             num_h = atom.GetTotalNumHs()
             atom_feats_dict['pos'].append(torch.FloatTensor(geom[u]))
+            #atom_feats_dict['bnum'].append(torch.FloatTensor(bnum_q[u]))
             atom_feats_dict['node_type'].append(atom_type)
 
             h_u = []
@@ -112,6 +113,7 @@ class TencentAlchemyDataset(Dataset):
 
         atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'],dim=0)
         atom_feats_dict['pos'] = torch.stack(atom_feats_dict['pos'], dim=0)
+        #atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
         atom_feats_dict['node_type'] = torch.LongTensor(atom_feats_dict['node_type'])
 
         return atom_feats_dict
@@ -158,7 +160,7 @@ class TencentAlchemyDataset(Dataset):
 
         return bond_feats_dict
 
-    def sdf_to_dgl(self, sdf_file, bnum, bnum_s, time,self_loop=False):
+    def sdf_to_dgl(self, sdf_file, bnum, bnum_s, bnum_q, time,self_loop=False):
         """
         Read sdf file and convert to dgl_graph
         Args:
@@ -176,7 +178,7 @@ class TencentAlchemyDataset(Dataset):
 
         # add nodes
         num_atoms = mol.GetNumAtoms()
-        atom_feats = self.alchemy_nodes(mol)
+        atom_feats = self.alchemy_nodes(mol,bnum_q)
         g.add_nodes(num=num_atoms, data=atom_feats)
 
         # add edges
@@ -242,6 +244,7 @@ class TencentAlchemyDataset(Dataset):
         self.sdfnames = []
         self.basisnums = []
         sdfnames      = []
+        bnum_q = []
         target_file= self.suits
 
         print("target :", self.target)
@@ -261,19 +264,50 @@ class TencentAlchemyDataset(Dataset):
 
                 for i in range(len(temp)):
                     if temp[i] == 'contracted':
-                        basisnum_s = float(temp[i+2])
-                        basisnum_p = float(temp[i+3])
-                        basisnum_d = float(temp[i+4])
-                        basisnum_f = float(temp[i+5])
-                        basisnum_g = float(temp[i+6])
-                        basisnum_h = float(temp[i+7].strip(']'))
+                        basisnum_s1 = float(temp[i+2])
+                        basisnum_p1 = float(temp[i+3])
+                        basisnum_d1 = float(temp[i+4])
+                        basisnum_f1 = float(temp[i+5])
+                        basisnum_g1 = float(temp[i+6])
+                        basisnum_h1 = float(temp[i+7].strip(']'))
+                        
+                    if temp[i] == 'contracted_per':
+                        #import pdb
+                        #pdb.set_trace()
+                        j = (len(temp) - i - 2)/6
+                        basvec = []
+                        for n in range(int(j)):
+                            if n == 0:
+                                basisnum_s = float(temp[i+2+6*n].strip('[[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(',').strip(']'))
+                            elif n == j-1:
+                                basisnum_s = float(temp[i+2+6*n].strip('[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(']]'))
+                            else:
+                                basisnum_s = float(temp[i+2+6*n].strip('[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(',').strip(']'))
+                            basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                            basvec.append(basisnum)
                         break
-
-                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                
+                basisnum1 = [basisnum_s1, basisnum_p1, basisnum_d1, basisnum_f1, basisnum_g1, basisnum_h1]
                 basisnums = float(temp[0])
                 
-                bnum.append(basisnum)
+                bnum.append(basisnum1)
                 bnum_s.append(basisnums)
+                bnum_q.append(basvec)
 
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf+'/'+sdfname+'.sdf'
@@ -294,26 +328,50 @@ class TencentAlchemyDataset(Dataset):
 
                 for i in range(len(temp)):
                     if temp[i] == 'contracted':
-                        basisnum_s = float(temp[i+2])
-                        basisnum_p = float(temp[i+3])
-                        basisnum_d = float(temp[i+4])
-                        basisnum_f = float(temp[i+5])
-                        basisnum_g = float(temp[i+6])
-                        basisnum_h = float(temp[i+7].strip(']'))
-                        break
+                        basisnum_s1 = float(temp[i+2])
+                        basisnum_p1 = float(temp[i+3])
+                        basisnum_d1 = float(temp[i+4])
+                        basisnum_f1 = float(temp[i+5])
+                        basisnum_g1 = float(temp[i+6])
+                        basisnum_h1 = float(temp[i+7].strip(']'))
                         
-                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                    if temp[i] == 'contracted_per':
+                        #import pdb
+                        #pdb.set_trace()
+                        j = (len(temp) - i - 2)/6
+                        basvec = []
+                        for n in range(int(j)):
+                            if n == 0:
+                                basisnum_s = float(temp[i+2+6*n].strip('[[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(',').strip(']'))
+                            elif n == j-1:
+                                basisnum_s = float(temp[i+2+6*n].strip('[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(']]'))
+                            else:
+                                basisnum_s = float(temp[i+2+6*n].strip('[').strip(','))
+                                basisnum_p = float(temp[i+3+6*n].strip(','))
+                                basisnum_d = float(temp[i+4+6*n].strip(','))
+                                basisnum_f = float(temp[i+5+6*n].strip(','))
+                                basisnum_g = float(temp[i+6+6*n].strip(','))
+                                basisnum_h = float(temp[i+7+6*n].strip(',').strip(']'))
+                            basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                            basvec.append(basisnum)
+                        break
+                
+                basisnum1 = [basisnum_s1, basisnum_p1, basisnum_d1, basisnum_f1, basisnum_g1, basisnum_h1]
                 basisnums = float(temp[0])
                 
-#              basisnum2 = Magnification.getNbasis(basis,loc)
-#                if dv_magn_each=='false':
-#                   bnums.append(basisnum)
-#                else :
-
-                # Assuming always use the reference basis
-                bnum.append(basisnum)
+                bnum.append(basisnum1)
                 bnum_s.append(basisnums)
-
+                bnum_q.append(basvec)
                 sdfs.append(loc)
                 times.append(time)
                 sdfnames.append(sdfname)
@@ -328,7 +386,7 @@ class TencentAlchemyDataset(Dataset):
         i=0
         for sdf_file in sdfs:
             #print("sdf_file",sdf_file)
-            result = self.sdf_to_dgl(sdf_file,bnum[i],bnum_s[i],times[i])
+            result = self.sdf_to_dgl(sdf_file,bnum[i],bnum_s[i], bnum_q[i],times[i])
             if result is None:
                 continue
             self.graphs.append(result[0])

@@ -272,7 +272,7 @@ class MpnnTool(ModelTool):
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
         
-        '''
+        
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -298,7 +298,6 @@ class MpnnTool(ModelTool):
         print("Molecules in middle training suit : ", icount_m)
         print("Molecules in large training suit : ", icount_l)
         print("Total molecules in training suit : ", icount_s + icount_m + icount_l)            
-
         if mol_size == "small":
             dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
         elif mol_size == "middle":
@@ -318,7 +317,7 @@ class MpnnTool(ModelTool):
         print("Total molecules in training suit : ", icount)
 
         dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
-
+        '''
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
@@ -346,8 +345,7 @@ class MpnnTool(ModelTool):
         minMre=100.0
         bestEpoch=0
         save_step=10
-        y_1 = []
-        y_2 = []
+        y = []
         for epoch in range(1,self.config.tra_num_epochs+1):
             w_loss = 0
             err    = 0
@@ -392,14 +390,13 @@ class MpnnTool(ModelTool):
             err_mean=err/j
             errs=np.array(errs)
             variance=errs.var()
-            y_2.append(err_mean)
+            y.append(err_mean)
             
             print("Epoch {:2d}, loss: {:.7f}, mre: {:.7f},variance: {:.4f}".format(epoch, w_loss/j, err_mean,variance))
 
             if epoch%save_step==0:
                 th.save(model,modelName_tmp)
                 eval_res=self.eval(modelname=modelName_tmp,chemspace=self.chemspace,path=path)
-                y_1.append(eval_res[0])
                 if eval_res[0]<minMre:
                     th.save(model,modelName)
                     minMre=eval_res[0]
@@ -408,22 +405,12 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        pic_dir = os.getcwd() + '/Result_b/mpnn'
-        if not os.path.exists(pic_dir):
-            os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + '.png'#+ "_" + mol_size 
-        title = "MPNN_" + self.chemspace #+ "_" + mol_size
-        x_1 = np.arange(0, 250, 10)
-        x_2 = np.arange(0, 250)
-        plt.title(title) 
-        plt.xlabel("epoch") 
-        plt.ylabel("mre") 
-        #plt.plot(x_1,y_1,color='r',label='mre')
-        #plt.plot(x_2,y_2,color='b',label='MRE')
-        plt.plot(x_2,y_2)
-        plt.legend()
-        plt.savefig(pic_name) 
-        plt.show()
+        if mol_size == "small":
+            np.save('a', y)
+        elif mol_size == "middle":
+            np.save('b', y)
+        else:
+            np.save('c', y)
         return minMre
 
 

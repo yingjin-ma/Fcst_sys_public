@@ -236,7 +236,7 @@ class MgcnTool(ModelTool):
                     bnums.append(bnum)
                     bnums_s.append(bnum_s)
                     err1=(float(time)-float(ares))/float(time)
-                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' basis sum num: ',bnum_s,' real time : ',time,' predicted time: ',ares, 'err', err1)
+                    print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' real time : ',time,' predicted time: ',ares, 'err', err1)
                     ae=abs(time-ares)
                     single_err=abs(time-ares)/time
                     err+=single_err
@@ -404,18 +404,12 @@ class MgcnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        pic_dir = os.getcwd() + '/Result_c/mgcn'
-        if not os.path.exists(pic_dir):
-            os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + "_" + mol_size + '.png'# 
-        title = "MGCN_" + self.chemspace + "_" + mol_size
-        x = np.arange(0, 350)
-        plt.title(title) 
-        plt.xlabel("epoch") 
-        plt.ylabel("mre") 
-        plt.plot(x,y)
-        plt.savefig(pic_name) 
-        plt.show()
+        if mol_size == "small":
+            np.save('a', y)
+        elif mol_size == "middle":
+            np.save('b', y)
+        else:
+            np.save('c', y)
         
         return minMre
 
