@@ -8,9 +8,9 @@
     - 347828991 -- ID of SDF in Drugbank                 ***(Used in training by connecting the molecule in SMILES or GRAPH)***
     - 13 -- Number of SCF iterations
     - 6.28461538462 -- Time for each iteration (seconds)
-    - 2097152000 -- (need to check)
+    - 2097152000 -- (MEM? need to check)
     - 6-31G -- Basis set
-    - [126, 126] -- (need to check) 
+    - [126, 126] -- Total number of basis for every irreps 
     - E(RB3LYP) -- Computational approach
     - [57, 57] -- (need to check) 
     - ['-0.032913667446', '-0.203441313753', '-0.000529993487', '-0.000486078130', '-0.000010937382', '0.000126085332', '-0.000000096350', '-0.000000178336', '-0.000000012795', '-0.000000000448', '-0.000000000047', '0.000000000019'] -- Energy variation for each iteration
