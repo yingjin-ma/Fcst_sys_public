@@ -21,6 +21,6 @@
     - [  contracted : 42 84 0 0 0 0] : Total number of contracted basis sets for s, p, d, f, g, h, respectively.
 
 
-- Format for G09data.01.updated
+- Format for G09data.01.updated2
   - Additional data are organized as follows : 
-    - [10, 12, 0, 0, 0, 0], [10, 12, 0, 0, 0, 0], ...  -- number of uncontracted basis sets for s, p, d, f, g, h, respectively, for each atom
+    - [10, 12, 0, 0, 0, 0], [10, 12, 0, 0, 0, 0], ...  -- Number of uncontracted basis sets for s, p, d, f, g, h, respectively, for each atom
