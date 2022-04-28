@@ -31,7 +31,7 @@ def EvalSuit(model,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages,Machines):
       # step-2 : initialize the MPNN models 
       MPNNtool = MpnnToolEVAL.MpnnTool(chemspace=ref_chemspace,config=config,suits1=NAMmol,sdf_dir=PWDmol,target=aimming)
       # step-3 : get the predicted results
-      RES_tot  = MPNNtool.evalsuit(modelname=modelName,path=PWDmol,chemspace=ref_chemspace)   
+      RES_tot  = MPNNtool.evalsuit(modelname=modelName,path=PWDmol,chemspace=ref_chemspace) 
 
  
 

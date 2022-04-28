@@ -236,7 +236,7 @@ class TencentAlchemyDataset(Dataset):
         print("GdataSet:    folder_sdf  is: ", self.folder_sdf)
         print("GdataSet: working suits  is: ", self.suits)
         print("GdataSet: targeting prop is: ", self.target)
-        self.pdata=pdata #pdata代表待预测数据,pdata=[[sdf1,sdf2,...],[basisum1,basisnum2,...]]
+        self.pdata=pdata #pdata presents the data to be predicted, pdata=[[sdf1,sdf2,...],[basisum1,basisnum2,...]]
 
         self._load(tra_size,basis)
 
@@ -292,11 +292,16 @@ class TencentAlchemyDataset(Dataset):
                 times.append(time)
                 sdfnames.append(sdfname)
 
-        if self.mode=='test' or self.mode=='pred':
+        if self.mode=='test':
             sdfs=self.pdata[0]
             bnums=self.pdata[1]
             for i in range(len(sdfs)):
                 times.append(1)
+
+        if self.mode=='pred':
+           print("predicting the suit" )
+           exit(0)
+
 
         i=0
         for sdf_file in sdfs:

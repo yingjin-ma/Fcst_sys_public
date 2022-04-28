@@ -290,7 +290,7 @@ class TADataset(Dataset):
                 times.append(time)
                 sdfnames.append(sdfname)
 
-        if self.mode=='test' or self.mode=='pred':
+        if self.mode=='test' :
             sdfs=self.pdata[0]
             bnums=self.pdata[1]
             print(sdfs,bnums)
@@ -300,6 +300,14 @@ class TADataset(Dataset):
                #print("onesdf : ",onesdf)
                sdfnames.append(onesdf)
                times.append(1)
+
+        if self.mode=='pred':
+            sdfs=self.pdata[0]
+            bnums=self.pdata[1]
+            for isdf in sdfs:
+               sname=isdf.split("/")[len(isdf.split("/"))-1].split(".")[0] 
+               sdfnames.append(sname)
+               times.append(0)
 
         i=0
         for sdf_file in sdfs:
@@ -324,6 +332,7 @@ class TADataset(Dataset):
                print(i, " loaded")
         self.normalize()
         print("Totally ", len(self.graphs), " samples loaded!")
+
 
     def normalize(self, mean=None, std=None):  #标准化
         labels = np.array([i.numpy() for i in self.labels])

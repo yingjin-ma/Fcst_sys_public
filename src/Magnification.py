@@ -37,9 +37,10 @@ def getNbasis(bas="6-31g",sdf=""):
    for atom in molH.GetAtoms():
       natom  = atom.GetAtomicNum()
       bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
-      ao=bs_str.split()[8].strip('[').strip(']').split(',')
+      ao=bs_str.split()[9].strip('[').strip(']').split(',')
       n2=len(ao)
-#      print("basis : ",ao)
+      #print("bs_str : ",bs_str)
+      #print("basis : ",ao)
       for n in range(n2):
          if ao[n][1] == 's':
             naos=naos+ int(ao[n][:-1])
@@ -57,7 +58,7 @@ def getNbasis(bas="6-31g",sdf=""):
          if ao[n][1] == 'h':
             naos=naos+11*int(ao[n][:-1])
 
-#   print("sdf \n",sdf," \n naos \n",naos)
+   #print("sdf \n",sdf," \n naos \n",naos)
    Nbasis=naos
 
    return Nbasis
