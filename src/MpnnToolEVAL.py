@@ -26,6 +26,57 @@ class MpnnTool(ModelTool):
         ModelTool.__init__(self,chemspace,config,sdf_dir,target)
         self.suits1=suits1
 
+    def evalsuit(self,modelname,chemspace="B3LYP_6-31g",path='./',write=False):
+        '''
+        predicting the timing basing on the specified model
+        path: path of testing suits; default as 'data/tes_'+self.chemspace+'.txt'
+        write: check whether into xlsx format
+        '''
+
+        dft  =chemspace.split("_")[0]
+        basis=chemspace.split("_")[1]
+
+        tra_size=self.config.tra_size
+
+        print("self.suits1 : ",self.suits1)
+
+        if not os.path.exists("tmp"):
+           os.mkdir("tmp")
+        icount=0
+        # The used validing suits            
+        tmp1="./tmp/valid-tmp"+chemspace+"MPNN"
+        with open(tmp1,'w') as ftmp:
+           for suit in self.suits1:
+              icount=icount+1
+              ftmp.write(suit)
+              #print(suit, " : ", icount)
+        print("Total molecules in predicting suit : ", icount)
+
+        dataset=TencentAlchemyDataset(mode='valid',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
+
+        loader=DataLoader(dataset     = dataset,
+                          batch_size  = self.config.batch_size,
+                          collate_fn  = batcher(),
+                          shuffle     = False,
+                          num_workers = 0)
+
+        if not os.path.exists(modelname):
+            print(modelname+" does not exist!")
+            return
+        model = th.load(modelname)
+        model.to(self.device)
+
+        model.eval()
+        bnums   = []
+        times   = []
+        preds   = []
+
+        exit(0) 
+
+
+
+
+
     def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
         '''
         testing model

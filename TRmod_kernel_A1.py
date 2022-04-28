@@ -27,7 +27,7 @@ import Configs
 
 # ==> parameters to be used (IO later) 
 # ML models, related
-ML_models   =  ["RF"]
+ML_models   =  ["MPNN"]
 TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
 TR_dir      = PWD + "/database/training-models"
 # SDFs and Crawled folder, related

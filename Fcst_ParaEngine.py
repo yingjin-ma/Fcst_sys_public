@@ -44,19 +44,20 @@ NAMmol = []
 for i in range(len(infiles)):
    tarfile = target_mols[0] + "/" + infiles[i]  
    mols.append(Chem.SDMolSupplier(tarfile))
-   NAMmol.append(target_mols[0] + "/" + infiles[i])
+   NAMmol.append(infiles[i])
 
-mol = mols[0]
+#mol = mols[0]
 #print(mols)
 
 PWDmol = PWD + "/" + target_mols[0] 
 
+print(" ")
 print("PWDmol : ",PWDmol)
 print("NAMmol : ",NAMmol)
 print("BAKmod : ",BAK   )
+print(" ")
 
-exit(0)
-
+#exit(0)
 
 # chemical space and many-world interpretation for predicting
 
@@ -77,31 +78,36 @@ for qc in QC_packages:
          print("  ")
 
          for funct in functionals:   # functionals
-            for basis in bases:      
+            for basis in bases:     
+
                # ==   the target chemspace   == *  
                chemspace=funct+'_'+basis   
 
                # == decide the ref_chemspace == *
                # ref_funct & ref_basis
-               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol)
+               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0][0])
 
                print("  ===>   Target    Space : ", funct,"/",basis)
                print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
+               print(" ")
 
                # ref_chemspace = ref_funct + ref_basis 
                ref_chemspace=ref_funct+"_"+ref_basis
 
-               # Predict basing on the ref_chemspace 
-               Ptime = PredictTime.Eval(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+               for mol in mols:
 
-               # MWI correction for the predicted results
-               corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
-               corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
+                  # Predict basing on the ref_chemspace 
+                  Ptime = PredictTime.EvalSuit(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+                  exit(0)
 
-               print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+                  # MWI correction for the predicted results
+                  corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
+                  corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
 
-               Ptime=Ptime*corr1*corr2
-               print("  ===>   The predicted computational CPU time is ", Ptime)
+                  print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+ 
+                  Ptime=Ptime*corr1*corr2
+                  print("  ===>   The predicted computational CPU time is ", Ptime)
 
          print("  ")
          print("  ")

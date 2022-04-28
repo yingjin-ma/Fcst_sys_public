@@ -12,6 +12,29 @@ import JacobLadder
 from Magnification import getNbasis
 from Magnification import fitted_magns
 
+def EvalSuit(model,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages,Machines):
+
+   model=model.upper()    
+   #print("PWDmol : ",PWDmol)
+
+   if model=="MPNN":
+      import MpnnToolEVAL  
+   
+      # Parameters
+      torch.manual_seed(2) 
+      training_size = 2000
+      aimming       = 2
+      modelName     = Models.ModelLoad(model,BAK,ref_chemspace,QC_packages,Machines)
+
+      # Step-1 : establish the configuration
+      config   = Configs.Config(tra_num_epochs=500,tra_size=training_size,lr=0.005,batch_size=200,tra_set_ratio=1,valid_interval=2)
+      # step-2 : initialize the MPNN models 
+      MPNNtool = MpnnToolEVAL.MpnnTool(chemspace=ref_chemspace,config=config,suits1=NAMmol,sdf_dir=PWDmol,target=aimming)
+      # step-3 : get the predicted results
+      RES_tot  = MPNNtool.evalsuit(modelname=modelName,path=PWDmol,chemspace=ref_chemspace)   
+
+ 
+
 def Eval(model,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages,Machines):
 
    model=model.upper()    

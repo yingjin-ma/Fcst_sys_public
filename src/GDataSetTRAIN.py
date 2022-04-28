@@ -220,8 +220,7 @@ class TencentAlchemyDataset(Dataset):
         '''
 
         dft  =chemspace.split("_")[0]
-        basis=chemspace.split("_")[1]
-        
+        basis=chemspace.split("_")[1]        
 
         assert mode in ['train', 'valid',
                         'test','pred'] #"mode should be train/valid/test/pred"
