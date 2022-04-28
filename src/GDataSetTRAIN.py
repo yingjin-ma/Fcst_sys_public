@@ -261,6 +261,9 @@ class TencentAlchemyDataset(Dataset):
                 
                 temp=line.strip(os.linesep).split()
                 time=float(temp[self.target])#
+                #import pdb
+                #pdb.set_trace()
+                #basvec = []
 
                 for i in range(len(temp)):
                     if temp[i] == 'contracted':
@@ -272,8 +275,7 @@ class TencentAlchemyDataset(Dataset):
                         basisnum_h1 = float(temp[i+7].strip(']'))
                         
                     if temp[i] == 'contracted_per':
-                        #import pdb
-                        #pdb.set_trace()
+                        
                         j = (len(temp) - i - 2)/6
                         basvec = []
                         for n in range(int(j)):
@@ -325,6 +327,7 @@ class TencentAlchemyDataset(Dataset):
 
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf+'/'+sdfname+'.sdf'
+                #basvec = []
 
                 for i in range(len(temp)):
                     if temp[i] == 'contracted':

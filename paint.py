@@ -58,12 +58,12 @@ suits_valid.append("Gaussian_inputs_validing2")
 a = np.load('a.npy')
 b = np.load('b.npy')
 c = np.load('c.npy')
-pic_dir = os.getcwd() + '/Result_b/lstm_2'
+pic_dir = os.getcwd() + '/Result_b/mpnn_3'
 if not os.path.exists(pic_dir):
     os.mkdir(pic_dir) 
-pic_name = pic_dir + '/' + "B3LYP" + '.png'# + "_" + mol_size 
-title = "LSTM_" + "B3LYP" #+ "_" + mol_size
-x = np.arange(0, 180)
+pic_name = pic_dir + '/' + "wb97xd" + '.png'# + "_" + mol_size 
+title = "MPNN_" + "wb97xd" #+ "_" + mol_size
+x = np.arange(0, 350)
 x1 = np.arange(0, 350)
 plt.title(title) 
 plt.xlabel("epoch") 
