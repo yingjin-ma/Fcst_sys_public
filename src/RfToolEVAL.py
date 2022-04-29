@@ -443,6 +443,101 @@ class RfTool(ModelTool):
         for i in range(len(basisnums)):
             print("Name ",names[i],probs[i])
 
+
+    def evalsuit(self,modelname=None,path=None,chemspace="B3LYP_6-31g",write=False,BAK=None):
+        '''
+        FNN model test
+        path: path for testing suits 
+        write: if write into xlsx tables
+        '''
+        modeldir=modelname
+        print("modeldir",modeldir)
+        print("chemspace",chemspace)
+        dft  =chemspace.split("_")[0]
+        basis=chemspace.split("_")[1]
+
+        assert self.clf!=None
+        tra_size=self.config.tra_size
+
+        basisnums=[]
+        times=[]
+        slist=[]
+        names=[]
+        mollist=[]
+        baslist=[]
+        for isuit in self.suits1:
+           imol = self.sdf_dir + "/" + isuit
+           ibas = getNbasis(bas=basis,sdf=imol)
+           print("imol : ",imol, " ibas : ",ibas)
+           mollist.append(imol)
+           baslist.append(ibas)
+        
+           basisnums.append(ibas*1.0)
+           times.append(1.0)
+           names.append(isuit)
+           suppl=Chem.SDMolSupplier(imol)
+           for imol in suppl:
+              smiles=Chem.MolToSmiles(imol)
+              slist.append(smiles)
+
+        # debug or check
+        print("basisnums",basisnums)
+
+        struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
+        struct_fts_np=np.array(struct_fts)
+        probs=self.clf.predict_proba(struct_fts_np)#probs: [[] [] []] np
+
+        feats=[]
+        for i in range(len(basisnums)):
+            feat=[]
+            feat.append(basisnums[i])
+            feat.extend(struct_fts[i])
+            feats.append(feat)
+        feats_t=torch.tensor(feats)
+        times_t=torch.tensor(times)
+        #slist_t=torch.tensor(slist)
+        #names_t=torch.tensor(names)
+        probs_t=torch.from_numpy(probs)
+
+        preds=[]
+
+        models=[]
+        for i in range(0,4):
+            model=torch.load(modeldir+'/'+self.chemspace+'_'+str(i+1)+'.pkl')
+            model.eval()
+            model.to(self.device)
+            models.append(model)
+
+        eval_set=torch.torch.utils.data.TensorDataset(feats_t,times_t,probs_t)
+        eval_iter=torch.utils.data.DataLoader(eval_set,batch_size=self.config.batch_size,shuffle=False)
+
+        mae=0.0
+        count=0
+        with torch.no_grad():
+            errs=[]
+
+            for ft,time,proba in eval_iter:
+                res=[]
+                ft=ft.to(self.device)
+                #time=time.to(self.device)
+                proba=proba.to(self.device) # size=n x 4
+                #print("proba: ",proba)
+                for i in range(0,4):
+                    temp=models[i](ft) #temp=tensor([v1,v2,....])
+                    res.append(temp) #res=[temp1,temp2,temp3,temp4]
+                res=torch.stack(res)#res=tensor(temp1,temp2,temp3,temp4) size=4 x n
+                res=torch.transpose(res,0,1) # n x 4
+
+                pred=torch.mul(proba,res)
+                pred=pred[:,0]+pred[:,1]+pred[:,2]+pred[:,3]
+
+                pred=pred.to('cpu')
+                predlist=pred.numpy().tolist()
+                timelist=time.numpy().tolist()        
+
+        print("predlist", predlist) 
+
+
     # testing
     def eval(self,modelname=None,path=None,chemspace="B3LYP_6-31g",mol="sample.sdf",write=False,BAK=None):
 #    def eval(self,path=None,modeldir='rfmodel',chemspace="B3LYP_6-31g",write=False):

@@ -33,7 +33,7 @@ Machines     =  ["ERA"]
 functionals  =  ["LC-BLYP"]
 bases        =  ["cc-pVTZ"    ]
 target_mols  =  ["./example/SDFs"]
-ML_models    =  ["LSTM"]  # Maybe bug in MGCN
+ML_models    =  ["RF"]  # Maybe bug in MGCN
 
 # rdkit treatment of input molecule
 
