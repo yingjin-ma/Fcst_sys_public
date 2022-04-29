@@ -29,6 +29,7 @@
     - conda create -n Fcst_sys_public python=3.7
     - conda activate Fcst_sys_public
     - conda install rdkit pytorch gensim torchvision numpy scipy xlsxwriter scikit-learn basis_set_exchange libxc matplotlib
+      - （e.g. conda install pytorch=1.11.0=cuda112py38habe9d5a_1）
     - pip install dgl-cu100  (notice the cu version should match that of cudatoolkit)
       - *now: python TRmod_kernel_A1.py should work*
     - Install the pylibxc (Please see https://www.tddft.org/programs/libxc/installation/)
