@@ -26,7 +26,7 @@
   - Installation example (recommended with conda):
     - git clone git@github.com:yingjin-ma/Fcst_sys_public.git Fcst_sys_public
     - cd Fcst_sys_public
-    - conda create -n Fcst_sys_public python=3.7
+    - conda create -n Fcst_sys_public python=3.7 (3.8)
     - conda activate Fcst_sys_public
     - conda install rdkit pytorch gensim torchvision numpy scipy xlsxwriter scikit-learn basis_set_exchange libxc matplotlib
       - （e.g. conda install pytorch=1.11.0=cuda112py38habe9d5a_1）
