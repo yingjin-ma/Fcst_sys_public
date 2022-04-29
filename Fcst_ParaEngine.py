@@ -30,10 +30,11 @@ from rdkit.Chem import AllChem
 # parameters to be used (IO later)
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
-functionals  =  ["LC-BLYP"]
-bases        =  ["cc-pVTZ"    ]
-target_mols  =  ["./example/SDFs"]
-ML_models    =  ["RF"]  # Maybe bug in MGCN
+functionals  =  ["BLYP"]
+bases        =  ["6-31g"    ]
+target_mols  =  ["../ParaEngine_data/Arxiv1911.05569v1_sdfs_H_Part2"]
+#target_mols  =  ["./example/SDFs"]
+ML_models    =  ["LSTM"]  # Maybe bug in MGCN
 
 # rdkit treatment of input molecule
 
@@ -98,7 +99,7 @@ for qc in QC_packages:
 
                   # Predict basing on the ref_chemspace 
                   Ptime = PredictTime.EvalSuit(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
-                  exit(0)
+                  exit(0) 
 
                   # MWI correction for the predicted results
                   corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)

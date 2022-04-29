@@ -218,7 +218,10 @@ class LstmTool(ModelTool):
                 timelist=time.numpy()
                 timelist=timelist.tolist()
 
-        print("resultlist : ",resultlist)
+        i = 0 
+        for isuit in self.suits1:             
+            print(i+1, " ", isuit ," ",resultlist[i])
+            i=i+1
 
         return resultlist
 
