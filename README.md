@@ -26,11 +26,15 @@
   - Installation example (recommended with conda):
     - git clone git@github.com:yingjin-ma/Fcst_sys_public.git Fcst_sys_public
     - cd Fcst_sys_public
-    - conda create -n Fcst_sys_public python=3.7 (3.8)
+    - conda create -n Fcst_sys_public python=3.8 (3.7 is also tested)
     - conda activate Fcst_sys_public
-    - conda install rdkit pytorch gensim torchvision numpy scipy xlsxwriter scikit-learn basis_set_exchange libxc matplotlib
-      - （e.g. conda install pytorch=1.11.0=cuda112py38habe9d5a_1）
-    - pip install dgl-cu100  (notice the cu version should match that of cudatoolkit)
+    - conda install rdkit pytorch gensim torchvision numpy scipy xlsxwriter scikit-learn basis_set_exchange libxc matplotlib tqdm
+      - Suggested installing order:
+      - conda install rdkit
+      - conda install pytorch=1.11.0=cuda112py38habe9d5a_1
+      - conda install gensim torchvision numpy scipy xlsxwriter scikit-learn basis_set_exchange libxc matplotlib tqdm
+    - install dgl cuda version  (notice at least the major version should match that of installed cudatoolkit)
+      - conda install -c dglteam dgl-cuda11.3
       - *now: python TRmod_kernel_A1.py should work*
     - Install the pylibxc (Please see https://www.tddft.org/programs/libxc/installation/)
       - *now: python Fcst_kernel_A1.py should work*
