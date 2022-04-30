@@ -1,0 +1,1372 @@
+/home/yingjin/Quantum_Soft/Fcst_sys_public/src
+ 
+PWDmol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2
+NAMmol :  ['99444378.sdf', '347828501.sdf', '347827713.sdf', '347828585.sdf', '310265004.sdf', '347828801.sdf', '175426884.sdf', '175427093.sdf', '99443528.sdf', '347829130.sdf', '99444051.sdf', '347828676.sdf', '99443396.sdf', '175426959.sdf', '347828657.sdf', '347828782.sdf', '99443873.sdf', '99444187.sdf', '347829211.sdf', '99444860.sdf', '99444174.sdf', '99443239.sdf', '99443350.sdf', '99444140.sdf', '310265149.sdf', '99443893.sdf', '99444267.sdf', '347828686.sdf', '99444274.sdf', '99443589.sdf', '99443433.sdf', '99445039.sdf', '99444394.sdf', '99444911.sdf', '99444102.sdf', '347828818.sdf', '99443846.sdf', '99444285.sdf', '347828859.sdf', '347828438.sdf', '99443616.sdf', '99444345.sdf', '347829175.sdf', '310264879.sdf', '310265082.sdf', '99444304.sdf', '310265158.sdf', '99444065.sdf', '347828448.sdf', '99443258.sdf', '99444505.sdf', '347829240.sdf', '347828307.sdf', '347827890.sdf', '310265092.sdf', '310265056.sdf', '99443855.sdf', '175426888.sdf', '175426863.sdf', '99445024.sdf', '347828079.sdf', '99444379.sdf', '347910124.sdf', '347829249.sdf', '347828191.sdf', '99443458.sdf', '99443896.sdf', '347828196.sdf', '99445147.sdf', '310265016.sdf', '347829182.sdf', '99444134.sdf', '347828379.sdf', '99444680.sdf', '347828000.sdf', '347828703.sdf', '175427027.sdf', '99444401.sdf', '99444302.sdf', '99443566.sdf', '347828301.sdf', '347828697.sdf', '99444286.sdf', '347828747.sdf', '99444068.sdf', '347828403.sdf', '99444460.sdf', '99445119.sdf', '347828265.sdf', '347828199.sdf', '347828522.sdf', '99444483.sdf', '347828261.sdf', '347827979.sdf', '347828443.sdf', '347829280.sdf', '347828189.sdf', '347828907.sdf', '99443524.sdf', '99445157.sdf', '347828775.sdf', '99445209.sdf', '99444878.sdf', '310265070.sdf', '175427147.sdf', '347828858.sdf', '310264928.sdf', '99444881.sdf', '347828480.sdf', '99443714.sdf', '310265142.sdf', '347828350.sdf', '310264923.sdf', '347828259.sdf', '347829275.sdf', '99445211.sdf', '99445145.sdf', '310265213.sdf', '347828929.sdf', '175426944.sdf', '310265007.sdf', '347828193.sdf', '310264954.sdf', '347829140.sdf', '99445037.sdf', '347828804.sdf', '347827933.sdf', '175427127.sdf', '347829110.sdf', '310265039.sdf', '347828409.sdf', '310264965.sdf', '347828303.sdf', '347828887.sdf', '347827957.sdf', '99444933.sdf', '347829122.sdf', '347828729.sdf', '347828524.sdf', '310265156.sdf', '347828243.sdf', '99444717.sdf', '347827746.sdf', '347828564.sdf', '347827856.sdf', '99445120.sdf', '99443684.sdf', '347828811.sdf', '99444254.sdf', '310264996.sdf', '99444919.sdf', '347828989.sdf', '347828634.sdf', '99444789.sdf', '175426868.sdf', '347827967.sdf', '99445264.sdf', '347828951.sdf', '347829113.sdf', '347829008.sdf', '347828973.sdf', '347828023.sdf', '347828242.sdf', '175427058.sdf', '99444368.sdf', '347828556.sdf', '347827838.sdf', '347828850.sdf', '347828880.sdf', '347828450.sdf', '347828727.sdf', '347828713.sdf', '347829202.sdf', '175427009.sdf', '175426878.sdf', '175426918.sdf', '175426954.sdf', '347828895.sdf', '99443546.sdf', '347829010.sdf', '99443588.sdf', '347829292.sdf', '99444424.sdf', '347828041.sdf', '347828683.sdf', '99445123.sdf', '347827910.sdf', '175426990.sdf', '347828572.sdf', '99445271.sdf', '175427081.sdf', '347827871.sdf', '347829144.sdf', '310265167.sdf', '99443764.sdf', '347828212.sdf', '310264950.sdf', '347828171.sdf', '175427029.sdf', '99444945.sdf', '347829017.sdf', '347828746.sdf', '347828551.sdf', '175426936.sdf', '347829051.sdf', '310264979.sdf', '347829087.sdf', '347829066.sdf', '347828664.sdf', '347829157.sdf', '175426951.sdf', '175426998.sdf', '99444440.sdf', '310264980.sdf', '99444381.sdf', '175427012.sdf', '99445068.sdf', '99444891.sdf', '347829255.sdf', '347828588.sdf', '175427099.sdf', '347827776.sdf', '310265190.sdf', '347829179.sdf', '310265101.sdf', '99443266.sdf', '310264948.sdf', '310264992.sdf', '310265096.sdf', '347829153.sdf', '99444075.sdf', '310265194.sdf', '99443439.sdf', '347827743.sdf', '347828766.sdf', '347827956.sdf', '99443936.sdf', '347827777.sdf', '347828022.sdf', '99444513.sdf', '347828557.sdf', '99445134.sdf', '99444799.sdf', '99443296.sdf', '175426862.sdf', '99445143.sdf', '99444618.sdf', '347828568.sdf', '347827896.sdf', '347828881.sdf', '99443915.sdf', '99444649.sdf', '99444530.sdf', '347828863.sdf', '310265143.sdf', '347828361.sdf', '99445238.sdf', '347828667.sdf', '99443630.sdf', '347828875.sdf', '347828741.sdf', '99444055.sdf', '347828156.sdf', '99444001.sdf', '347828009.sdf', '347828320.sdf', '347828465.sdf', '99444833.sdf', '347827766.sdf', '347828658.sdf', '347828289.sdf', '99444113.sdf', '347829195.sdf', '99443907.sdf', '347828034.sdf', '347828424.sdf', '347828245.sdf', '175427024.sdf', '99444721.sdf', '99443856.sdf', '99444552.sdf', '175426950.sdf', '347827995.sdf', '99444088.sdf', '310264877.sdf', '99443557.sdf', '99445256.sdf', '99444265.sdf', '347828994.sdf', '347828591.sdf', '99444019.sdf', '99444863.sdf', '347828605.sdf', '347829092.sdf', '175427142.sdf', '347828656.sdf', '310264983.sdf', '99444111.sdf', '347828221.sdf', '347828792.sdf', '175427110.sdf', '310264867.sdf', '99444193.sdf', '347829222.sdf', '347828739.sdf', '347829184.sdf', '99443407.sdf', '310265136.sdf', '310264939.sdf', '347828038.sdf', '99443904.sdf', '99444729.sdf', '347828521.sdf', '347828784.sdf', '347828011.sdf', '347829334.sdf', '99444760.sdf', '99443249.sdf', '347828920.sdf', '347828427.sdf', '310265080.sdf', '99444150.sdf', '99444236.sdf', '347828045.sdf', '347828821.sdf', '347828190.sdf', '347827778.sdf', '99444766.sdf', '347827714.sdf', '310265062.sdf', '99444522.sdf', '175427129.sdf', '347829233.sdf', '347828964.sdf', '99443591.sdf', '347827754.sdf', '347828012.sdf', '99444816.sdf', '347827791.sdf', '347827960.sdf', '310265117.sdf', '175427102.sdf', '99444951.sdf', '347828316.sdf', '99443311.sdf', '347828142.sdf', '347829200.sdf', '99444646.sdf', '347829026.sdf', '99444967.sdf', '347829042.sdf', '310264991.sdf', '99443540.sdf', '175426861.sdf', '347828069.sdf', '99444215.sdf', '347828750.sdf', '99443859.sdf', '175427096.sdf', '175426874.sdf', '99444465.sdf', '175427095.sdf', '99444250.sdf', '310264918.sdf', '347829150.sdf', '347828002.sdf', '347829046.sdf', '347828682.sdf', '347827961.sdf', '347828629.sdf', '347828805.sdf', '99445159.sdf', '347828299.sdf', '99443802.sdf', '99443985.sdf', '310265227.sdf', '175426896.sdf', '347828698.sdf', '347829002.sdf', '347829056.sdf', '175427014.sdf', '347827710.sdf', '347828940.sdf', '347828655.sdf', '99444689.sdf', '347829215.sdf', '347828742.sdf', '347828696.sdf', '99443250.sdf', '175427104.sdf', '99443479.sdf', '310265098.sdf', '347829133.sdf', '347828225.sdf', '347827767.sdf', '99443279.sdf', '99443226.sdf', '99445207.sdf', '347911235.sdf', '347829100.sdf', '347828674.sdf', '347829089.sdf', '347828558.sdf', '99443827.sdf', '347828862.sdf', '347828749.sdf', '347829223.sdf', '99444549.sdf', '347910049.sdf', '347827818.sdf', '99444640.sdf', '347828371.sdf', '99444194.sdf', '99443596.sdf', '347909866.sdf', '347828836.sdf', '99444756.sdf', '347829326.sdf', '310265222.sdf', '310265132.sdf', '99444349.sdf', '175427013.sdf', '347827730.sdf', '347828476.sdf', '347828269.sdf', '99444561.sdf', '347828874.sdf', '99444862.sdf', '175427108.sdf', '347827964.sdf', '99444212.sdf', '347829294.sdf', '310265226.sdf', '347828077.sdf', '99443844.sdf', '99445220.sdf', '310265130.sdf', '175426906.sdf', '347828086.sdf', '347828581.sdf', '347828275.sdf', '99444359.sdf', '175427089.sdf', '310264951.sdf', '99443357.sdf', '99443929.sdf', '347828254.sdf', '347828348.sdf', '99443543.sdf', '175427001.sdf', '347828611.sdf', '175427080.sdf', '99444477.sdf', '99444739.sdf', '347910337.sdf', '310264908.sdf', '347828699.sdf', '99444947.sdf', '99443567.sdf', '347829083.sdf', '347827870.sdf', '347828583.sdf', '347828202.sdf', '99444409.sdf', '347828140.sdf', '347828695.sdf', '99444298.sdf', '347828949.sdf', '99443690.sdf', '99445107.sdf', '99444222.sdf', '99445036.sdf', '347827806.sdf', '347827892.sdf', '99445140.sdf', '99444178.sdf', '310265116.sdf', '310265009.sdf', '99445179.sdf', '175427090.sdf', '99445012.sdf', '347827805.sdf', '347828721.sdf', '347828405.sdf', '347828622.sdf', '347828075.sdf', '347827726.sdf', '99444598.sdf', '347828609.sdf', '99444738.sdf', '99444118.sdf', '347828460.sdf', '99443369.sdf', '310265175.sdf', '175426917.sdf', '99444908.sdf', '347828419.sdf', '99444668.sdf', '99443872.sdf', '347827936.sdf', '99444080.sdf', '347828194.sdf', '99443772.sdf', '99443507.sdf', '347828216.sdf', '99444032.sdf', '310265054.sdf', '99443753.sdf', '99444953.sdf', '99444390.sdf', '99444732.sdf', '99444238.sdf', '347829135.sdf', '99444028.sdf', '347828331.sdf', '99444497.sdf', '347829239.sdf', '347828905.sdf', '99443953.sdf', '347829006.sdf', '347827783.sdf', '347829128.sdf', '310265157.sdf', '310264977.sdf', '99443347.sdf', '347828975.sdf', '347827946.sdf', '347828020.sdf', '99445139.sdf', '347829227.sdf', '310265015.sdf', '347828620.sdf', '175427118.sdf', '99444462.sdf', '347828492.sdf', '310265154.sdf', '99443525.sdf', '99444326.sdf', '347828518.sdf', '347828574.sdf', '99444964.sdf', '347828573.sdf', '99444362.sdf', '347828702.sdf', '99445219.sdf', '347829101.sdf', '99444038.sdf', '347828823.sdf', '347829142.sdf', '347829168.sdf', '99443675.sdf', '310264956.sdf', '310265210.sdf', '347828744.sdf', '310265230.sdf', '99444521.sdf', '347828354.sdf', '99444484.sdf', '347828988.sdf', '347910146.sdf', '99444249.sdf', '347828279.sdf', '99444129.sdf', '347828958.sdf', '347828230.sdf', '347827774.sdf', '99444895.sdf', '347828100.sdf', '99443575.sdf', '347828753.sdf', '347829178.sdf', '347829148.sdf', '99443274.sdf', '175427073.sdf', '347827721.sdf', '99443476.sdf', '347828670.sdf', '310265146.sdf', '175426885.sdf', '99445028.sdf', '99444829.sdf', '347828364.sdf', '310265111.sdf', '347828292.sdf', '310264886.sdf', '99443582.sdf', '347829224.sdf', '99445135.sdf', '347828941.sdf', '347827823.sdf', '347828324.sdf', '310265065.sdf', '310264942.sdf', '310265135.sdf', '99443836.sdf', '99444608.sdf', '99444698.sdf', '99444367.sdf', '347828991.sdf', '347827973.sdf', '347828982.sdf', '99444486.sdf', '347828689.sdf', '99445110.sdf', '347827878.sdf', '347828421.sdf', '310264993.sdf', '175427017.sdf', '347828026.sdf', '99443291.sdf', '347828237.sdf', '310265093.sdf', '347827707.sdf', '347828203.sdf', '99443990.sdf', '347828926.sdf', '175426910.sdf', '347827959.sdf', '175426976.sdf', '99443678.sdf', '175426928.sdf', '347911103.sdf', '347827830.sdf', '347828297.sdf', '347829278.sdf', '99444508.sdf', '99443584.sdf', '347827869.sdf', '347828240.sdf', '347828056.sdf', '99443231.sdf', '347828757.sdf', '347829111.sdf', '347828715.sdf', '310265224.sdf', '347828444.sdf', '347828870.sdf', '347829068.sdf', '347828363.sdf', '347829039.sdf', '175426873.sdf', '175427020.sdf', '310265030.sdf', '347827881.sdf', '99445058.sdf', '99443377.sdf', '99444727.sdf', '347828933.sdf', '99445212.sdf', '347827981.sdf', '310265155.sdf', '99444404.sdf', '175426886.sdf', '347828507.sdf', '310265134.sdf', '99444859.sdf', '99444662.sdf', '310265183.sdf', '99444705.sdf', '310264860.sdf', '99444805.sdf', '347829213.sdf', '347828357.sdf', '347829171.sdf', '99443971.sdf', '347827887.sdf', '347828569.sdf', '347828829.sdf', '347828586.sdf', '99443737.sdf', '175426882.sdf', '347827765.sdf', '99443660.sdf']
+BAKmod :  /home/yingjin/Quantum_Soft/Fcst_sys_public/database/trained-models
+ 
+  ===>                                             
+  ===>   QC_package :  G09      |     Machine :  ERA
+  ===>                                             
+  
+  =====================================================
+  === LSTM === LSTM === LSTM === LSTM === LSTM ===
+  =====================================================
+  
+/home/yingjin/Quantum_Soft/Fcst_sys_public/database/trained-models
+Identical reference basis space ( 6-31g ), detected. 
+Identical reference DFT functional space ( BLYP ), detected. 
+  ===>   Target    Space :  BLYP / 6-31g
+  ===>   Reference Space :  BLYP / 6-31g
+ 
+  tra_size :  2000 tra_num_epochs :  500   batch_size :  10000   lr :  0.005   tra_set_ratio :  1   valid_interval :  2
+CUDA available
+self.suits1  :  ['99444378.sdf', '347828501.sdf', '347827713.sdf', '347828585.sdf', '310265004.sdf', '347828801.sdf', '175426884.sdf', '175427093.sdf', '99443528.sdf', '347829130.sdf', '99444051.sdf', '347828676.sdf', '99443396.sdf', '175426959.sdf', '347828657.sdf', '347828782.sdf', '99443873.sdf', '99444187.sdf', '347829211.sdf', '99444860.sdf', '99444174.sdf', '99443239.sdf', '99443350.sdf', '99444140.sdf', '310265149.sdf', '99443893.sdf', '99444267.sdf', '347828686.sdf', '99444274.sdf', '99443589.sdf', '99443433.sdf', '99445039.sdf', '99444394.sdf', '99444911.sdf', '99444102.sdf', '347828818.sdf', '99443846.sdf', '99444285.sdf', '347828859.sdf', '347828438.sdf', '99443616.sdf', '99444345.sdf', '347829175.sdf', '310264879.sdf', '310265082.sdf', '99444304.sdf', '310265158.sdf', '99444065.sdf', '347828448.sdf', '99443258.sdf', '99444505.sdf', '347829240.sdf', '347828307.sdf', '347827890.sdf', '310265092.sdf', '310265056.sdf', '99443855.sdf', '175426888.sdf', '175426863.sdf', '99445024.sdf', '347828079.sdf', '99444379.sdf', '347910124.sdf', '347829249.sdf', '347828191.sdf', '99443458.sdf', '99443896.sdf', '347828196.sdf', '99445147.sdf', '310265016.sdf', '347829182.sdf', '99444134.sdf', '347828379.sdf', '99444680.sdf', '347828000.sdf', '347828703.sdf', '175427027.sdf', '99444401.sdf', '99444302.sdf', '99443566.sdf', '347828301.sdf', '347828697.sdf', '99444286.sdf', '347828747.sdf', '99444068.sdf', '347828403.sdf', '99444460.sdf', '99445119.sdf', '347828265.sdf', '347828199.sdf', '347828522.sdf', '99444483.sdf', '347828261.sdf', '347827979.sdf', '347828443.sdf', '347829280.sdf', '347828189.sdf', '347828907.sdf', '99443524.sdf', '99445157.sdf', '347828775.sdf', '99445209.sdf', '99444878.sdf', '310265070.sdf', '175427147.sdf', '347828858.sdf', '310264928.sdf', '99444881.sdf', '347828480.sdf', '99443714.sdf', '310265142.sdf', '347828350.sdf', '310264923.sdf', '347828259.sdf', '347829275.sdf', '99445211.sdf', '99445145.sdf', '310265213.sdf', '347828929.sdf', '175426944.sdf', '310265007.sdf', '347828193.sdf', '310264954.sdf', '347829140.sdf', '99445037.sdf', '347828804.sdf', '347827933.sdf', '175427127.sdf', '347829110.sdf', '310265039.sdf', '347828409.sdf', '310264965.sdf', '347828303.sdf', '347828887.sdf', '347827957.sdf', '99444933.sdf', '347829122.sdf', '347828729.sdf', '347828524.sdf', '310265156.sdf', '347828243.sdf', '99444717.sdf', '347827746.sdf', '347828564.sdf', '347827856.sdf', '99445120.sdf', '99443684.sdf', '347828811.sdf', '99444254.sdf', '310264996.sdf', '99444919.sdf', '347828989.sdf', '347828634.sdf', '99444789.sdf', '175426868.sdf', '347827967.sdf', '99445264.sdf', '347828951.sdf', '347829113.sdf', '347829008.sdf', '347828973.sdf', '347828023.sdf', '347828242.sdf', '175427058.sdf', '99444368.sdf', '347828556.sdf', '347827838.sdf', '347828850.sdf', '347828880.sdf', '347828450.sdf', '347828727.sdf', '347828713.sdf', '347829202.sdf', '175427009.sdf', '175426878.sdf', '175426918.sdf', '175426954.sdf', '347828895.sdf', '99443546.sdf', '347829010.sdf', '99443588.sdf', '347829292.sdf', '99444424.sdf', '347828041.sdf', '347828683.sdf', '99445123.sdf', '347827910.sdf', '175426990.sdf', '347828572.sdf', '99445271.sdf', '175427081.sdf', '347827871.sdf', '347829144.sdf', '310265167.sdf', '99443764.sdf', '347828212.sdf', '310264950.sdf', '347828171.sdf', '175427029.sdf', '99444945.sdf', '347829017.sdf', '347828746.sdf', '347828551.sdf', '175426936.sdf', '347829051.sdf', '310264979.sdf', '347829087.sdf', '347829066.sdf', '347828664.sdf', '347829157.sdf', '175426951.sdf', '175426998.sdf', '99444440.sdf', '310264980.sdf', '99444381.sdf', '175427012.sdf', '99445068.sdf', '99444891.sdf', '347829255.sdf', '347828588.sdf', '175427099.sdf', '347827776.sdf', '310265190.sdf', '347829179.sdf', '310265101.sdf', '99443266.sdf', '310264948.sdf', '310264992.sdf', '310265096.sdf', '347829153.sdf', '99444075.sdf', '310265194.sdf', '99443439.sdf', '347827743.sdf', '347828766.sdf', '347827956.sdf', '99443936.sdf', '347827777.sdf', '347828022.sdf', '99444513.sdf', '347828557.sdf', '99445134.sdf', '99444799.sdf', '99443296.sdf', '175426862.sdf', '99445143.sdf', '99444618.sdf', '347828568.sdf', '347827896.sdf', '347828881.sdf', '99443915.sdf', '99444649.sdf', '99444530.sdf', '347828863.sdf', '310265143.sdf', '347828361.sdf', '99445238.sdf', '347828667.sdf', '99443630.sdf', '347828875.sdf', '347828741.sdf', '99444055.sdf', '347828156.sdf', '99444001.sdf', '347828009.sdf', '347828320.sdf', '347828465.sdf', '99444833.sdf', '347827766.sdf', '347828658.sdf', '347828289.sdf', '99444113.sdf', '347829195.sdf', '99443907.sdf', '347828034.sdf', '347828424.sdf', '347828245.sdf', '175427024.sdf', '99444721.sdf', '99443856.sdf', '99444552.sdf', '175426950.sdf', '347827995.sdf', '99444088.sdf', '310264877.sdf', '99443557.sdf', '99445256.sdf', '99444265.sdf', '347828994.sdf', '347828591.sdf', '99444019.sdf', '99444863.sdf', '347828605.sdf', '347829092.sdf', '175427142.sdf', '347828656.sdf', '310264983.sdf', '99444111.sdf', '347828221.sdf', '347828792.sdf', '175427110.sdf', '310264867.sdf', '99444193.sdf', '347829222.sdf', '347828739.sdf', '347829184.sdf', '99443407.sdf', '310265136.sdf', '310264939.sdf', '347828038.sdf', '99443904.sdf', '99444729.sdf', '347828521.sdf', '347828784.sdf', '347828011.sdf', '347829334.sdf', '99444760.sdf', '99443249.sdf', '347828920.sdf', '347828427.sdf', '310265080.sdf', '99444150.sdf', '99444236.sdf', '347828045.sdf', '347828821.sdf', '347828190.sdf', '347827778.sdf', '99444766.sdf', '347827714.sdf', '310265062.sdf', '99444522.sdf', '175427129.sdf', '347829233.sdf', '347828964.sdf', '99443591.sdf', '347827754.sdf', '347828012.sdf', '99444816.sdf', '347827791.sdf', '347827960.sdf', '310265117.sdf', '175427102.sdf', '99444951.sdf', '347828316.sdf', '99443311.sdf', '347828142.sdf', '347829200.sdf', '99444646.sdf', '347829026.sdf', '99444967.sdf', '347829042.sdf', '310264991.sdf', '99443540.sdf', '175426861.sdf', '347828069.sdf', '99444215.sdf', '347828750.sdf', '99443859.sdf', '175427096.sdf', '175426874.sdf', '99444465.sdf', '175427095.sdf', '99444250.sdf', '310264918.sdf', '347829150.sdf', '347828002.sdf', '347829046.sdf', '347828682.sdf', '347827961.sdf', '347828629.sdf', '347828805.sdf', '99445159.sdf', '347828299.sdf', '99443802.sdf', '99443985.sdf', '310265227.sdf', '175426896.sdf', '347828698.sdf', '347829002.sdf', '347829056.sdf', '175427014.sdf', '347827710.sdf', '347828940.sdf', '347828655.sdf', '99444689.sdf', '347829215.sdf', '347828742.sdf', '347828696.sdf', '99443250.sdf', '175427104.sdf', '99443479.sdf', '310265098.sdf', '347829133.sdf', '347828225.sdf', '347827767.sdf', '99443279.sdf', '99443226.sdf', '99445207.sdf', '347911235.sdf', '347829100.sdf', '347828674.sdf', '347829089.sdf', '347828558.sdf', '99443827.sdf', '347828862.sdf', '347828749.sdf', '347829223.sdf', '99444549.sdf', '347910049.sdf', '347827818.sdf', '99444640.sdf', '347828371.sdf', '99444194.sdf', '99443596.sdf', '347909866.sdf', '347828836.sdf', '99444756.sdf', '347829326.sdf', '310265222.sdf', '310265132.sdf', '99444349.sdf', '175427013.sdf', '347827730.sdf', '347828476.sdf', '347828269.sdf', '99444561.sdf', '347828874.sdf', '99444862.sdf', '175427108.sdf', '347827964.sdf', '99444212.sdf', '347829294.sdf', '310265226.sdf', '347828077.sdf', '99443844.sdf', '99445220.sdf', '310265130.sdf', '175426906.sdf', '347828086.sdf', '347828581.sdf', '347828275.sdf', '99444359.sdf', '175427089.sdf', '310264951.sdf', '99443357.sdf', '99443929.sdf', '347828254.sdf', '347828348.sdf', '99443543.sdf', '175427001.sdf', '347828611.sdf', '175427080.sdf', '99444477.sdf', '99444739.sdf', '347910337.sdf', '310264908.sdf', '347828699.sdf', '99444947.sdf', '99443567.sdf', '347829083.sdf', '347827870.sdf', '347828583.sdf', '347828202.sdf', '99444409.sdf', '347828140.sdf', '347828695.sdf', '99444298.sdf', '347828949.sdf', '99443690.sdf', '99445107.sdf', '99444222.sdf', '99445036.sdf', '347827806.sdf', '347827892.sdf', '99445140.sdf', '99444178.sdf', '310265116.sdf', '310265009.sdf', '99445179.sdf', '175427090.sdf', '99445012.sdf', '347827805.sdf', '347828721.sdf', '347828405.sdf', '347828622.sdf', '347828075.sdf', '347827726.sdf', '99444598.sdf', '347828609.sdf', '99444738.sdf', '99444118.sdf', '347828460.sdf', '99443369.sdf', '310265175.sdf', '175426917.sdf', '99444908.sdf', '347828419.sdf', '99444668.sdf', '99443872.sdf', '347827936.sdf', '99444080.sdf', '347828194.sdf', '99443772.sdf', '99443507.sdf', '347828216.sdf', '99444032.sdf', '310265054.sdf', '99443753.sdf', '99444953.sdf', '99444390.sdf', '99444732.sdf', '99444238.sdf', '347829135.sdf', '99444028.sdf', '347828331.sdf', '99444497.sdf', '347829239.sdf', '347828905.sdf', '99443953.sdf', '347829006.sdf', '347827783.sdf', '347829128.sdf', '310265157.sdf', '310264977.sdf', '99443347.sdf', '347828975.sdf', '347827946.sdf', '347828020.sdf', '99445139.sdf', '347829227.sdf', '310265015.sdf', '347828620.sdf', '175427118.sdf', '99444462.sdf', '347828492.sdf', '310265154.sdf', '99443525.sdf', '99444326.sdf', '347828518.sdf', '347828574.sdf', '99444964.sdf', '347828573.sdf', '99444362.sdf', '347828702.sdf', '99445219.sdf', '347829101.sdf', '99444038.sdf', '347828823.sdf', '347829142.sdf', '347829168.sdf', '99443675.sdf', '310264956.sdf', '310265210.sdf', '347828744.sdf', '310265230.sdf', '99444521.sdf', '347828354.sdf', '99444484.sdf', '347828988.sdf', '347910146.sdf', '99444249.sdf', '347828279.sdf', '99444129.sdf', '347828958.sdf', '347828230.sdf', '347827774.sdf', '99444895.sdf', '347828100.sdf', '99443575.sdf', '347828753.sdf', '347829178.sdf', '347829148.sdf', '99443274.sdf', '175427073.sdf', '347827721.sdf', '99443476.sdf', '347828670.sdf', '310265146.sdf', '175426885.sdf', '99445028.sdf', '99444829.sdf', '347828364.sdf', '310265111.sdf', '347828292.sdf', '310264886.sdf', '99443582.sdf', '347829224.sdf', '99445135.sdf', '347828941.sdf', '347827823.sdf', '347828324.sdf', '310265065.sdf', '310264942.sdf', '310265135.sdf', '99443836.sdf', '99444608.sdf', '99444698.sdf', '99444367.sdf', '347828991.sdf', '347827973.sdf', '347828982.sdf', '99444486.sdf', '347828689.sdf', '99445110.sdf', '347827878.sdf', '347828421.sdf', '310264993.sdf', '175427017.sdf', '347828026.sdf', '99443291.sdf', '347828237.sdf', '310265093.sdf', '347827707.sdf', '347828203.sdf', '99443990.sdf', '347828926.sdf', '175426910.sdf', '347827959.sdf', '175426976.sdf', '99443678.sdf', '175426928.sdf', '347911103.sdf', '347827830.sdf', '347828297.sdf', '347829278.sdf', '99444508.sdf', '99443584.sdf', '347827869.sdf', '347828240.sdf', '347828056.sdf', '99443231.sdf', '347828757.sdf', '347829111.sdf', '347828715.sdf', '310265224.sdf', '347828444.sdf', '347828870.sdf', '347829068.sdf', '347828363.sdf', '347829039.sdf', '175426873.sdf', '175427020.sdf', '310265030.sdf', '347827881.sdf', '99445058.sdf', '99443377.sdf', '99444727.sdf', '347828933.sdf', '99445212.sdf', '347827981.sdf', '310265155.sdf', '99444404.sdf', '175426886.sdf', '347828507.sdf', '310265134.sdf', '99444859.sdf', '99444662.sdf', '310265183.sdf', '99444705.sdf', '310264860.sdf', '99444805.sdf', '347829213.sdf', '347828357.sdf', '347829171.sdf', '99443971.sdf', '347827887.sdf', '347828569.sdf', '347828829.sdf', '347828586.sdf', '99443737.sdf', '175426882.sdf', '347827765.sdf', '99443660.sdf']
+self.sdf_dir :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444378.sdf  ibas :  131
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828501.sdf  ibas :  402
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827713.sdf  ibas :  464
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828585.sdf  ibas :  438
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265004.sdf  ibas :  355
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828801.sdf  ibas :  268
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426884.sdf  ibas :  444
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427093.sdf  ibas :  484
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443528.sdf  ibas :  166
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829130.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444051.sdf  ibas :  340
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828676.sdf  ibas :  505
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443396.sdf  ibas :  313
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426959.sdf  ibas :  232
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828657.sdf  ibas :  335
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828782.sdf  ibas :  361
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443873.sdf  ibas :  234
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444187.sdf  ibas :  330
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829211.sdf  ibas :  264
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444860.sdf  ibas :  316
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444174.sdf  ibas :  245
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443239.sdf  ibas :  157
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443350.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444140.sdf  ibas :  146
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265149.sdf  ibas :  194
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443893.sdf  ibas :  308
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444267.sdf  ibas :  318
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828686.sdf  ibas :  242
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444274.sdf  ibas :  142
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443589.sdf  ibas :  133
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443433.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445039.sdf  ibas :  287
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444394.sdf  ibas :  236
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444911.sdf  ibas :  184
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444102.sdf  ibas :  237
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828818.sdf  ibas :  412
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443846.sdf  ibas :  245
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444285.sdf  ibas :  269
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828859.sdf  ibas :  425
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828438.sdf  ibas :  448
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443616.sdf  ibas :  342
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444345.sdf  ibas :  258
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829175.sdf  ibas :  402
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264879.sdf  ibas :  94
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265082.sdf  ibas :  294
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444304.sdf  ibas :  306
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265158.sdf  ibas :  144
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444065.sdf  ibas :  274
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828448.sdf  ibas :  406
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443258.sdf  ibas :  128
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444505.sdf  ibas :  257
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829240.sdf  ibas :  78
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828307.sdf  ibas :  437
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827890.sdf  ibas :  84
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265092.sdf  ibas :  268
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265056.sdf  ibas :  367
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443855.sdf  ibas :  134
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426888.sdf  ibas :  258
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426863.sdf  ibas :  434
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445024.sdf  ibas :  298
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828079.sdf  ibas :  148
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444379.sdf  ibas :  168
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347910124.sdf  ibas :  421
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829249.sdf  ibas :  410
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828191.sdf  ibas :  436
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443458.sdf  ibas :  215
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443896.sdf  ibas :  264
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828196.sdf  ibas :  482
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445147.sdf  ibas :  360
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265016.sdf  ibas :  310
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829182.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444134.sdf  ibas :  260
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828379.sdf  ibas :  425
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444680.sdf  ibas :  210
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828000.sdf  ibas :  118
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828703.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427027.sdf  ibas :  247
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444401.sdf  ibas :  183
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444302.sdf  ibas :  323
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443566.sdf  ibas :  303
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828301.sdf  ibas :  465
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828697.sdf  ibas :  407
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444286.sdf  ibas :  264
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828747.sdf  ibas :  378
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444068.sdf  ibas :  134
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828403.sdf  ibas :  195
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444460.sdf  ibas :  160
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445119.sdf  ibas :  168
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828265.sdf  ibas :  547
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828199.sdf  ibas :  608
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828522.sdf  ibas :  168
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444483.sdf  ibas :  297
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828261.sdf  ibas :  418
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827979.sdf  ibas :  305
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828443.sdf  ibas :  357
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829280.sdf  ibas :  132
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828189.sdf  ibas :  347
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828907.sdf  ibas :  241
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443524.sdf  ibas :  352
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445157.sdf  ibas :  255
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828775.sdf  ibas :  381
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445209.sdf  ibas :  353
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444878.sdf  ibas :  342
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265070.sdf  ibas :  27
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427147.sdf  ibas :  427
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828858.sdf  ibas :  406
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264928.sdf  ibas :  519
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444881.sdf  ibas :  241
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828480.sdf  ibas :  386
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443714.sdf  ibas :  227
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265142.sdf  ibas :  483
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828350.sdf  ibas :  217
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264923.sdf  ibas :  306
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828259.sdf  ibas :  150
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829275.sdf  ibas :  232
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445211.sdf  ibas :  211
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445145.sdf  ibas :  339
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265213.sdf  ibas :  410
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828929.sdf  ibas :  256
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426944.sdf  ibas :  465
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265007.sdf  ibas :  426
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828193.sdf  ibas :  440
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264954.sdf  ibas :  518
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829140.sdf  ibas :  427
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445037.sdf  ibas :  214
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828804.sdf  ibas :  227
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827933.sdf  ibas :  490
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427127.sdf  ibas :  423
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829110.sdf  ibas :  132
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265039.sdf  ibas :  257
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828409.sdf  ibas :  362
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264965.sdf  ibas :  378
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828303.sdf  ibas :  512
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828887.sdf  ibas :  319
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827957.sdf  ibas :  418
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444933.sdf  ibas :  226
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829122.sdf  ibas :  396
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828729.sdf  ibas :  305
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828524.sdf  ibas :  372
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265156.sdf  ibas :  167
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828243.sdf  ibas :  290
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444717.sdf  ibas :  252
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827746.sdf  ibas :  531
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828564.sdf  ibas :  93
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827856.sdf  ibas :  70
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445120.sdf  ibas :  141
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443684.sdf  ibas :  338
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828811.sdf  ibas :  545
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444254.sdf  ibas :  351
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264996.sdf  ibas :  315
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444919.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828989.sdf  ibas :  195
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828634.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444789.sdf  ibas :  188
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426868.sdf  ibas :  129
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827967.sdf  ibas :  42
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445264.sdf  ibas :  302
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828951.sdf  ibas :  42
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829113.sdf  ibas :  407
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829008.sdf  ibas :  209
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828973.sdf  ibas :  291
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828023.sdf  ibas :  372
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828242.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427058.sdf  ibas :  379
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444368.sdf  ibas :  150
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828556.sdf  ibas :  239
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827838.sdf  ibas :  263
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828850.sdf  ibas :  392
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828880.sdf  ibas :  343
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828450.sdf  ibas :  188
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828727.sdf  ibas :  356
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828713.sdf  ibas :  208
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829202.sdf  ibas :  560
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427009.sdf  ibas :  158
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426878.sdf  ibas :  459
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426918.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426954.sdf  ibas :  331
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828895.sdf  ibas :  473
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443546.sdf  ibas :  309
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829010.sdf  ibas :  426
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443588.sdf  ibas :  350
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829292.sdf  ibas :  426
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444424.sdf  ibas :  216
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828041.sdf  ibas :  132
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828683.sdf  ibas :  492
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445123.sdf  ibas :  137
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827910.sdf  ibas :  66
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426990.sdf  ibas :  57
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828572.sdf  ibas :  482
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445271.sdf  ibas :  246
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427081.sdf  ibas :  75
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827871.sdf  ibas :  97
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829144.sdf  ibas :  289
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265167.sdf  ibas :  448
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443764.sdf  ibas :  161
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828212.sdf  ibas :  199
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264950.sdf  ibas :  178
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828171.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427029.sdf  ibas :  238
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444945.sdf  ibas :  205
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829017.sdf  ibas :  415
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828746.sdf  ibas :  277
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828551.sdf  ibas :  375
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426936.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829051.sdf  ibas :  312
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264979.sdf  ibas :  266
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829087.sdf  ibas :  93
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829066.sdf  ibas :  453
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828664.sdf  ibas :  374
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829157.sdf  ibas :  429
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426951.sdf  ibas :  279
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426998.sdf  ibas :  370
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444440.sdf  ibas :  290
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264980.sdf  ibas :  457
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444381.sdf  ibas :  134
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427012.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445068.sdf  ibas :  320
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444891.sdf  ibas :  342
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829255.sdf  ibas :  459
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828588.sdf  ibas :  328
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427099.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827776.sdf  ibas :  500
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265190.sdf  ibas :  359
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829179.sdf  ibas :  518
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265101.sdf  ibas :  200
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443266.sdf  ibas :  141
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264948.sdf  ibas :  236
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264992.sdf  ibas :  433
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265096.sdf  ibas :  242
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829153.sdf  ibas :  364
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444075.sdf  ibas :  265
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265194.sdf  ibas :  209
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443439.sdf  ibas :  180
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827743.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828766.sdf  ibas :  382
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827956.sdf  ibas :  222
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443936.sdf  ibas :  257
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827777.sdf  ibas :  270
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828022.sdf  ibas :  370
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444513.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828557.sdf  ibas :  375
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445134.sdf  ibas :  243
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444799.sdf  ibas :  276
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443296.sdf  ibas :  507
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426862.sdf  ibas :  478
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445143.sdf  ibas :  258
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444618.sdf  ibas :  303
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828568.sdf  ibas :  369
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827896.sdf  ibas :  170
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828881.sdf  ibas :  584
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443915.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444649.sdf  ibas :  184
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444530.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828863.sdf  ibas :  338
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265143.sdf  ibas :  383
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828361.sdf  ibas :  343
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445238.sdf  ibas :  130
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828667.sdf  ibas :  427
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443630.sdf  ibas :  352
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828875.sdf  ibas :  406
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828741.sdf  ibas :  27
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444055.sdf  ibas :  224
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828156.sdf  ibas :  384
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444001.sdf  ibas :  361
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828009.sdf  ibas :  479
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828320.sdf  ibas :  397
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828465.sdf  ibas :  484
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444833.sdf  ibas :  293
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827766.sdf  ibas :  217
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828658.sdf  ibas :  440
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828289.sdf  ibas :  433
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444113.sdf  ibas :  300
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829195.sdf  ibas :  474
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443907.sdf  ibas :  134
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828034.sdf  ibas :  291
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828424.sdf  ibas :  176
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828245.sdf  ibas :  392
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427024.sdf  ibas :  547
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444721.sdf  ibas :  300
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443856.sdf  ibas :  252
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444552.sdf  ibas :  191
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426950.sdf  ibas :  493
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827995.sdf  ibas :  18
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444088.sdf  ibas :  150
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264877.sdf  ibas :  27
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443557.sdf  ibas :  211
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445256.sdf  ibas :  124
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444265.sdf  ibas :  251
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828994.sdf  ibas :  172
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828591.sdf  ibas :  422
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444019.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444863.sdf  ibas :  303
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828605.sdf  ibas :  311
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829092.sdf  ibas :  343
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427142.sdf  ibas :  405
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828656.sdf  ibas :  410
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264983.sdf  ibas :  390
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444111.sdf  ibas :  267
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828221.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828792.sdf  ibas :  315
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427110.sdf  ibas :  120
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264867.sdf  ibas :  383
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444193.sdf  ibas :  148
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829222.sdf  ibas :  452
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828739.sdf  ibas :  591
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829184.sdf  ibas :  365
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443407.sdf  ibas :  281
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265136.sdf  ibas :  380
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264939.sdf  ibas :  392
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828038.sdf  ibas :  419
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443904.sdf  ibas :  204
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444729.sdf  ibas :  210
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828521.sdf  ibas :  137
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828784.sdf  ibas :  310
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828011.sdf  ibas :  493
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829334.sdf  ibas :  337
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444760.sdf  ibas :  268
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443249.sdf  ibas :  496
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828920.sdf  ibas :  371
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828427.sdf  ibas :  429
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265080.sdf  ibas :  294
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444150.sdf  ibas :  286
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444236.sdf  ibas :  349
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828045.sdf  ibas :  358
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828821.sdf  ibas :  369
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828190.sdf  ibas :  86
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827778.sdf  ibas :  447
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444766.sdf  ibas :  232
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827714.sdf  ibas :  539
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265062.sdf  ibas :  284
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444522.sdf  ibas :  318
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427129.sdf  ibas :  243
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829233.sdf  ibas :  380
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828964.sdf  ibas :  192
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443591.sdf  ibas :  210
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827754.sdf  ibas :  393
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828012.sdf  ibas :  255
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444816.sdf  ibas :  264
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827791.sdf  ibas :  472
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827960.sdf  ibas :  264
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265117.sdf  ibas :  110
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427102.sdf  ibas :  356
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444951.sdf  ibas :  152
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828316.sdf  ibas :  530
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443311.sdf  ibas :  172
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828142.sdf  ibas :  256
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829200.sdf  ibas :  361
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444646.sdf  ibas :  227
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829026.sdf  ibas :  282
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444967.sdf  ibas :  239
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829042.sdf  ibas :  466
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264991.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443540.sdf  ibas :  144
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426861.sdf  ibas :  339
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828069.sdf  ibas :  432
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444215.sdf  ibas :  344
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828750.sdf  ibas :  81
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443859.sdf  ibas :  213
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427096.sdf  ibas :  518
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426874.sdf  ibas :  429
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444465.sdf  ibas :  334
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427095.sdf  ibas :  330
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444250.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264918.sdf  ibas :  193
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829150.sdf  ibas :  374
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828002.sdf  ibas :  352
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829046.sdf  ibas :  497
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828682.sdf  ibas :  433
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827961.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828629.sdf  ibas :  413
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828805.sdf  ibas :  291
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445159.sdf  ibas :  152
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828299.sdf  ibas :  488
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443802.sdf  ibas :  131
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443985.sdf  ibas :  316
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265227.sdf  ibas :  84
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426896.sdf  ibas :  239
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828698.sdf  ibas :  84
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829002.sdf  ibas :  372
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829056.sdf  ibas :  312
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427014.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827710.sdf  ibas :  162
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828940.sdf  ibas :  93
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828655.sdf  ibas :  488
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444689.sdf  ibas :  282
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829215.sdf  ibas :  388
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828742.sdf  ibas :  367
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828696.sdf  ibas :  440
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443250.sdf  ibas :  430
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427104.sdf  ibas :  426
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443479.sdf  ibas :  280
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265098.sdf  ibas :  248
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829133.sdf  ibas :  468
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828225.sdf  ibas :  458
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827767.sdf  ibas :  365
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443279.sdf  ibas :  309
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443226.sdf  ibas :  395
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445207.sdf  ibas :  243
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347911235.sdf  ibas :  544
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829100.sdf  ibas :  440
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828674.sdf  ibas :  309
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829089.sdf  ibas :  246
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828558.sdf  ibas :  310
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443827.sdf  ibas :  208
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828862.sdf  ibas :  294
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828749.sdf  ibas :  68
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829223.sdf  ibas :  124
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444549.sdf  ibas :  313
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347910049.sdf  ibas :  411
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827818.sdf  ibas :  209
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444640.sdf  ibas :  239
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828371.sdf  ibas :  505
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444194.sdf  ibas :  170
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443596.sdf  ibas :  252
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347909866.sdf  ibas :  301
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828836.sdf  ibas :  484
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444756.sdf  ibas :  286
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829326.sdf  ibas :  331
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265222.sdf  ibas :  53
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265132.sdf  ibas :  382
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444349.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427013.sdf  ibas :  453
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827730.sdf  ibas :  348
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828476.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828269.sdf  ibas :  301
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444561.sdf  ibas :  254
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828874.sdf  ibas :  290
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444862.sdf  ibas :  312
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427108.sdf  ibas :  524
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827964.sdf  ibas :  110
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444212.sdf  ibas :  342
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829294.sdf  ibas :  76
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265226.sdf  ibas :  251
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828077.sdf  ibas :  387
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443844.sdf  ibas :  237
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445220.sdf  ibas :  339
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265130.sdf  ibas :  215
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426906.sdf  ibas :  154
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828086.sdf  ibas :  266
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828581.sdf  ibas :  405
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828275.sdf  ibas :  354
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444359.sdf  ibas :  179
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427089.sdf  ibas :  81
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264951.sdf  ibas :  316
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443357.sdf  ibas :  372
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443929.sdf  ibas :  349
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828254.sdf  ibas :  310
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828348.sdf  ibas :  453
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443543.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427001.sdf  ibas :  520
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828611.sdf  ibas :  121
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427080.sdf  ibas :  232
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444477.sdf  ibas :  255
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444739.sdf  ibas :  250
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347910337.sdf  ibas :  277
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264908.sdf  ibas :  244
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828699.sdf  ibas :  342
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444947.sdf  ibas :  183
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443567.sdf  ibas :  160
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829083.sdf  ibas :  365
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827870.sdf  ibas :  44
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828583.sdf  ibas :  339
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828202.sdf  ibas :  391
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444409.sdf  ibas :  278
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828140.sdf  ibas :  313
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828695.sdf  ibas :  535
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444298.sdf  ibas :  328
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828949.sdf  ibas :  201
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443690.sdf  ibas :  376
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445107.sdf  ibas :  142
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444222.sdf  ibas :  316
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445036.sdf  ibas :  214
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827806.sdf  ibas :  381
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827892.sdf  ibas :  22
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445140.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444178.sdf  ibas :  263
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265116.sdf  ibas :  321
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265009.sdf  ibas :  302
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445179.sdf  ibas :  270
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427090.sdf  ibas :  88
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445012.sdf  ibas :  217
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827805.sdf  ibas :  261
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828721.sdf  ibas :  371
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828405.sdf  ibas :  351
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828622.sdf  ibas :  403
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828075.sdf  ibas :  108
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827726.sdf  ibas :  414
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444598.sdf  ibas :  183
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828609.sdf  ibas :  393
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444738.sdf  ibas :  237
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444118.sdf  ibas :  274
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828460.sdf  ibas :  172
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443369.sdf  ibas :  186
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265175.sdf  ibas :  181
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426917.sdf  ibas :  234
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444908.sdf  ibas :  364
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828419.sdf  ibas :  396
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444668.sdf  ibas :  279
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443872.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827936.sdf  ibas :  457
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444080.sdf  ibas :  163
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828194.sdf  ibas :  361
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443772.sdf  ibas :  135
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443507.sdf  ibas :  274
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828216.sdf  ibas :  445
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444032.sdf  ibas :  252
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265054.sdf  ibas :  18
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443753.sdf  ibas :  170
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444953.sdf  ibas :  322
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444390.sdf  ibas :  168
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444732.sdf  ibas :  252
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444238.sdf  ibas :  146
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829135.sdf  ibas :  348
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444028.sdf  ibas :  271
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828331.sdf  ibas :  375
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444497.sdf  ibas :  289
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829239.sdf  ibas :  58
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828905.sdf  ibas :  247
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443953.sdf  ibas :  169
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829006.sdf  ibas :  465
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827783.sdf  ibas :  512
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829128.sdf  ibas :  232
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265157.sdf  ibas :  155
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264977.sdf  ibas :  281
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443347.sdf  ibas :  327
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828975.sdf  ibas :  468
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827946.sdf  ibas :  472
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828020.sdf  ibas :  243
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445139.sdf  ibas :  178
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829227.sdf  ibas :  411
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265015.sdf  ibas :  195
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828620.sdf  ibas :  341
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427118.sdf  ibas :  116
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444462.sdf  ibas :  322
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828492.sdf  ibas :  287
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265154.sdf  ibas :  136
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443525.sdf  ibas :  343
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444326.sdf  ibas :  237
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828518.sdf  ibas :  336
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828574.sdf  ibas :  467
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444964.sdf  ibas :  358
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828573.sdf  ibas :  275
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444362.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828702.sdf  ibas :  288
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445219.sdf  ibas :  130
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829101.sdf  ibas :  280
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444038.sdf  ibas :  359
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828823.sdf  ibas :  221
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829142.sdf  ibas :  425
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829168.sdf  ibas :  319
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443675.sdf  ibas :  312
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264956.sdf  ibas :  451
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265210.sdf  ibas :  399
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828744.sdf  ibas :  448
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265230.sdf  ibas :  392
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444521.sdf  ibas :  150
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828354.sdf  ibas :  378
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444484.sdf  ibas :  310
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828988.sdf  ibas :  359
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347910146.sdf  ibas :  358
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444249.sdf  ibas :  288
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828279.sdf  ibas :  311
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444129.sdf  ibas :  345
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828958.sdf  ibas :  363
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828230.sdf  ibas :  487
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827774.sdf  ibas :  275
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444895.sdf  ibas :  279
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828100.sdf  ibas :  393
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443575.sdf  ibas :  229
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828753.sdf  ibas :  376
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829178.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829148.sdf  ibas :  277
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443274.sdf  ibas :  77
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427073.sdf  ibas :  490
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827721.sdf  ibas :  437
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443476.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828670.sdf  ibas :  466
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265146.sdf  ibas :  113
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426885.sdf  ibas :  452
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445028.sdf  ibas :  298
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444829.sdf  ibas :  266
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828364.sdf  ibas :  480
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265111.sdf  ibas :  134
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828292.sdf  ibas :  366
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264886.sdf  ibas :  359
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443582.sdf  ibas :  289
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829224.sdf  ibas :  77
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445135.sdf  ibas :  353
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828941.sdf  ibas :  293
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827823.sdf  ibas :  334
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828324.sdf  ibas :  403
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265065.sdf  ibas :  18
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264942.sdf  ibas :  199
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265135.sdf  ibas :  395
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443836.sdf  ibas :  170
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444608.sdf  ibas :  242
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444698.sdf  ibas :  206
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444367.sdf  ibas :  124
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828991.sdf  ibas :  126
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827973.sdf  ibas :  97
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828982.sdf  ibas :  372
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444486.sdf  ibas :  304
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828689.sdf  ibas :  277
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445110.sdf  ibas :  263
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827878.sdf  ibas :  443
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828421.sdf  ibas :  395
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264993.sdf  ibas :  520
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427017.sdf  ibas :  301
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828026.sdf  ibas :  477
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443291.sdf  ibas :  332
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828237.sdf  ibas :  427
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265093.sdf  ibas :  191
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827707.sdf  ibas :  382
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828203.sdf  ibas :  336
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443990.sdf  ibas :  284
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828926.sdf  ibas :  378
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426910.sdf  ibas :  132
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827959.sdf  ibas :  102
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426976.sdf  ibas :  347
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443678.sdf  ibas :  244
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426928.sdf  ibas :  82
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347911103.sdf  ibas :  215
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827830.sdf  ibas :  481
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828297.sdf  ibas :  333
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829278.sdf  ibas :  205
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444508.sdf  ibas :  353
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443584.sdf  ibas :  356
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827869.sdf  ibas :  44
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828240.sdf  ibas :  416
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828056.sdf  ibas :  446
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443231.sdf  ibas :  189
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828757.sdf  ibas :  27
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829111.sdf  ibas :  350
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828715.sdf  ibas :  270
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265224.sdf  ibas :  256
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828444.sdf  ibas :  377
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828870.sdf  ibas :  316
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829068.sdf  ibas :  395
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828363.sdf  ibas :  512
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829039.sdf  ibas :  292
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426873.sdf  ibas :  198
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175427020.sdf  ibas :  165
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265030.sdf  ibas :  29
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827881.sdf  ibas :  91
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445058.sdf  ibas :  168
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443377.sdf  ibas :  135
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444727.sdf  ibas :  158
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828933.sdf  ibas :  379
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99445212.sdf  ibas :  278
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827981.sdf  ibas :  286
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265155.sdf  ibas :  171
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444404.sdf  ibas :  225
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426886.sdf  ibas :  314
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828507.sdf  ibas :  414
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265134.sdf  ibas :  455
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444859.sdf  ibas :  299
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444662.sdf  ibas :  244
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310265183.sdf  ibas :  367
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444705.sdf  ibas :  247
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/310264860.sdf  ibas :  317
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99444805.sdf  ibas :  203
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829213.sdf  ibas :  398
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828357.sdf  ibas :  418
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347829171.sdf  ibas :  237
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443971.sdf  ibas :  269
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827887.sdf  ibas :  222
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828569.sdf  ibas :  374
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828829.sdf  ibas :  465
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347828586.sdf  ibas :  393
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443737.sdf  ibas :  282
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/175426882.sdf  ibas :  400
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/347827765.sdf  ibas :  287
+imol :  /home/yingjin/Quantum_Soft/Fcst_sys_public/./example/Arxiv1911.05569v1_sdfs_H_Part2/99443660.sdf  ibas :  363
+ij :  1
+len(names) 673 len(resultlist) 673
+1   99444378.sdf   85.57637023925781
+2   347828501.sdf   783.4331665039062
+3   347827713.sdf   2000.404052734375
+4   347828585.sdf   777.7246704101562
+5   310265004.sdf   583.1326904296875
+6   347828801.sdf   226.64271545410156
+7   175426884.sdf   602.6813354492188
+8   175427093.sdf   510.565673828125
+9   99443528.sdf   122.26905822753906
+10   347829130.sdf   364.677734375
+11   99444051.sdf   364.7969055175781
+12   347828676.sdf   805.9020385742188
+13   99443396.sdf   308.3175964355469
+14   175426959.sdf   240.4525909423828
+15   347828657.sdf   375.8628845214844
+16   347828782.sdf   415.4759826660156
+17   99443873.sdf   199.61260986328125
+18   99444187.sdf   327.5618896484375
+19   347829211.sdf   295.3717346191406
+20   99444860.sdf   314.95001220703125
+21   99444174.sdf   272.8182067871094
+22   99443239.sdf   106.6441879272461
+23   99443350.sdf   359.8299560546875
+24   99444140.sdf   99.27418518066406
+25   310265149.sdf   143.10195922851562
+26   99443893.sdf   303.6902160644531
+27   99444267.sdf   360.96868896484375
+28   347828686.sdf   209.67759704589844
+29   99444274.sdf   91.20551300048828
+30   99443589.sdf   86.62799835205078
+31   99443433.sdf   347.1649169921875
+32   99445039.sdf   262.9329833984375
+33   99444394.sdf   190.2224884033203
+34   99444911.sdf   127.27058410644531
+35   99444102.sdf   216.01109313964844
+36   347828818.sdf   1508.1243896484375
+37   99443846.sdf   253.8726348876953
+38   99444285.sdf   304.42364501953125
+39   347828859.sdf   576.2095336914062
+40   347828438.sdf   680.1458740234375
+41   99443616.sdf   393.6716003417969
+42   99444345.sdf   217.9686737060547
+43   347829175.sdf   1036.935791015625
+44   310264879.sdf   63.451988220214844
+45   310265082.sdf   302.6241149902344
+46   99444304.sdf   302.2004699707031
+47   310265158.sdf   95.55097198486328
+48   99444065.sdf   249.1223907470703
+49   347828448.sdf   491.81103515625
+50   99443258.sdf   77.40872192382812
+51   99444505.sdf   216.87428283691406
+52   347829240.sdf   48.111175537109375
+53   347828307.sdf   650.2037963867188
+54   347827890.sdf   53.567955017089844
+55   310265092.sdf   249.21693420410156
+56   310265056.sdf   439.67413330078125
+57   99443855.sdf   88.90313720703125
+58   175426888.sdf   242.230712890625
+59   175426863.sdf   689.7439575195312
+60   99445024.sdf   293.0154724121094
+61   347828079.sdf   108.72579193115234
+62   99444379.sdf   115.91544342041016
+63   347910124.sdf   681.7686157226562
+64   347829249.sdf   567.52880859375
+65   347828191.sdf   560.5226440429688
+66   99443458.sdf   162.35523986816406
+67   99443896.sdf   232.5418701171875
+68   347828196.sdf   723.9039306640625
+69   99445147.sdf   505.083251953125
+70   310265016.sdf   323.3092956542969
+71   347829182.sdf   325.3047180175781
+72   99444134.sdf   225.3602752685547
+73   347828379.sdf   715.4907836914062
+74   99444680.sdf   160.86534118652344
+75   347828000.sdf   73.71653747558594
+76   347828703.sdf   299.9320068359375
+77   175427027.sdf   201.3477020263672
+78   99444401.sdf   126.25971984863281
+79   99444302.sdf   333.8970642089844
+80   99443566.sdf   319.2596435546875
+81   347828301.sdf   643.8186645507812
+82   347828697.sdf   569.28466796875
+83   99444286.sdf   289.2271423339844
+84   347828747.sdf   1018.4280395507812
+85   99444068.sdf   87.54420471191406
+86   347828403.sdf   136.8441925048828
+87   99444460.sdf   109.09646606445312
+88   99445119.sdf   118.7708511352539
+89   347828265.sdf   1084.4749755859375
+90   347828199.sdf   1068.9959716796875
+91   347828522.sdf   115.77667236328125
+92   99444483.sdf   290.3268737792969
+93   347828261.sdf   638.849365234375
+94   347827979.sdf   319.8493957519531
+95   347828443.sdf   454.8481750488281
+96   347829280.sdf   83.85128784179688
+97   347828189.sdf   383.25439453125
+98   347828907.sdf   197.59320068359375
+99   99443524.sdf   390.2149353027344
+100   99445157.sdf   250.4017333984375
+101   347828775.sdf   603.6566772460938
+102   99445209.sdf   566.3783569335938
+103   99444878.sdf   406.2445068359375
+104   310265070.sdf   40.84061050415039
+105   175427147.sdf   478.5317077636719
+106   347828858.sdf   830.0573120117188
+107   310264928.sdf   1172.6920166015625
+108   99444881.sdf   207.8367156982422
+109   347828480.sdf   451.3744201660156
+110   99443714.sdf   188.81216430664062
+111   310265142.sdf   1308.868408203125
+112   347828350.sdf   178.53204345703125
+113   310264923.sdf   310.50946044921875
+114   347828259.sdf   92.28565979003906
+115   347829275.sdf   199.72154235839844
+116   99445211.sdf   164.543212890625
+117   99445145.sdf   382.65142822265625
+118   310265213.sdf   674.4556884765625
+119   347828929.sdf   210.92958068847656
+120   175426944.sdf   714.3607788085938
+121   310265007.sdf   645.1082153320312
+122   347828193.sdf   558.208251953125
+123   310264954.sdf   980.3655395507812
+124   347829140.sdf   751.6129760742188
+125   99445037.sdf   173.5664520263672
+126   347828804.sdf   166.88368225097656
+127   347827933.sdf   700.590576171875
+128   175427127.sdf   671.8020629882812
+129   347829110.sdf   87.18977355957031
+130   310265039.sdf   282.3078918457031
+131   347828409.sdf   422.08551025390625
+132   310264965.sdf   526.3214721679688
+133   347828303.sdf   833.8658447265625
+134   347828887.sdf   335.4862976074219
+135   347827957.sdf   738.1260375976562
+136   99444933.sdf   179.22145080566406
+137   347829122.sdf   676.3208618164062
+138   347828729.sdf   294.7807922363281
+139   347828524.sdf   449.0605773925781
+140   310265156.sdf   115.57527160644531
+141   347828243.sdf   293.45196533203125
+142   99444717.sdf   233.05702209472656
+143   347827746.sdf   909.0121459960938
+144   347828564.sdf   56.981788635253906
+145   347827856.sdf   46.06618118286133
+146   99445120.sdf   94.62599182128906
+147   99443684.sdf   406.56787109375
+148   347828811.sdf   718.2680053710938
+149   99444254.sdf   384.5006408691406
+150   310264996.sdf   326.46282958984375
+151   99444919.sdf   294.5250549316406
+152   347828989.sdf   143.50747680664062
+153   347828634.sdf   326.6103820800781
+154   99444789.sdf   129.79217529296875
+155   175426868.sdf   87.5552978515625
+156   347827967.sdf   41.094818115234375
+157   99445264.sdf   314.3653869628906
+158   347828951.sdf   41.434051513671875
+159   347829113.sdf   580.1632690429688
+160   347829008.sdf   154.64561462402344
+161   347828973.sdf   276.00823974609375
+162   347828023.sdf   418.58087158203125
+163   347828242.sdf   345.4482421875
+164   175427058.sdf   468.6730651855469
+165   99444368.sdf   96.92461395263672
+166   347828556.sdf   196.66212463378906
+167   347827838.sdf   285.24444580078125
+168   347828850.sdf   461.9853820800781
+169   347828880.sdf   395.8265380859375
+170   347828450.sdf   132.8330078125
+171   347828727.sdf   464.34796142578125
+172   347828713.sdf   161.65232849121094
+173   347829202.sdf   828.1094970703125
+174   175427009.sdf   108.4449234008789
+175   175426878.sdf   643.4978637695312
+176   175426918.sdf   210.34913635253906
+177   175426954.sdf   366.2951965332031
+178   347828895.sdf   874.8224487304688
+179   99443546.sdf   357.7534484863281
+180   347829010.sdf   636.0985107421875
+181   99443588.sdf   391.0309753417969
+182   347829292.sdf   899.9752197265625
+183   99444424.sdf   171.88694763183594
+184   347828041.sdf   85.65514373779297
+185   347828683.sdf   1048.6177978515625
+186   99445123.sdf   88.5176773071289
+187   347827910.sdf   44.13383483886719
+188   175426990.sdf   41.12397766113281
+189   347828572.sdf   630.2145385742188
+190   99445271.sdf   207.48851013183594
+191   175427081.sdf   45.316650390625
+192   347827871.sdf   61.970619201660156
+193   347829144.sdf   289.8028259277344
+194   310265167.sdf   693.4769897460938
+195   99443764.sdf   108.14561462402344
+196   347828212.sdf   149.60934448242188
+197   310264950.sdf   131.64305114746094
+198   347828171.sdf   304.2732849121094
+199   175427029.sdf   238.67408752441406
+200   99444945.sdf   167.0977325439453
+201   347829017.sdf   529.1630249023438
+202   347828746.sdf   371.9822082519531
+203   347828551.sdf   633.5238037109375
+204   175426936.sdf   347.23577880859375
+205   347829051.sdf   310.1956787109375
+206   310264979.sdf   246.69105529785156
+207   347829087.sdf   59.49138641357422
+208   347829066.sdf   639.2622680664062
+209   347828664.sdf   482.8180236816406
+210   347829157.sdf   836.1218872070312
+211   175426951.sdf   266.28204345703125
+212   175426998.sdf   478.86383056640625
+213   99444440.sdf   271.16021728515625
+214   310264980.sdf   623.9386596679688
+215   99444381.sdf   87.10612487792969
+216   175427012.sdf   331.5291442871094
+217   99445068.sdf   319.7865905761719
+218   99444891.sdf   391.9504089355469
+219   347829255.sdf   591.89404296875
+220   347828588.sdf   357.82098388671875
+221   175427099.sdf   309.7428283691406
+222   347827776.sdf   682.7051391601562
+223   310265190.sdf   433.29144287109375
+224   347829179.sdf   893.2283325195312
+225   310265101.sdf   165.30670166015625
+226   99443266.sdf   93.92462921142578
+227   310264948.sdf   193.10618591308594
+228   310264992.sdf   621.029296875
+229   310265096.sdf   218.85093688964844
+230   347829153.sdf   488.7171325683594
+231   99444075.sdf   265.0982971191406
+232   310265194.sdf   202.16700744628906
+233   99443439.sdf   120.23019409179688
+234   347827743.sdf   215.8308563232422
+235   347828766.sdf   503.988037109375
+236   347827956.sdf   176.15573120117188
+237   99443936.sdf   257.8049011230469
+238   347827777.sdf   245.6162567138672
+239   347828022.sdf   501.21417236328125
+240   99444513.sdf   334.8818664550781
+241   347828557.sdf   470.4950866699219
+242   99445134.sdf   208.5193634033203
+243   99444799.sdf   258.32159423828125
+244   99443296.sdf   555.1830444335938
+245   175426862.sdf   857.8549194335938
+246   99445143.sdf   230.2145233154297
+247   99444618.sdf   321.3819885253906
+248   347828568.sdf   421.3031921386719
+249   347827896.sdf   115.29231262207031
+250   347828881.sdf   1448.442138671875
+251   99443915.sdf   222.1954345703125
+252   99444649.sdf   131.2811737060547
+253   99444530.sdf   399.2206115722656
+254   347828863.sdf   376.08319091796875
+255   310265143.sdf   553.2116088867188
+256   347828361.sdf   392.1356506347656
+257   99445238.sdf   84.28662109375
+258   347828667.sdf   550.202880859375
+259   99443630.sdf   483.46429443359375
+260   347828875.sdf   572.4515380859375
+261   347828741.sdf   40.735076904296875
+262   99444055.sdf   191.79586791992188
+263   347828156.sdf   503.0542297363281
+264   99444001.sdf   483.1210021972656
+265   347828009.sdf   754.128662109375
+266   347828320.sdf   455.13616943359375
+267   347828465.sdf   825.7914428710938
+268   99444833.sdf   277.807373046875
+269   347827766.sdf   178.46051025390625
+270   347828658.sdf   896.5623779296875
+271   347828289.sdf   600.9345703125
+272   99444113.sdf   297.5953369140625
+273   347829195.sdf   663.6019287109375
+274   99443907.sdf   86.6105728149414
+275   347828034.sdf   360.2994689941406
+276   347828424.sdf   135.62596130371094
+277   347828245.sdf   619.6561889648438
+278   175427024.sdf   1085.3228759765625
+279   99444721.sdf   318.5442810058594
+280   99443856.sdf   258.5829772949219
+281   99444552.sdf   149.6918182373047
+282   175426950.sdf   913.7239379882812
+283   347827995.sdf   40.77776336669922
+284   99444088.sdf   99.56556701660156
+285   310264877.sdf   40.98908233642578
+286   99443557.sdf   177.01332092285156
+287   99445256.sdf   79.649169921875
+288   99444265.sdf   215.68003845214844
+289   347828994.sdf   118.03214263916016
+290   347828591.sdf   679.5646362304688
+291   99444019.sdf   312.95550537109375
+292   99444863.sdf   302.5095520019531
+293   347828605.sdf   351.8213806152344
+294   347829092.sdf   396.7196960449219
+295   175427142.sdf   510.4371643066406
+296   347828656.sdf   553.8018188476562
+297   310264983.sdf   462.6938781738281
+298   99444111.sdf   248.4387969970703
+299   347828221.sdf   320.1947937011719
+300   347828792.sdf   319.0013732910156
+301   175427110.sdf   77.91202545166016
+302   310264867.sdf   528.6048583984375
+303   99444193.sdf   98.83688354492188
+304   347829222.sdf   639.6817016601562
+305   347828739.sdf   1017.8015747070312
+306   347829184.sdf   402.0083923339844
+307   99443407.sdf   255.5172882080078
+308   310265136.sdf   569.1555786132812
+309   310264939.sdf   606.7826538085938
+310   347828038.sdf   628.8682861328125
+311   99443904.sdf   154.9724884033203
+312   99444729.sdf   169.59829711914062
+313   347828521.sdf   90.99785614013672
+314   347828784.sdf   289.4215087890625
+315   347828011.sdf   749.4828491210938
+316   347829334.sdf   430.11138916015625
+317   99444760.sdf   238.3851776123047
+318   99443249.sdf   721.9148559570312
+319   347828920.sdf   449.6544494628906
+320   347828427.sdf   711.85595703125
+321   310265080.sdf   312.0631408691406
+322   99444150.sdf   304.7881164550781
+323   99444236.sdf   424.4259033203125
+324   347828045.sdf   407.8753662109375
+325   347828821.sdf   482.9046936035156
+326   347828190.sdf   55.70819091796875
+327   347827778.sdf   876.0811157226562
+328   99444766.sdf   202.1941680908203
+329   347827714.sdf   937.3682250976562
+330   310265062.sdf   252.92869567871094
+331   99444522.sdf   350.1606750488281
+332   175427129.sdf   210.28970336914062
+333   347829233.sdf   435.9251708984375
+334   347828964.sdf   137.04568481445312
+335   99443591.sdf   163.12985229492188
+336   347827754.sdf   532.4105834960938
+337   347828012.sdf   289.0820007324219
+338   99444816.sdf   219.9575653076172
+339   347827791.sdf   740.4036254882812
+340   347827960.sdf   226.41107177734375
+341   310265117.sdf   69.91570281982422
+342   175427102.sdf   397.0630187988281
+343   99444951.sdf   102.27851104736328
+344   347828316.sdf   984.2676391601562
+345   99443311.sdf   126.25191497802734
+346   347828142.sdf   223.86752319335938
+347   347829200.sdf   510.1487731933594
+348   99444646.sdf   185.45199584960938
+349   347829026.sdf   259.4926452636719
+350   99444967.sdf   211.65354919433594
+351   347829042.sdf   699.0093994140625
+352   310264991.sdf   350.70068359375
+353   99443540.sdf   92.96516418457031
+354   175426861.sdf   364.8755798339844
+355   347828069.sdf   573.7672729492188
+356   99444215.sdf   378.3341369628906
+357   347828750.sdf   52.93996047973633
+358   99443859.sdf   158.4573974609375
+359   175427096.sdf   906.4185180664062
+360   175426874.sdf   678.9509887695312
+361   99444465.sdf   343.293701171875
+362   175427095.sdf   354.997802734375
+363   99444250.sdf   318.98260498046875
+364   310264918.sdf   144.59934997558594
+365   347829150.sdf   731.2509155273438
+366   347828002.sdf   402.9596252441406
+367   347829046.sdf   660.8067016601562
+368   347828682.sdf   814.8789672851562
+369   347827961.sdf   566.9049682617188
+370   347828629.sdf   639.90283203125
+371   347828805.sdf   265.4505615234375
+372   99445159.sdf   103.24622344970703
+373   347828299.sdf   592.4093627929688
+374   99443802.sdf   85.60298156738281
+375   99443985.sdf   349.0648498535156
+376   310265227.sdf   53.745113372802734
+377   175426896.sdf   190.3061065673828
+378   347828698.sdf   54.533111572265625
+379   347829002.sdf   431.1326599121094
+380   347829056.sdf   315.65435791015625
+381   175427014.sdf   211.59202575683594
+382   347827710.sdf   111.16258239746094
+383   347828940.sdf   59.41465377807617
+384   347828655.sdf   808.4260864257812
+385   99444689.sdf   269.9825744628906
+386   347829215.sdf   562.5506591796875
+387   347828742.sdf   414.956298828125
+388   347828696.sdf   706.8234252929688
+389   99443250.sdf   662.6331176757812
+390   175427104.sdf   615.7557983398438
+391   99443479.sdf   237.0863494873047
+392   310265098.sdf   214.7291717529297
+393   347829133.sdf   693.8618774414062
+394   347828225.sdf   927.8931884765625
+395   347827767.sdf   505.5849609375
+396   99443279.sdf   350.0473937988281
+397   99443226.sdf   443.30426025390625
+398   99445207.sdf   222.5983123779297
+399   347911235.sdf   1423.5286865234375
+400   347829100.sdf   695.6947631835938
+401   347828674.sdf   308.6693115234375
+402   347829089.sdf   208.30447387695312
+403   347828558.sdf   321.5345764160156
+404   99443827.sdf   163.21603393554688
+405   347828862.sdf   288.4309997558594
+406   347828749.sdf   44.90625
+407   347829223.sdf   78.63653564453125
+408   99444549.sdf   314.0977478027344
+409   347910049.sdf   717.304443359375
+410   347827818.sdf   171.05654907226562
+411   99444640.sdf   186.3930206298828
+412   347828371.sdf   1242.5635986328125
+413   99444194.sdf   114.95254516601562
+414   99443596.sdf   209.19073486328125
+415   347909866.sdf   294.80029296875
+416   347828836.sdf   698.5598754882812
+417   99444756.sdf   270.088134765625
+418   347829326.sdf   322.8958435058594
+419   310265222.sdf   41.41384506225586
+420   310265132.sdf   615.3803100585938
+421   99444349.sdf   298.00518798828125
+422   175427013.sdf   595.9796142578125
+423   347827730.sdf   475.5718994140625
+424   347828476.sdf   217.11920166015625
+425   347828269.sdf   276.1137390136719
+426   99444561.sdf   234.1203155517578
+427   347828874.sdf   280.3798522949219
+428   99444862.sdf   314.213134765625
+429   175427108.sdf   800.80322265625
+430   347827964.sdf   69.18633270263672
+431   99444212.sdf   405.1159362792969
+432   347829294.sdf   50.23562240600586
+433   310265226.sdf   220.82418823242188
+434   347828077.sdf   545.6375732421875
+435   99443844.sdf   230.616943359375
+436   99445220.sdf   385.6710510253906
+437   310265130.sdf   176.51809692382812
+438   175426906.sdf   110.70081329345703
+439   347828086.sdf   237.89056396484375
+440   347828581.sdf   477.8874206542969
+441   347828275.sdf   423.15679931640625
+442   99444359.sdf   125.01958465576172
+443   175427089.sdf   53.086280822753906
+444   310264951.sdf   337.4257507324219
+445   99443357.sdf   460.20660400390625
+446   99443929.sdf   465.6900329589844
+447   347828254.sdf   288.9443054199219
+448   347828348.sdf   701.8392944335938
+449   99443543.sdf   288.1922607421875
+450   175427001.sdf   775.19677734375
+451   347828611.sdf   74.41252136230469
+452   175427080.sdf   168.3784942626953
+453   99444477.sdf   211.98631286621094
+454   99444739.sdf   217.85659790039062
+455   347910337.sdf   264.9971618652344
+456   310264908.sdf   215.04486083984375
+457   347828699.sdf   566.8673706054688
+458   99444947.sdf   135.7245635986328
+459   99443567.sdf   107.23670959472656
+460   347829083.sdf   467.9465026855469
+461   347827870.sdf   41.134742736816406
+462   347828583.sdf   393.81451416015625
+463   347828202.sdf   498.5275573730469
+464   99444409.sdf   257.046630859375
+465   347828140.sdf   320.82373046875
+466   347828695.sdf   1273.844970703125
+467   99444298.sdf   347.4729309082031
+468   347828949.sdf   148.712158203125
+469   99443690.sdf   506.50048828125
+470   99445107.sdf   88.3379898071289
+471   99444222.sdf   293.3609924316406
+472   99445036.sdf   173.91050720214844
+473   347827806.sdf   439.1473693847656
+474   347827892.sdf   40.862483978271484
+475   99445140.sdf   322.0376892089844
+476   99444178.sdf   250.36434936523438
+477   310265116.sdf   355.4007263183594
+478   310265009.sdf   306.4728698730469
+479   99445179.sdf   224.6584014892578
+480   175427090.sdf   55.84385299682617
+481   99445012.sdf   176.28033447265625
+482   347827805.sdf   234.91476440429688
+483   347828721.sdf   464.4860534667969
+484   347828405.sdf   403.01141357421875
+485   347828622.sdf   545.2472534179688
+486   347828075.sdf   68.48341369628906
+487   347827726.sdf   508.5992736816406
+488   99444598.sdf   127.28685760498047
+489   347828609.sdf   554.8692016601562
+490   99444738.sdf   196.98074340820312
+491   99444118.sdf   242.59194946289062
+492   347828460.sdf   127.86058044433594
+493   99443369.sdf   128.50869750976562
+494   310265175.sdf   127.39579010009766
+495   175426917.sdf   175.92774963378906
+496   99444908.sdf   480.2346496582031
+497   347828419.sdf   549.8698120117188
+498   99444668.sdf   256.5777587890625
+499   99443872.sdf   302.3280334472656
+500   347827936.sdf   749.0257568359375
+501   99444080.sdf   108.93266296386719
+502   347828194.sdf   419.4465637207031
+503   99443772.sdf   87.84066772460938
+504   99443507.sdf   250.9557342529297
+505   347828216.sdf   748.0401000976562
+506   99444032.sdf   209.0732879638672
+507   310265054.sdf   40.925479888916016
+508   99443753.sdf   115.55132293701172
+509   99444953.sdf   355.0815734863281
+510   99444390.sdf   116.96794128417969
+511   99444732.sdf   218.1843719482422
+512   99444238.sdf   94.99828338623047
+513   347829135.sdf   388.8966979980469
+514   99444028.sdf   287.6239929199219
+515   347828331.sdf   538.49951171875
+516   99444497.sdf   274.0949401855469
+517   347829239.sdf   41.67985534667969
+518   347828905.sdf   203.3279571533203
+519   99443953.sdf   127.75801086425781
+520   347829006.sdf   772.8915405273438
+521   347827783.sdf   971.9078369140625
+522   347829128.sdf   195.50343322753906
+523   310265157.sdf   103.31021881103516
+524   310264977.sdf   254.8561553955078
+525   99443347.sdf   339.4156188964844
+526   347828975.sdf   768.3716430664062
+527   347827946.sdf   670.0204467773438
+528   347828020.sdf   194.33119201660156
+529   99445139.sdf   121.92794799804688
+530   347829227.sdf   625.2620849609375
+531   310265015.sdf   150.3043212890625
+532   347828620.sdf   420.9278869628906
+533   175427118.sdf   73.43534851074219
+534   99444462.sdf   342.59375
+535   347828492.sdf   278.6080017089844
+536   310265154.sdf   90.01419067382812
+537   99443525.sdf   356.9862976074219
+538   99444326.sdf   195.87960815429688
+539   347828518.sdf   358.6818542480469
+540   347828574.sdf   710.4866333007812
+541   99444964.sdf   440.4948425292969
+542   347828573.sdf   299.2103576660156
+543   99444362.sdf   302.49005126953125
+544   347828702.sdf   292.647705078125
+545   99445219.sdf   82.91148376464844
+546   347829101.sdf   249.4635467529297
+547   99444038.sdf   437.1962890625
+548   347828823.sdf   166.23170471191406
+549   347829142.sdf   564.6461181640625
+550   347829168.sdf   323.8347473144531
+551   99443675.sdf   299.7366638183594
+552   310264956.sdf   843.4591674804688
+553   310265210.sdf   537.2534790039062
+554   347828744.sdf   869.7611083984375
+555   310265230.sdf   628.2918701171875
+556   99444521.sdf   99.7874755859375
+557   347828354.sdf   474.01715087890625
+558   99444484.sdf   317.9772033691406
+559   347828988.sdf   507.0720520019531
+560   347910146.sdf   451.733154296875
+561   99444249.sdf   257.9843444824219
+562   347828279.sdf   377.71826171875
+563   99444129.sdf   411.0237731933594
+564   347828958.sdf   452.09228515625
+565   347828230.sdf   743.9859619140625
+566   347827774.sdf   270.6124267578125
+567   99444895.sdf   252.78553771972656
+568   347828100.sdf   506.7307434082031
+569   99443575.sdf   165.39968872070312
+570   347828753.sdf   428.37445068359375
+571   347829178.sdf   323.6636657714844
+572   347829148.sdf   323.3711853027344
+573   99443274.sdf   49.546051025390625
+574   175427073.sdf   1006.3475952148438
+575   347827721.sdf   651.9535522460938
+576   99443476.sdf   348.9303894042969
+577   347828670.sdf   784.7988891601562
+578   310265146.sdf   69.7648696899414
+579   175426885.sdf   729.3193969726562
+580   99445028.sdf   294.3898620605469
+581   99444829.sdf   222.60667419433594
+582   347828364.sdf   899.2955322265625
+583   310265111.sdf   86.51153564453125
+584   347828292.sdf   495.2060852050781
+585   310264886.sdf   550.7217407226562
+586   99443582.sdf   277.5559997558594
+587   347829224.sdf   52.24738311767578
+588   99445135.sdf   437.09063720703125
+589   347828941.sdf   290.7113952636719
+590   347827823.sdf   386.35101318359375
+591   347828324.sdf   560.9385986328125
+592   310265065.sdf   40.686641693115234
+593   310264942.sdf   147.6516571044922
+594   310265135.sdf   669.8358154296875
+595   99443836.sdf   123.45343017578125
+596   99444608.sdf   188.60569763183594
+597   99444698.sdf   162.2890625
+598   99444367.sdf   78.9754638671875
+599   347828991.sdf   75.77059936523438
+600   347827973.sdf   62.016075134277344
+601   347828982.sdf   563.0424194335938
+602   99444486.sdf   319.3046569824219
+603   347828689.sdf   261.0505676269531
+604   99445110.sdf   221.53599548339844
+605   347827878.sdf   610.1701049804688
+606   347828421.sdf   762.5208740234375
+607   310264993.sdf   718.1424560546875
+608   175427017.sdf   296.6105041503906
+609   347828026.sdf   735.1012573242188
+610   99443291.sdf   404.666015625
+611   347828237.sdf   501.6766052246094
+612   310265093.sdf   135.28787231445312
+613   347827707.sdf   564.6306762695312
+614   347828203.sdf   357.0716857910156
+615   99443990.sdf   267.2518615722656
+616   347828926.sdf   474.3133850097656
+617   175426910.sdf   87.24026489257812
+618   347827959.sdf   64.31851959228516
+619   175426976.sdf   394.81640625
+620   99443678.sdf   197.08648681640625
+621   175426928.sdf   52.95496368408203
+622   347911103.sdf   172.97830200195312
+623   347827830.sdf   1243.2064208984375
+624   347828297.sdf   364.463134765625
+625   347829278.sdf   164.88011169433594
+626   99444508.sdf   573.2283325195312
+627   99443584.sdf   401.79058837890625
+628   347827869.sdf   41.534278869628906
+629   347828240.sdf   541.2562866210938
+630   347828056.sdf   839.778564453125
+631   99443231.sdf   145.59983825683594
+632   347828757.sdf   41.026573181152344
+633   347829111.sdf   402.1371765136719
+634   347828715.sdf   216.26084899902344
+635   310265224.sdf   207.39199829101562
+636   347828444.sdf   478.7288513183594
+637   347828870.sdf   326.5511169433594
+638   347829068.sdf   569.486328125
+639   347828363.sdf   1016.5858764648438
+640   347829039.sdf   278.10797119140625
+641   175426873.sdf   196.9538116455078
+642   175427020.sdf   127.49012756347656
+643   310265030.sdf   40.82289123535156
+644   347827881.sdf   58.59403991699219
+645   99445058.sdf   115.19037628173828
+646   99443377.sdf   87.14933776855469
+647   99444727.sdf   114.34817504882812
+648   347828933.sdf   538.7151489257812
+649   99445212.sdf   250.73516845703125
+650   347827981.sdf   274.9195861816406
+651   310265155.sdf   128.05555725097656
+652   99444404.sdf   181.68080139160156
+653   175426886.sdf   324.13232421875
+654   347828507.sdf   529.6460571289062
+655   310265134.sdf   802.260498046875
+656   99444859.sdf   291.5435485839844
+657   99444662.sdf   204.8239288330078
+658   310265183.sdf   529.7924194335938
+659   99444705.sdf   195.90811157226562
+660   310264860.sdf   338.3354187011719
+661   99444805.sdf   151.97764587402344
+662   347829213.sdf   697.1106567382812
+663   347828357.sdf   564.3839111328125
+664   347829171.sdf   186.80421447753906
+665   99443971.sdf   233.1699981689453
+666   347827887.sdf   166.17178344726562
+667   347828569.sdf   699.5300903320312
+668   347828829.sdf   683.1340942382812
+669   347828586.sdf   444.8875427246094
+670   99443737.sdf   289.635009765625
+671   175426882.sdf   608.9075317382812
+672   347827765.sdf   267.5368957519531
+673   99443660.sdf   484.7842102050781

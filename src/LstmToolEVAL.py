@@ -184,7 +184,6 @@ class LstmTool(ModelTool):
         model=model.to(self.device)
         model.eval()
 
-
         clist=LstmTool.seg(slist)
         with open(BAK+'/wordToIndex.json','r',encoding='utf8') as f:
             word_to_idx=json.load(f)
@@ -197,6 +196,7 @@ class LstmTool(ModelTool):
         eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_time)
         eval_iter=torch.utils.data.DataLoader(eval_set,batch_size=self.config.batch_size,shuffle=False)
 
+        ij=0
         preds=[]
         with torch.no_grad():
 
@@ -218,9 +218,13 @@ class LstmTool(ModelTool):
                 timelist=time.numpy()
                 timelist=timelist.tolist()
 
+                ij=ij+1 
+                print("ij : ",ij) 
+
         i = 0 
+        print("len(names)",len(names),"len(resultlist)",len(resultlist)) 
         for isuit in self.suits1:             
-            print(i+1, " ", isuit ," ",resultlist[i])
+            print(i+1, " ", names[i] ," ",resultlist[i])
             i=i+1
 
         return resultlist

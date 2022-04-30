@@ -31,10 +31,11 @@ from rdkit.Chem import AllChem
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
 functionals  =  ["BLYP"]
-bases        =  ["6-31g"    ]
-target_mols  =  ["../ParaEngine_data/Arxiv1911.05569v1_sdfs_H_Part2"]
-#target_mols  =  ["./example/SDFs"]
-ML_models    =  ["LSTM"]  # Maybe bug in MGCN
+bases        =  ["6-31g"]
+target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
+#target_mols  =  ["./example/Part2-1"]
+#target_mols  =  ["./example/Part2-2"]
+ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 
 # rdkit treatment of input molecule
 

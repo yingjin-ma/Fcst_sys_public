@@ -40,6 +40,7 @@ class MpnnTool(ModelTool):
         print("self.suits1  : ", self.suits1)
         print("self.sdf_dir : ", self.sdf_dir)
 
+        names=[]
         mollist=[]
         baslist=[] 
         for isuit in self.suits1:
@@ -48,6 +49,7 @@ class MpnnTool(ModelTool):
            print("imol : ",imol, " ibas : ",ibas) 
            mollist.append(imol) 
            baslist.append(ibas)            
+           names.append(isuit) 
  
         #print(" mollist ", mollist )
         #print(" baslist ", baslist )
@@ -88,17 +90,17 @@ class MpnnTool(ModelTool):
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
                 reslist=res.numpy()
-                print("reslist  : ",reslist)
+                #print("reslist  : ",reslist)
                 reslist=res.tolist()
                 batch.label=batch.label.to('cpu')
                 batch.basisnum=batch.basisnum.to('cpu')
                 timelist=batch.label.numpy()
-                print("timelist : ",timelist)
+                #print("timelist : ",timelist)
                 timelist=timelist.tolist()
                 bnumlist=batch.basisnum.numpy().tolist()
 
                 for i in range(len(reslist)):
-                    print(i, " ===> initial < === ", reslist[i])
+                    #print(i, " ===> initial < === ", reslist[i])
                     reslist[i]=reslist[i]
                     time=timelist[i][0]
                     ares=reslist[i]
@@ -110,7 +112,14 @@ class MpnnTool(ModelTool):
                     preds.append(ares)
                     bnums.append(bnum)
                     #sdflist.append(sdf)
-                    print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
+                    #print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
+
+        i = 0
+        print("len(names)",len(names),"len(preds)",len(preds))
+        for isuit in self.suits1:
+            print(i+1, " ", names[i] ," ",preds[i])
+            i=i+1
+                    
 
 
 
