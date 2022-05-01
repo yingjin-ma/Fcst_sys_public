@@ -6,7 +6,7 @@ import re
 from operator import attrgetter
 import math
 
-os.chdir(sys.path[0])
+#os.chdir(sys.path[0])
 
 class puple:
     def __init__(self, nbas, telp, tcpu, mon1, mon2, fname):
@@ -28,12 +28,28 @@ def extract_info(path):
                 newline = line.split()[4] + " " + line.split()[2]
                 fw.write(newline + "\n")
 
-# read the predicted time, do the scheduling 
-def readData4(pathX, frags):
+# 
+def readDataPRE(pathX):
     with open(pathX, 'r') as fdata:
+        dxdx=[]
+        #idx=[] 
+        #tdx=[] 
         for line in fdata:
-            frags.append(puple(0, 0, float(line.split()[1]), 0, 0,
-                      line.split()[0].split('/')[2].split('.')[0]))
+            # print( int(line.split()[1].split(".")[0]), float(line.split()[2]) )
+            i1 = (line.split()[1].split(".")[0])
+            d1 = float(line.split()[2])
+            #idx.append(i1) 
+            #tdx.append(d1) 
+            dxdx.append([i1,d1])
+    #print(dxdx)        
+    return dxdx        
+
+def pair2frags(dxdx,frags):
+    for i in range(len(dxdx)):
+        #print(dxdx[i][1], " : ", dxdx[i][0] )
+        #frags.append(puple(0, 0, float(dxdx[i][1]), 0, 0, dxdx[i][0]))
+        frags.append(puple(0, 0, float(dxdx[i][1]), 0, 0, str(i)))
+
 
 # read the predicted time, do the scheduling 
 def readData3(pathX, frags):
@@ -107,7 +123,6 @@ def task_assignment(frags, nnode, assigns):
 
     return assigns
 
-
 # practical applications
 def task_assignment2(frags, nnode, assigns):
     # assigns = []
@@ -115,10 +130,27 @@ def task_assignment2(frags, nnode, assigns):
         assigns.append([0, []])
 
     for ifrag in frags:
+        print("ifrag : ",ifrag) 
         assigns.sort()
         assigns[0][0] += ifrag.tcpu  # assigns[0][0] += ifrag.telp
         # assigns[0][1].append(ifrag.fname)  # frag-name
         assigns[0][1].append(ifrag.fname.split('-')[1])
+
+    return assigns
+
+
+# practical applications
+def task_assignment3(frags, nnode, assigns):
+    # assigns = []
+    for i in range(nnode):
+        assigns.append([0, []])
+
+    for ifrag in frags:
+        print("ifrag : ",ifrag)
+        assigns.sort()
+        assigns[0][0] += ifrag.tcpu  # assigns[0][0] += ifrag.telp
+        # assigns[0][1].append(ifrag.fname)  # frag-name
+        assigns[0][1].append(ifrag.fname)
 
     return assigns
 
@@ -131,7 +163,7 @@ def ideal(frags, nnode, outfile, write_outfile):
     assigns = []
     total_time = []
     # task_assignment(frags, nnode, assigns)
-    task_assignment2(frags, nnode, assigns)
+    task_assignment3(frags, nnode, assigns)
     for assign in assigns:
         total_time.append(assign[0])
         # print(assign)

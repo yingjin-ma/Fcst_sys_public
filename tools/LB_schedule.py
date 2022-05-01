@@ -5,26 +5,34 @@ import sys
 import re
 from operator import attrgetter
 import math
-import LB_schedule_library
+from LBlibrary import *
 
-os.chdir(sys.path[0])
-
-
-nnode = 12
+nnode = 200
 
 #dataR = "../example/test30_20%.pdb_GAU_DFT"
-dataX = ""
+dataX = "../Predicted_LSTM_Part2-R"
 
 # Practical usage
-outfile = "LBfile" + "_" + str(nnode)
+outfile = "LB-LSTM" + "_" + str(nnode)
 write_outfile = True
 
 frags = []
-print(dataR)
+print(dataX)
 print("nodes: " + str(nnode))
 
-readData3(dataX, frags)
-print(len(frags))
+dxdx=readDataPRE(dataX)
+
+#print(dxdx)
+#print(tdx)
+
+dxdy=sorted(dxdx,key=lambda dxdx:dxdx[0])
+
+pair2frags(dxdy,frags)
+
+#print(frags)
+
+#readData3(dataX, frags)
+#print(len(frags))
 ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
 #ideal2(frags, nnode, outfile, write_outfile) #    with multi-nodes 
 
