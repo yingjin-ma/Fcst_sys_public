@@ -48,7 +48,7 @@ def pair2frags(dxdx,frags):
     for i in range(len(dxdx)):
         #print(dxdx[i][1], " : ", dxdx[i][0] )
         #frags.append(puple(0, 0, float(dxdx[i][1]), 0, 0, dxdx[i][0]))
-        frags.append(puple(0, 0, float(dxdx[i][1]), 0, 0, str(i)))
+        frags.append(puple(0, 0, float(dxdx[i][1]), 0, 0, str(i+1)))
 
 
 # read the predicted time, do the scheduling 
@@ -146,7 +146,7 @@ def task_assignment3(frags, nnode, assigns):
         assigns.append([0, []])
 
     for ifrag in frags:
-        print("ifrag : ",ifrag)
+        #print("ifrag : ",ifrag)
         assigns.sort()
         assigns[0][0] += ifrag.tcpu  # assigns[0][0] += ifrag.telp
         # assigns[0][1].append(ifrag.fname)  # frag-name
@@ -158,8 +158,10 @@ def task_assignment3(frags, nnode, assigns):
 # static scheduling
 def ideal(frags, nnode, outfile, write_outfile):
     frags = sorted(frags, key=attrgetter("tcpu"), reverse=True)
-    # for ifrag in frags:
-    #     print("nbas : ", ifrag.nbas, " Telp : ",ifrag.telp," Tcpu : ", ifrag.tcpu, " mon1 : ", ifrag.mon1," mon2 : ", ifrag.mon2)
+    i=0
+    for ifrag in frags:
+         i=i+1
+         print(i," nbas : ", ifrag.nbas, " Telp : ",ifrag.telp," Tcpu : ", ifrag.tcpu, " fname : ", ifrag.fname)
     assigns = []
     total_time = []
     # task_assignment(frags, nnode, assigns)

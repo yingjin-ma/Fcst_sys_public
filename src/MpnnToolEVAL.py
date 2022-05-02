@@ -12,7 +12,7 @@ from ModelTool import ModelTool
 th.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis,getNbasis_noRDkit
 
 # MPNN模型的工具类
 class MpnnTool(ModelTool):
@@ -46,6 +46,7 @@ class MpnnTool(ModelTool):
         for isuit in self.suits1:
            imol = self.sdf_dir + "/" + isuit
            ibas = getNbasis(bas=basis,sdf=imol) 
+           #ibas = getNbasis_noRDkit(bas=basis,sdf=imol) 
            print("imol : ",imol, " ibas : ",ibas) 
            mollist.append(imol) 
            baslist.append(ibas)            

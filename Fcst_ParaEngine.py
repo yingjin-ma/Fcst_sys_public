@@ -14,6 +14,7 @@ PLYfile=PWD+"/database/polyfitted/data.TOTpolyfitted.2"
 # add the runtime environments
 print(SRC)
 sys.path.append(SRC)
+sys.path.append(PWD+"/tools")
 
 # originally import 
 import torch
@@ -22,6 +23,7 @@ import Configs
 import PredictTime
 import Magnification
 import DecideRefSpace
+import SplitPDB
 
 # rdkit for chem-informatics
 from rdkit import Chem
@@ -32,19 +34,25 @@ QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
 functionals  =  ["BLYP"]
 bases        =  ["6-31g"]
-target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
-#target_mols  =  ["./example/Part2-1"]
-#target_mols  =  ["./example/Part2-2"]
+#target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
+#target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
+target_mols  =  ["tmpPDB_0001-0999"]
 ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 
-# rdkit treatment of input molecule
+if "target_PDB" in dir():
+    SplitPDB.split(target_PDB[0],"./tmpPDB")
+    print("target_PDB  is defined")
+    target_mols  = ["./tmpPDB"]
 
+# rdkit treatment of input molecule
+print("target_mols is defined")
 infiles = [f for f in listdir(target_mols[0]) if isfile(join(target_mols[0], f))]
 
 mols   = []
 NAMmol = []
 for i in range(len(infiles)):
    tarfile = target_mols[0] + "/" + infiles[i]  
+   print(i, " tarfile : ", tarfile)
    mols.append(Chem.SDMolSupplier(tarfile))
    NAMmol.append(infiles[i])
 

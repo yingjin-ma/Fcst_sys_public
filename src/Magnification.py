@@ -9,9 +9,74 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
+def getNbasis_noRDkit(bas="6-31g",sdf=""):
+
+   elemdict = {'H': 1, 'Li': 3, 'Be': '4', 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Si': 15, 'P': 16, 'S': 17, 'Cl': 18}
+
+   print("sdf",sdf)
+   D56=-1
+   if bas == "cc-pVDZ":
+      D56=1
+   elif bas == "cc-pVTZ":
+      D56=1
+   else:
+      bas=bas.replace('p','+').replace('s','*')
+
+   if bas == "SVP":
+      bas=bas.replace('SVP','SVP (Dunning-Hay)')
+      D56=1
+   if bas == "SV":
+      bas=bas.replace('SV','SV (Dunning-Hay)')
+
+   Nbasis=0
+   naos=0
+
+   atoms=[]
+   with open(sdf,'r') as sdf_one:
+      lines = sdf_one.readlines()
+      print("lines[3] :",lines[3][0:3])
+      natoms=int(lines[3][0:3])
+      for i in range(natoms):
+         i = i+1 
+         atoms.append(lines[3+i].split()[3])
+
+   #print(atoms)      
+
+   for atom in atoms:
+      natom=elemdict[atom] 
+      bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
+      ao=bs_str.split()[9].strip('[').strip(']').split(',')
+      n2=len(ao)
+      #print("bs_str : ",bs_str)
+      #print("basis : ",ao)
+      for n in range(n2):
+         if ao[n][1] == 's':
+            naos=naos+ int(ao[n][:-1])
+         if ao[n][1] == 'p':
+            naos=naos+ 3*int(ao[n][:-1])
+         if ao[n][1] == 'd':
+            if D56 == -1:
+               naos=naos+ 6*int(ao[n][:-1])
+            elif D56 == 1:
+               naos=naos+ 5*int(ao[n][:-1])
+         if ao[n][1] == 'f':
+            naos=naos+ 7*int(ao[n][:-1])
+         if ao[n][1] == 'g':
+            naos=naos+ 9*int(ao[n][:-1])
+         if ao[n][1] == 'h':
+            naos=naos+11*int(ao[n][:-1])
+
+   #print("sdf \n",sdf," \n naos \n",naos)
+   Nbasis=naos
+
+   return Nbasis
+
+
+    
+
 def getNbasis(bas="6-31g",sdf=""):
 
-   #print("sdf",sdf)
+   print("sdf",sdf)
    D56=-1
    if bas == "cc-pVDZ":
       D56=1 
@@ -29,11 +94,13 @@ def getNbasis(bas="6-31g",sdf=""):
    Nbasis=0
    naos=0
    suppl=Chem.SDMolSupplier(sdf)
+   print("getNbasis, Chem.SDMolSupplier")
    mols = [x for x in suppl]
    mol=mols[0]
    AllChem.Compute2DCoords(mol)
    AllChem.EmbedMolecule(mol,randomSeed=0xf00d)
    molH = Chem.AddHs(mol)
+   print("getNbasis, Chem.AddHs")
    for atom in molH.GetAtoms():
       natom  = atom.GetAtomicNum()
       bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)

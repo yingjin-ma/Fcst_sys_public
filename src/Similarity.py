@@ -59,41 +59,42 @@ def sim_val(polyene_with_H,origin,target):
    Nobt2=0
 
    for atom in polyene_with_H.GetAtoms():
-       atom_idx=atom.GetAtomicNum()
-       bs_str1=bse.get_basis(basis1,elements=[atom_idx], fmt='NWChem', header=False)
-       bs_str2=bse.get_basis(basis2,elements=[atom_idx],fmt='NWChem',header=False)
-       bs_str1=bs_str1.split('\n')[1]
-       bs_str2=bs_str2.split('\n')[1]
-       pattern=re.compile(r'\(.*\)')
-       bs_str1_a=re.findall(pattern,bs_str1)[0] #'(*s,*p,*d,...)'
-       bs_str1_a=bs_str1_a.split('(')[1].split(')')[0].split(',')
-       bs_str2_a=re.findall(pattern,bs_str2)[0]
-       bs_str2_a=bs_str2_a.split('(')[1].split(')')[0].split(',')
-       pattern=re.compile(r'\[.*\]')
-       bs_str1_b=re.findall(pattern,bs_str1)[0] #'[*s,*p,*d,...]'
-       bs_str1_b=bs_str1_b.split('[')[1].split(']')[0].split(',')#['*s','*p','*d',...]
-       bs_str2_b=re.findall(pattern,bs_str2)[0]
-       bs_str2_b=bs_str2_b.split('[')[1].split(']')[0].split(',')
-       for item in bs_str1_a:
-           num=int(item[:-1])
-           ob1_unContracted[item[-1]]+=num
-           Ngto1+=num*obshape[item[-1]]
-       for item in bs_str1_b:
-           num=int(item[:-1])
-           if num==1:
-               Npmv1+=obshape[item[-1]]
-           ob1_contracted[item[-1]]+=num
-           Nobt1+=num*obshape[item[-1]]
-       for item in bs_str2_a:
-           num=int(item[:-1])
-           ob2_unContracted[item[-1]]+=num
-           Ngto2+=num*obshape[item[-1]]
-       for item in bs_str2_b:
-           num=int(item[:-1])
-           if num==1:
-               Npmv2+=obshape[item[-1]]
-           ob2_contracted[item[-1]]+=num
-           Nobt2+=num*obshape[item[-1]]
+       if atom is not None:
+         atom_idx=atom.GetAtomicNum()
+         bs_str1=bse.get_basis(basis1,elements=[atom_idx], fmt='NWChem', header=False)
+         bs_str2=bse.get_basis(basis2,elements=[atom_idx],fmt='NWChem',header=False)
+         bs_str1=bs_str1.split('\n')[1]
+         bs_str2=bs_str2.split('\n')[1]
+         pattern=re.compile(r'\(.*\)')
+         bs_str1_a=re.findall(pattern,bs_str1)[0] #'(*s,*p,*d,...)'
+         bs_str1_a=bs_str1_a.split('(')[1].split(')')[0].split(',')
+         bs_str2_a=re.findall(pattern,bs_str2)[0]
+         bs_str2_a=bs_str2_a.split('(')[1].split(')')[0].split(',')
+         pattern=re.compile(r'\[.*\]')
+         bs_str1_b=re.findall(pattern,bs_str1)[0] #'[*s,*p,*d,...]'
+         bs_str1_b=bs_str1_b.split('[')[1].split(']')[0].split(',')#['*s','*p','*d',...]
+         bs_str2_b=re.findall(pattern,bs_str2)[0]
+         bs_str2_b=bs_str2_b.split('[')[1].split(']')[0].split(',')
+         for item in bs_str1_a:
+             num=int(item[:-1])
+             ob1_unContracted[item[-1]]+=num
+             Ngto1+=num*obshape[item[-1]]
+         for item in bs_str1_b:
+             num=int(item[:-1])
+             if num==1:
+                 Npmv1+=obshape[item[-1]]
+             ob1_contracted[item[-1]]+=num
+             Nobt1+=num*obshape[item[-1]]
+         for item in bs_str2_a:
+             num=int(item[:-1])
+             ob2_unContracted[item[-1]]+=num
+             Ngto2+=num*obshape[item[-1]]
+         for item in bs_str2_b:
+             num=int(item[:-1])
+             if num==1:
+                 Npmv2+=obshape[item[-1]]
+             ob2_contracted[item[-1]]+=num
+             Nobt2+=num*obshape[item[-1]]
 
    #calculate the Jaccard index
    r=min(ob1_contracted['s'],ob2_contracted['s'])

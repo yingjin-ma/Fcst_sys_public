@@ -30,9 +30,9 @@ dxdy=sorted(dxdx,key=lambda dxdx:dxdx[0])
 pair2frags(dxdy,frags)
 
 #print(frags)
-
 #readData3(dataX, frags)
 #print(len(frags))
+#exit(0)
 ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
 #ideal2(frags, nnode, outfile, write_outfile) #    with multi-nodes 
 

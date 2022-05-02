@@ -14,7 +14,7 @@ from ModelTool import ModelTool
 torch.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis,getNbasis_noRDkit
 
 # LSTM模型的工具类，用于模型的训练、测试、推断
 
@@ -164,8 +164,10 @@ class LstmTool(ModelTool):
         slist=[]
         names=[]
         for isuit in self.suits1:
+           print("isuit : ",isuit)  
            imol = self.sdf_dir + "/" + isuit
            ibas = getNbasis(bas=basis,sdf=imol)
+           #ibas = getNbasis_noRDkit(bas=basis,sdf=imol)
            print("imol : ",imol, " ibas : ",ibas)
            mollist.append(imol)
            baslist.append(ibas)
@@ -177,6 +179,7 @@ class LstmTool(ModelTool):
            for imol in suppl:
               smiles=Chem.MolToSmiles(imol)
               slist.append(smiles)
+           #print("Done the suppl")
 
         pdata=[mollist,baslist]      
 
