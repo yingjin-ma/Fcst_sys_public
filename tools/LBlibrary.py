@@ -183,12 +183,13 @@ def ideal(frags, nnode, outfile, write_outfile):
 # scheduling with multi-nodes
 def ideal2(frags, nnode, outfile, write_outfile):
     multinodes = {}
-    rate = 0.7  # 假设任务跨节点的并行效率是70%
+    rate = 0.8  # 假设任务跨节点的并行效率是80%
 
     while True:
         assigns = ideal(frags, nnode, outfile, False)  # 上一次规划结果
         utilization = get_utilization(assigns)
-        if utilization > 0.9:
+        if utilization > 0.9925:
+        #if utilization > 0.9875:
             print('do not need to cross nodes')
             break
         else:
@@ -337,7 +338,9 @@ def write_loadbalance(outfile, assigns):
 def write_crossnodes(outfile, multinodes):
     crossnodes = {}
     for frag, nnode in multinodes.items():
-        fragIdx = frag.split('-')[1]
+        print("frag : ", frag) 
+        #fragIdx = frag.split('-')[1]
+        fragIdx = frag
         if nnode in crossnodes:
             crossnodes[nnode].append(fragIdx)
         else:
