@@ -180,6 +180,50 @@ def ideal(frags, nnode, outfile, write_outfile):
     return assigns
 
 
+
+def write_loadbalance2(outfile, assigns, multinodes):
+
+    lengths = []
+    for assign in assigns:
+        lengths.append(len(assign[1]))
+    maxlen = max(lengths)
+    nodes = len(assigns)
+    print(assigns)
+    with open(outfile, 'a') as outf:
+        outf.write('nodes ' + str(nodes) + '\n')
+        for assign in assigns:
+            print("assign : ",assign)
+
+            hfrag=[]
+            todel=[]
+            print("multinodes : ",multinodes)
+            for ifrag, nnode in multinodes.items():
+                for isub in range(len(assign[1])): 
+                    if assign[1][isub] == ifrag: 
+                        hfrag.append(assign[1][isub])
+                        todel.append(isub)
+                        print("isub ",isub,"  isub:",assign[1][isub]) 
+            
+
+            if len(hfrag) > 0:
+                print("todel :", todel)
+                nn=len(todel)
+                if nn > 0:
+                    for i in range(nn):
+                        itd = todel[nn-1-i]
+                        assign[1].pop(itd)
+
+                line = ' '.join(hfrag)
+                outf.write(line + " ")
+
+            assign[1] = list(assign[1] + ['0'] * (maxlen - len(assign[1])))
+            print("assign[1] : ",assign[1])
+            line = ' '.join(assign[1])
+            outf.write(line + '\n')
+        outf.write('\n')
+    print('maxlen=' + str(maxlen))
+
+
 # scheduling with multi-nodes
 def ideal2g(frags, nnode, outfile, write_outfile):
     multinodes = {}
@@ -188,7 +232,7 @@ def ideal2g(frags, nnode, outfile, write_outfile):
     while True:
         assigns = ideal(frags, nnode, outfile, False)  # 上一次规划结果
         utilization = get_utilization(assigns)
-        if utilization > 0.9925:
+        if utilization > 0.9845:
         #if utilization > 0.9875:
             print('do not need to cross nodes')
             break
@@ -209,10 +253,10 @@ def ideal2g(frags, nnode, outfile, write_outfile):
             # for ifrag in frags:
             #     print("fname : ", ifrag.fname, " Tcpu : ", ifrag.tcpu)
 
-    # print('Done')
-    # print("multinodes ---->   ", multinodes)
+    print('Done')
+    print("multinodes ---->   ", multinodes)
     if write_outfile:
-        write_loadbalance(outfile, assigns)
+        write_loadbalance2(outfile, assigns, multinodes)
         write_crossnodes(outfile, multinodes)
 
 
@@ -352,8 +396,6 @@ def bigFirst(frags, nnode, path, outfile, write_outfile):
     print("end-time:\t" + str(max(total_time)))
     print("utilization:\t" +
           str(sum(total_time) / (max(total_time) * len(total_time))))
-
-
 
 def write_loadbalance(outfile, assigns):
     lengths = []
