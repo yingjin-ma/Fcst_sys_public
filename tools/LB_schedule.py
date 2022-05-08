@@ -36,7 +36,7 @@ pair2frags(dxdy,frags)
 #print(len(frags))
 #exit(0)
 #ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
-ideal2(frags, nnode, outfile, write_outfile) #    with multi-nodes 
+ideal2g(frags, nnode, outfile, write_outfile) #    with multi-nodes 
 
 # readData(dataR, frags)
 # ideal(frags, nnode, outfile, write_outfile)
