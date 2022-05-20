@@ -32,12 +32,12 @@ from rdkit.Chem import AllChem
 # parameters to be used (IO later)
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
-functionals  =  ["BLYP"]
-bases        =  ["6-31g"]
+functionals  =  ["B3LYP"]
+bases        =  ["6-31gs"]
 #target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
 #target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
 target_mols  =  ["tmpPDB_0001-0999"]
-ML_models    =  ["MPNN"]  # Maybe bug in MGCN
+ML_models    =  ["LSTM"]  # Maybe bug in MGCN
 
 if "target_PDB" in dir():
     SplitPDB.split(target_PDB[0],"./tmpPDB")

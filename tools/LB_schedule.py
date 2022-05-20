@@ -10,10 +10,10 @@ from LBlibrary import *
 nnode = 200
 
 #dataR = "../example/test30_20%.pdb_GAU_DFT"
-dataX = "../Predicted_LSTM_Part2-R"
+dataX = "../Predicted_LSTM_Solvent-b3lyp631gs"
 
 # Practical usage
-outfile = "LB-LSTM" + "_" + str(nnode)
+outfile = "LB-Solvent-b3lyp631gs_LSTM" + "_" + str(nnode)
 write_outfile = True
 
 frags = []
