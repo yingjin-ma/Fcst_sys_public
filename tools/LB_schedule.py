@@ -7,13 +7,14 @@ from operator import attrgetter
 import math
 from LBlibrary import *
 
-nnode = 200
+nnode = 100
 
 #dataR = "../example/test30_20%.pdb_GAU_DFT"
-dataX = "../Predicted_LSTM_Solvent-b3lyp631gs"
+dataX = "../Predicted_LSTM_Solvent"
 
 # Practical usage
-outfile = "LB-Solvent-b3lyp631gs_LSTM" + "_" + str(nnode)
+#outfile = "LB-LSTM" + "_DRG_" + str(nnode)
+outfile = "LB-LSTM" + "_SLV2_" + str(nnode)
 write_outfile = True
 
 frags = []
@@ -33,8 +34,8 @@ pair2frags(dxdy,frags)
 #readData3(dataX, frags)
 #print(len(frags))
 #exit(0)
-ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
-#ideal2(frags, nnode, outfile, write_outfile) #    with multi-nodes 
+#ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
+ideal2g(frags, nnode, outfile, write_outfile) #    with multi-nodes 
 
 # readData(dataR, frags)
 # ideal(frags, nnode, outfile, write_outfile)
