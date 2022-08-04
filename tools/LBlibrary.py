@@ -38,6 +38,8 @@ def readDataPRE(pathX):
             # print( int(line.split()[1].split(".")[0]), float(line.split()[2]) )
             i1 = (line.split()[1].split(".")[0])
             d1 = float(line.split()[2])
+            if d1<0:
+               d1=9.0
             #idx.append(i1) 
             #tdx.append(d1) 
             dxdx.append([i1,d1])
