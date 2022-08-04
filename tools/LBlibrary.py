@@ -179,6 +179,29 @@ def ideal(frags, nnode, outfile, write_outfile):
           str(sum(total_time) / (max(total_time) * len(total_time))))
     return assigns
 
+# static scheduling
+def idealmn(frags, nnode, outfile, write_outfile, multinodes):
+    frags = sorted(frags, key=attrgetter("tcpu"), reverse=True)
+    #i=0
+    #for ifrag in frags:
+    #     i=i+1
+         #print(i," nbas : ", ifrag.nbas, " Telp : ",ifrag.telp," Tcpu : ", ifrag.tcpu, " fname : ", ifrag.fname)
+    assigns = []
+    total_time = []
+    # task_assignment(frags, nnode, assigns)
+    task_assignment3(frags, nnode, assigns)
+    for assign in assigns:
+        total_time.append(assign[0])
+        # print(assign)
+    if write_outfile:
+        write_loadbalance(outfile, assigns)
+
+    print("==============================ideal==============================")
+    print(total_time)
+    print("end-time:\t" + str(max(total_time)))
+    print("utilization:\t" +
+          str(sum(total_time) / (max(total_time) * len(total_time))))
+    return assigns
 
 
 def write_loadbalance2(outfile, assigns, multinodes):
@@ -229,10 +252,15 @@ def ideal2g(frags, nnode, outfile, write_outfile):
     multinodes = {}
     rate = 0.90  # 假设任务跨节点的并行效率是90%
 
+    ii=0
     while True:
-        assigns = ideal(frags, nnode, outfile, False)  # 上一次规划结果
+        ii=ii+1
+        #assigns = ideal(frags, nnode, outfile, False)  # 上一次规划结果
+        assigns = idealmn(frags, nnode, outfile, False, multinodes)  # 上一次规划结果
+        print("idealmn : ", ii, "times")
+
         utilization = get_utilization(assigns)
-        if utilization > 0.9845:
+        if utilization > 0.9893039637275:
         #if utilization > 0.9875:
             print('do not need to cross nodes')
             break
