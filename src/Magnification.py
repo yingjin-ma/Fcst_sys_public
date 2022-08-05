@@ -94,6 +94,7 @@ def getNbasis(bas="6-31g",sdf=""):
    Nbasis=0
    naos=0
    suppl=Chem.SDMolSupplier(sdf)
+   #suppl.UpdatePropertyCache(strict=False)
    print("getNbasis, Chem.SDMolSupplier")
    mols = [x for x in suppl]
    mol=mols[0]

@@ -29,42 +29,98 @@ import SplitPDB
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
+
+def add_nitrogen_charges(smiles):
+    m = Chem.MolFromSmiles(smiles,sanitize=False)
+    m.UpdatePropertyCache(strict=False)
+    ps = Chem.DetectChemistryProblems(m)
+    if not ps:
+        Chem.SanitizeMol(m)
+        return m
+    for p in ps:
+        if p.GetType()=='AtomValenceException':
+            at = m.GetAtomWithIdx(p.GetAtomIdx())
+            if at.GetAtomicNum()==7 and at.GetFormalCharge()==0 and at.GetExplicitValence()==4:
+                at.SetFormalCharge(1)
+    Chem.SanitizeMol(m)
+    return m
+
+
 # parameters to be used (IO later)
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
-functionals  =  ["B3LYP"]
-bases        =  ["6-31gs"]
+functionals  =  ["M06-2x"]
+bases        =  ["6-31gss"]
 #target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
 #target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
-target_mols  =  ["tmpPDB_0001-0999"]
+target_mols  =  ["./updatedSDFs"]
+#target_smil  =  ["./TestSMI2"]
 ML_models    =  ["LSTM"]  # Maybe bug in MGCN
+
+ifmols = False
+ifsmil = False
 
 if "target_PDB" in dir():
     SplitPDB.split(target_PDB[0],"./tmpPDB")
     print("target_PDB  is defined")
     target_mols  = ["./tmpPDB"]
+    infiles = [f for f in listdir(target_mols[0]) if isfile(join(target_mols[0], f))]
+    ifmols = True
+
+if "target_smil" in dir():
+    print("target_smil  is defined")
+    infiles = [f for f in listdir(target_smil[0]) if isfile(join(target_smil[0], f))]
+    ifsmil = True
+
+if "target_mols" in dir():
+    print("target_mols  is defined")
+    infiles = [f for f in listdir(target_mols[0]) if isfile(join(target_mols[0], f))]
+    ifmols = True
 
 # rdkit treatment of input molecule
-print("target_mols is defined")
-infiles = [f for f in listdir(target_mols[0]) if isfile(join(target_mols[0], f))]
 
 mols   = []
 NAMmol = []
 for i in range(len(infiles)):
-   tarfile = target_mols[0] + "/" + infiles[i]  
-   print(i, " tarfile : ", tarfile)
-   mols.append(Chem.SDMolSupplier(tarfile))
-   NAMmol.append(infiles[i])
+
+   if ifmols:
+       tarfile = target_mols[0] + "/" + infiles[i]  
+       print(i, " tarfile : ", tarfile)
+       mols.append(Chem.SDMolSupplier(tarfile))
+       PWDmol = PWD + "/" + target_mols[0] 
+       NAMmol.append(infiles[i])
+
+   if ifsmil:
+       tarfile = target_smil[0] + "/" + infiles[i]  
+       print(i, " tarfile : ", tarfile)
+
+       with open(tarfile, 'r') as fsmiles:
+           lines = fsmiles.readlines()
+
+       #print("lines : ", lines)    
+       for line in lines:
+           ismi  = line.split()[0]
+           iname = line.split()[1]
+           print("ismi : ", ismi )
+           msmi = add_nitrogen_charges(ismi)
+           ismi2= Chem.MolToSmiles(msmi) 
+           qmol  = Chem.MolFromSmiles(ismi2)
+           print("qmol : ", qmol) 
+           #qmol.UpdatePropertyCache(strict=False)
+           mols.append(qmol)
+           NAMmol.append(iname)
+
+       PWDmol = PWD + "/" + target_smil[0] 
+
 
 #mol = mols[0]
 #print(mols)
 
-PWDmol = PWD + "/" + target_mols[0] 
 
 print(" ")
-print("PWDmol : ",PWDmol)
-print("NAMmol : ",NAMmol)
-print("BAKmod : ",BAK   )
+#print("PWDmol : ",PWDmol)
+#print("NAMmol : ",NAMmol)
+#print("BAKmod : ",BAK   )
 print(" ")
 
 #exit(0)
@@ -93,9 +149,12 @@ for qc in QC_packages:
                # ==   the target chemspace   == *  
                chemspace=funct+'_'+basis   
 
+               #print("mols : ",mols[0])
+
                # == decide the ref_chemspace == *
                # ref_funct & ref_basis
                ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0][0])
+               #ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0])
 
                print("  ===>   Target    Space : ", funct,"/",basis)
                print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
