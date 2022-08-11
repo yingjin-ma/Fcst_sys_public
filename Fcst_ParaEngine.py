@@ -49,13 +49,13 @@ def add_nitrogen_charges(smiles):
 # parameters to be used (IO later)
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
-functionals  =  ["M06-2x"]
+functionals  =  ["M062x"]
 bases        =  ["6-31gss"]
 #target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
 #target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
 target_mols  =  ["./updatedSDFs"]
 #target_smil  =  ["./TestSMI2"]
-ML_models    =  ["LSTM"]  # Maybe bug in MGCN
+ML_models    =  ["MGCN"]  # Maybe bug in MGCN
 
 ifmols = False
 ifsmil = False
