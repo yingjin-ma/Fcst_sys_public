@@ -27,8 +27,8 @@
     结果文件         .log文件       
 ### 红外、拉曼波谱1
     计算软件         Gaussian09
-    计算参数         XXXXXXXXXXX
-    结果所在文件夹    XXXXXXX
+    计算参数         #p B3LYP/6-31G(d) IOp(7/64=3) freq=raman pop=full
+    结果所在文件夹    /work1/scquant/ParaEngine-git-Drug_small_molecule/Test-test100-freq/freqs(88个)
     结果文件         .log文件        
 ### 紫外可见、圆二色谱1
     计算软件         Gaussian09
