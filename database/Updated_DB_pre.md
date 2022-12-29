@@ -20,6 +20,11 @@
     结果文件         .log文件
    
 ## 药物小分子体系
+### 结构优化
+    计算软件         Gaussian09
+    计算参数         XXXXXXXXXXX
+    结果所在文件夹    XXXXXXX
+    结果文件         .log文件       
 ### 红外、拉曼波谱1
     计算软件         Gaussian09
     计算参数         XXXXXXXXXXX
