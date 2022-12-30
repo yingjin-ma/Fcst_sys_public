@@ -58,7 +58,14 @@
                     (1). /work1/scquant/ParaEngine-git-COVID2019/Results_MP2_631gss-12A/Workdir-MP2-631gss-12A-ACE2_Ab-Omicron_Q493R_X_Y(X从0到9,Y从0到9，最后一个是9_6)
                     (2). /work1/scquant/ParaEngine-git-COVID2019/Results_MP2_631gss-12A/Workdir-MP2-631gss-12A-ACE2_Ab-Wild-type_X_Y(X从0到9,Y从0到9，最后一个是9_6)
     结果文件         .log文件
- 
+ ### 单点计算8（大批量）
+    计算软件         Gaussian09
+    计算参数         #p wb97xd/6-311G** scf(maxcyc=100)  
+    结果所在文件夹    1.  /work1/scquant/ParaEngine-git-COVID2019/Results_wb97xd-6311gss-12A 文件夹
+                    (1). /work1/scquant/ParaEngine-git-COVID2019/Results_wb97xd-6311gss-12A/Workdir-wb97xd-6311gss-12A-ACE2_Ab-Omicron_Q493R_X_Y(X从0到9,Y从0到9，最后一个是9_6)
+                    (2). /work1/scquant/ParaEngine-git-COVID2019/Results_wb97xd-6311gss-12A/Workdir-wb97xd-6311gss-12A-ACE2_Ab-Wild-type_X_Y(X从0到9,Y从0到9，最后一个是9_6)
+    结果文件         .log文件
+    
 ## 药物小分子体系
 ### 结构优化
     计算软件         Gaussian09
