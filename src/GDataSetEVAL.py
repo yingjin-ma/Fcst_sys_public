@@ -20,7 +20,7 @@ rewritten basing on Tencent Alchemy Tools (https://github.com/tencent-alchemy/Al
 
 #batch sample
 class AlchemyBatcher:
-    def __init__(self, graph=None, basisnum=None, label=None):
+    def __init__(self, graph=None, basisnum=None,basisnums=None, label=None):
         '''
         构造方法
         graph: 以图数据结构表示的分子特征集合
@@ -28,17 +28,19 @@ class AlchemyBatcher:
         label: 预测目标(时间)集合
         '''
         self.graph     = graph
+        self.basisnums = basisnums
         self.basisnum  = basisnum
         self.label     = label
 
 #generate batch, return AlchemyBatcher
 def batcher():
     def batcher_dev(batch):
-        graphs, basisnums, labels = zip(*batch)
+        graphs, basisnum, basisnums, labels = zip(*batch)
         batch_graphs = dgl.batch(graphs)
-        basisnums    = torch.stack(basisnums)
-        labels       = torch.stack(labels, 0)
-        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnums, label=labels)
+        basisnum = torch.stack(basisnum)
+        basisnums = torch.stack(basisnums)
+        labels = torch.stack(labels, 0)
+        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnum, basisnums=basisnums, label=labels)
     return batcher_dev
 
 
@@ -157,7 +159,7 @@ class TADataset(Dataset):
 
         return bond_feats_dict
 
-    def sdf_to_dgl(self, sdf_file,bnum, time,self_loop=False):
+    def sdf_to_dgl(self, sdf_file,bnum_s,bnum, time,self_loop=False):
         """
         Read sdf file and convert to dgl_graph
         Args:
@@ -199,9 +201,10 @@ class TADataset(Dataset):
         bond_feats = self.alchemy_edges(mol, self_loop)
         g.edata.update(bond_feats)
         bnm = torch.FloatTensor([bnum])
+        bnm_s = torch.FloatTensor([bnum_s])
         # for val/test set, labels are molecule ID
         l = torch.FloatTensor([time]) #if self.mode == 'train' or self.mode=='valid' else torch.LongTensor([int(sdf_file.stem)])
-        return (g, bnm, l)
+        return (g,bnm_s, bnm, l)
 
     def __init__(self, mode='train', rootdir='./',suits='',chemspace='m062x_6-31G#',folder_sdf='./' ,transform=None,pdata=None,tra_size=4000, target=2):
         '''
@@ -235,7 +238,8 @@ class TADataset(Dataset):
         self._load(tra_size,basis)
 
     def _load(self,tra_size,basis="6-31g"):
-        sdfs,bnums,times,self.graphs, self.basisnums,self.labels = [],[],[],[],[],[]
+        sdfs,bnum_s,bnums,times,self.graphs, self.basisnums,self.labels = [],[],[],[],[],[],[]
+        self.basisnum = []
         self.sdfnames = []
         sdfnames      = []
         target_file= self.suits
@@ -315,8 +319,9 @@ class TADataset(Dataset):
 
         if self.mode=='test' or self.mode=='pred':
             sdfs=self.pdata[0]
-            bnums=self.pdata[1]
-            print(sdfs,bnums)
+            bnum_s=self.pdata[1]
+            bnums = self.pdata[2]
+            print(sdfs,bnum_s,bnums)
             for i in range(len(sdfs)):
                nsdf=len(sdfs[i].split("/"))
                onesdf=sdfs[i].split("/")[nsdf-1]
@@ -327,14 +332,16 @@ class TADataset(Dataset):
         i=0
         for sdf_file in sdfs:
             print("sdf_file ",sdf_file)
+            print("bnum_s[i] ",bnum_s[i]," with i = ",i )
             print("bnums[i] ",bnums[i]," with i = ",i )
             print("times[i] ",times[i]," with i = ",i )
-            result = self.sdf_to_dgl(sdf_file,bnums[i],times[i])
+            result = self.sdf_to_dgl(sdf_file,bnum_s[i],bnums[i],times[i])
             if result is None:
                 continue
             print("sdf_file",sdf_file)
             self.graphs.append(result[0])
-            self.basisnums.append(result[1])
+            self.basisnum.append(result[1])
+            self.basisnums.append(result[2])
 
 #            basisnum2=float(Magnification.getNbasis(basis,sdf_file))
 #            self.basisnums2.append(basisnum2)
@@ -361,10 +368,10 @@ class TADataset(Dataset):
         return len(self.graphs)
 
     def __getitem__(self, idx):
-        g,basisnum, l = self.graphs[idx], self.basisnums[idx],self.labels[idx]
+        g, basisnum, basisnums, l = self.graphs[idx], self.basisnum[idx], self.basisnums[idx], self.labels[idx]
         if self.transform:
             g = self.transform(g)
-        return g,basisnum, l
+        return g, basisnum, basisnums, l
 
 if __name__ == '__main__':
     alchemy_dataset = TADataset()

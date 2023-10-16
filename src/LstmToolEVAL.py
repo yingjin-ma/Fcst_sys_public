@@ -169,9 +169,9 @@ class LstmTool(ModelTool):
 #        tra_size=self.config.tra_size
 
         molecule = path+"/"+mol
-        nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis, " path ",path)
-        pdata=[[molecule],[nbasis]]
+        obasis, nbasis = getNbasis(bas=basis, sdf=molecule)
+        print(" nbasis ", nbasis)
+        pdata = [[molecule], [obasis], [nbasis]]
 
 #        if modelname==None:
 #            modelname=self.modelloc
@@ -186,10 +186,12 @@ class LstmTool(ModelTool):
         
         #basisnums,times,slist,names=LstmTool.readData(path,self.sdf_dir,tra_size,self.target,basis=basis)
 
+        basisnum = []
         basisnums=[]
         times=[]
         slist=[]
         names=[]
+        basisnum.append(obasis)
         basisnums.append(nbasis)
         times.append(1.0)
         names.append(mol)
@@ -204,13 +206,14 @@ class LstmTool(ModelTool):
         features=LstmTool.wToIdx(clist,word_to_idx)
         padded_features=LstmTool.pad(features)
         eval_features=torch.tensor(padded_features)
-        eval_basis=torch.tensor(basisnums)
+        eval_basis=torch.tensor(basisnum)
+        eval_basis_s = torch.tensor(basisnums)
         eval_time=torch.tensor(times)
         #eval_names=torch.tensor(names)
         #nameDic={idx:name for idx,name in enumerate(names)}
         #eval_names=torch.tensor(nameDic.keys())
 
-        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_time)
+        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_basis_s,eval_time)
         eval_iter=torch.utils.data.DataLoader(eval_set,batch_size=self.config.batch_size,shuffle=False)
 
         preds=[]
@@ -224,18 +227,20 @@ class LstmTool(ModelTool):
             j=0
 
             ae=0.0
-            for feature,basisnum,time in eval_iter:
+            for feature,basisnum,basisnums,time in eval_iter:
                 #j=0
-                feature=feature.to(self.device)
-                basisnum=basisnum.to(self.device)
+                feature = feature.to(self.device)
+                basisnum = basisnum.to(self.device)
+                basisnums = basisnums.to(self.device)
 
-                result=model(feature,basisnum)
+                result=model(feature,basisnum,basisnums)
                 result=result.to('cpu')
                 resultlist=result.numpy().tolist()
                 preds.extend(resultlist)
-                basislist=basisnum.to('cpu').numpy().tolist()
-                timelist=time.numpy()
-                timelist=timelist.tolist()
+                basislist = basisnum.to('cpu').numpy().tolist()
+                basislist_s = basisnums.to('cpu').numpy().tolist()
+                timelist = time.numpy()
+                timelist = timelist.tolist()
                 #print("len(resultlist)",len(resultlist),"len(ftmplines)",len(ftmplines),"len(basisnums2)",len(basisnums2)) 
 #                for i in range(len(resultlist)):
 #                    #print("基组: %d, 预测值: %.5f, 预测值(corrected): %.5f, 真实值: %.5f"%(basislist[i],resultlist[i],resultlist[i]*dv_magn,timelist[i]))

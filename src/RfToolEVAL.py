@@ -458,7 +458,7 @@ class RfTool(ModelTool):
         basis=chemspace.split("_")[1]
 
         molecule = path+"/"+mol
-        nbasis   = getNbasis(bas=basis,sdf=molecule)
+        obasis, nbasis  = getNbasis(bas=basis,sdf=molecule)
         print(" nbasis ", nbasis, " path ",path)
 
         assert self.clf!=None
@@ -469,10 +469,12 @@ class RfTool(ModelTool):
         tra_size=self.config.tra_size
         #basisnums,times,slist,names=RfTool.readData(paths=path,sdf_dir=self.sdf_dir,tra_size=tra_size,target=self.target,basis=basis)
 
+        basisnum = []
         basisnums=[]
         times=[]
         slist=[]
         names=[]
+        basisnum.append(obasis)
         basisnums.append(nbasis)
         times.append(1.0)
         names.append(mol)
@@ -487,15 +489,17 @@ class RfTool(ModelTool):
         struct_fts=RfTool.smiles_to_ft(slist)#struc_fits: [[],[],...]
         struct_fts_np=np.array(struct_fts)
         probs=self.clf.predict_proba(struct_fts_np)#probs: [[] [] []] np数组
-        
-        feats=[]
-        for i in range(len(basisnums)):
-            feat=[]
-            feat.extend(basisnums[i])
+
+
+        feats = []
+        for i in range(len(basisnum)):
+            feat = []
+            feat.append(basisnums[i])
+            feat.extend(basisnum[i])
             feat.extend(struct_fts[i])
             feats.append(feat)
-        feats_t=torch.tensor(feats,dtype=torch.float)
-        times_t=torch.tensor(times) 
+        feats_t = torch.tensor(feats,dtype=torch.float)
+        times_t = torch.tensor(times)
         #slist_t=torch.tensor(slist)
         #names_t=torch.tensor(names)
         probs_t=torch.from_numpy(probs)

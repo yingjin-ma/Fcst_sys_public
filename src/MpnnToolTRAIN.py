@@ -210,7 +210,7 @@ class MpnnTool(ModelTool):
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
-                reslist=res.numpy()
+                #reslist=res.numpy()
                 #print(reslist)
                 reslist=res.tolist()
                 batch.label=batch.label.to('cpu')

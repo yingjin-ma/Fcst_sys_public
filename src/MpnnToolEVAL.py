@@ -32,22 +32,19 @@ class MpnnTool(ModelTool):
         path: data upper folder, default folder, data with data
         write:  can be xlsx file
         '''
-        import pdb
-        pdb.set_trace()
         dft      = chemspace.split("_")[0]
         basis    = chemspace.split("_")[1]
         #print("dft ", dft ,"  basis", basis)        
         tra_size = self.config.tra_size
         molecule = path+"/"+mol
-        nbasis = getNbasis(bas=basis,sdf=molecule)
+        obasis, nbasis = getNbasis(bas=basis,sdf=molecule)
         print(" nbasis ", nbasis)
-        pdata=[[molecule],[nbasis]]
+        pdata=[[molecule],[obasis], [nbasis]]
         #exit(0)
 
         #dataset = TencentAlchemyDataset(mode='valid',rootdir=path,chemspace=self.chemspace,tra_size=tra_size)
         dataset=TADataset(mode='test',rootdir=path,suits=molecule,chemspace=chemspace,pdata=pdata,tra_size=tra_size,target=self.target)
-        import pdb
-        pdb.set_trace()
+
         loader = DataLoader(dataset     = dataset,
                             batch_size  = self.config.batch_size,
                             collate_fn  = batcher(),
@@ -57,16 +54,17 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        #model = th.load(modelname,map_location=th.device('cpu'))
-        model = th.load(modelname)
+        model = th.load(modelname,map_location=th.device('cpu'))
+        #model = th.load(modelname)
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
         #MAE_fn = nn.L1Loss() 
         model.eval()
-        bnums   = []
-        times   = []
-        preds   = []
+        bnums = []
+        bnums_s = []
+        times = []
+        preds = []
         # sdflist = []
 
         with th.no_grad():
@@ -82,33 +80,36 @@ class MpnnTool(ModelTool):
                 batch.graph=batch.graph.to(self.device)
                 batch.label = batch.label.to(self.device)
                 batch.basisnum=batch.basisnum.to(self.device)
+                batch.basisnums = batch.basisnums.to(self.device)
                 #batch.sdf=batch.basisnum.to(self.device)
-                res = model(batch.graph,batch.basisnum)
+                res = model(batch.graph,batch.basisnum,batch.basisnums)
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
-                reslist=res.numpy()
+                #reslist=res.numpy()
                 #print(reslist)
                 reslist=res.tolist()
                 batch.label=batch.label.to('cpu')
                 batch.basisnum=batch.basisnum.to('cpu')
+                batch.basisnums = batch.basisnums.to('cpu')
                 timelist=batch.label.numpy()
                 #print(timelist)
                 timelist=timelist.tolist()
-                bnumlist=batch.basisnum.numpy().tolist()
+                bnumlist = batch.basisnum.numpy().tolist()
+                bnumslist = batch.basisnums.numpy().tolist()
 
                 for i in range(len(reslist)):
-                    #print(i, " ===> initial < === ", reslist[i]) 
-                    reslist[i]=reslist[i]
-                    time=timelist[i][0]
-                    ares=reslist[i]
-                    #bnum=basisnums2[i]
-                    bnum=bnumlist[i][0]
-                       
-                    #print(bnum)
+                    #print(i, " ===> initial < === ", reslist[i])
+                    time = timelist[i][0]
+                    ares = reslist[i]
+                    bnum = bnumlist[i][0]
+                    bnum_s = bnumslist[i][0]
+
+                    # print(bnum)
                     times.append(time)
                     preds.append(ares)
                     bnums.append(bnum)
+                    bnums_s.append(bnum_s)
                     #sdflist.append(sdf) 
                     err1=(float(time)-float(ares))/float(time)
                     #print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' real time : ',time,' predicted time: ',ares, 'err', err1)
