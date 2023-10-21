@@ -36,11 +36,8 @@ Machines     =  ["ERA"]
 functionals  =  ["B3LYP"]
 bases        =  ["6-31g"]
 target_mols  =  ["./example/404771460.sdf"]
-<<<<<<< HEAD
 ML_models    =  ["MPNN"]  # Maybe bug in MGCN
-=======
-ML_models    =  ["MGCN"]  # Maybe bug in MGCN
->>>>>>> 43b15b78073cef881baf08c498e3bc9e36bcb579
+
 
 # rdkit treatment of input molecule
 mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]

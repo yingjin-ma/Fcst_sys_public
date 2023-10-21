@@ -183,7 +183,7 @@ class MgcnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname)
+        model = th.load(modelname,map_location=th.device('cpu'))
         model.set_mean_std(dataset.mean, dataset.std, self.device)
         model.to(self.device)
 
@@ -272,7 +272,7 @@ class MgcnTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        
+        '''
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -318,7 +318,7 @@ class MgcnTool(ModelTool):
         print("Total molecules in training suit : ", icount)
 
         dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
-        '''
+
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),

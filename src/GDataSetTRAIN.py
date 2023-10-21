@@ -116,7 +116,7 @@ class TencentAlchemyDataset(Dataset):
 
         atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'],dim=0)
         atom_feats_dict['pos'] = torch.stack(atom_feats_dict['pos'], dim=0)
-        #atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
+        atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
         atom_feats_dict['node_type'] = torch.LongTensor(atom_feats_dict['node_type'])
 
         return atom_feats_dict
@@ -342,8 +342,8 @@ class TencentAlchemyDataset(Dataset):
                         basisnum_h1 = float(temp[i+7].strip(']'))
                         
                     if temp[i] == 'contracted_per':
-                        #import pdb
-                        #pdb.set_trace()
+                        import pdb
+                        pdb.set_trace()
                         j = (len(temp) - i - 2)/6
                         basvec = []
                         for n in range(int(j)):

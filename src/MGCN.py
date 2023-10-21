@@ -68,11 +68,11 @@ class MGCNModel(nn.Module):
         ])
 
         self.bn=nn.BatchNorm1d(10)
-        self.bn1=nn.BatchNorm1d(output_dim+7)
+        self.bn1=nn.BatchNorm1d(output_dim+1)
 
         self.node_dense_layer1 = nn.Linear(dim * (self.n_conv + 1), 64)
         self.node_dense_layer2 = nn.Linear(64, output_dim)
-        self.fclayer1=nn.Linear(output_dim+7,10)
+        self.fclayer1=nn.Linear(output_dim+1,10)
         self.fclayer2=nn.Linear(10,10)
         self.fclayer3=nn.Linear(10,1)
 
@@ -113,8 +113,9 @@ class MGCNModel(nn.Module):
 
         mgcnout = dgl.sum_nodes(g, "res")
         basisnum = basisnum.squeeze(1)
-        out1=th.cat((mgcnout,basisnum),1)
-        out=th.cat((out1,basisnums),1)
+        # out1=th.cat((mgcnout,basisnum),1)
+        # out=th.cat((out1,basisnums),1)
+        out = th.cat((mgcnout, basisnums), 1)
         out=self.bn1(out)
         res=self.fclayer1(out)
         #res=self.bn(res)

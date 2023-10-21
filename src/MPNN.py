@@ -127,8 +127,7 @@ class MPNNModel(nn.Module):
 
     def forward(self, g,basisnums):
         
-        import pdb
-        pdb.set_trace()
+
         h = g.ndata['n_feat']
         h = h.to(self.device)
         out = F.relu(self.lin0(h))
@@ -139,8 +138,8 @@ class MPNNModel(nn.Module):
             out, h = self.gru(m.unsqueeze(0), h)
             out = out.squeeze(0)
         
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         s2sout = self.set2set(g, out)
         out = self.bn1(self.tanh(self.lin1(s2sout)))
         out = self.lin2(out)

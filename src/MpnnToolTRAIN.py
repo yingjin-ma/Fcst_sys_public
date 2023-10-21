@@ -271,8 +271,8 @@ class MpnnTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        
-        
+
+        '''
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -317,7 +317,7 @@ class MpnnTool(ModelTool):
         print("Total molecules in training suit : ", icount)
 
         dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
-        '''
+
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
@@ -405,12 +405,14 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
+        '''
         if mol_size == "small":
             np.save('a', y)
         elif mol_size == "middle":
             np.save('b', y)
         else:
             np.save('c', y)
+        '''
         return minMre
 
 
