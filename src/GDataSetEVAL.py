@@ -91,7 +91,7 @@ class TADataset(Dataset):
             hybridization = atom.GetHybridization()  # 返回原子杂交方式
             num_h = atom.GetTotalNumHs()  # 返回H原子总数
             atom_feats_dict['pos'].append(torch.FloatTensor(geom[u]))
-            atom_feats_dict['bnum'].append(torch.FloatTensor(bnum_q[u]))# add atom's basisnum
+            # atom_feats_dict['bnum'].append(torch.FloatTensor(bnum_q[u]))# add atom's basisnum
             atom_feats_dict['node_type'].append(atom_type)
 
             h_u = []
@@ -111,11 +111,12 @@ class TADataset(Dataset):
                           Chem.rdchem.HybridizationType.SP3)
             ]
             h_u.append(num_h)
+            h_u.extend(bnum_q[u])
             atom_feats_dict['n_feat'].append(torch.FloatTensor(h_u))
 
         atom_feats_dict['n_feat'] = torch.stack(atom_feats_dict['n_feat'], dim=0)
         atom_feats_dict['pos'] = torch.stack(atom_feats_dict['pos'], dim=0)
-        atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
+        # atom_feats_dict['bnum'] = torch.stack(atom_feats_dict['bnum'], dim=0)
         atom_feats_dict['node_type'] = torch.LongTensor(atom_feats_dict['node_type'])
 
         return atom_feats_dict
@@ -210,7 +211,7 @@ class TADataset(Dataset):
         # for val/test set, labels are molecule ID
         l = torch.FloatTensor(
             [time])  # if self.mode == 'train' or self.mode=='valid' else torch.LongTensor([int(sdf_file.stem)])
-        return (g, bnm_s, bnm, l)
+        return (g, bnm, bnm_s, l)
 
     def __init__(self, mode='train', rootdir='./', suits='', chemspace='m062x_6-31G#', folder_sdf='./', transform=None,
                  pdata=None, tra_size=4000, target=2):
@@ -410,7 +411,7 @@ class TADataset(Dataset):
             #            self.basisnums2.append(basisnum2)
 
             print("sdfnames ", sdfnames[i], " with i = ", i)
-            self.labels.append(result[2])
+            self.labels.append(result[3])
             self.sdfnames.append(sdfnames[i])
             i += 1
             if i % 50 == 0:

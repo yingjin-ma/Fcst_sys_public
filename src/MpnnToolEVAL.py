@@ -32,8 +32,6 @@ class MpnnTool(ModelTool):
         path: data upper folder, default folder, data with data
         write:  can be xlsx file
         '''
-        import pdb
-        pdb.set_trace()
         dft      = chemspace.split("_")[0]
         basis    = chemspace.split("_")[1]
         #print("dft ", dft ,"  basis", basis)        
@@ -46,8 +44,6 @@ class MpnnTool(ModelTool):
 
         #dataset = TencentAlchemyDataset(mode='valid',rootdir=path,chemspace=self.chemspace,tra_size=tra_size)
         dataset=TADataset(mode='test',rootdir=path,suits=molecule,chemspace=chemspace,pdata=pdata,tra_size=tra_size,target=self.target)
-        import pdb
-        pdb.set_trace()
         loader = DataLoader(dataset     = dataset,
                             batch_size  = self.config.batch_size,
                             collate_fn  = batcher(),

@@ -6,14 +6,13 @@ import socket
 hostname = socket.gethostname()
 PWD=os.getcwd()
 SRC=PWD+"/src"
-
 is_local_model = input("Did you have trained locally? [y]/n:")
 if is_local_model == "y":
    BAK=PWD+"/database/training-models"
 else:
    BAK=PWD+"/database/training-models"
-PLYfile=PWD+"/database/polyfitted/data.TOTpolyfitted.2"
 
+PLYfile=PWD+"/database/polyfitted/data.TOTpolyfitted.2"
 # add the runtime environments
 print(SRC)
 sys.path.append(SRC)
@@ -34,7 +33,7 @@ from rdkit.Chem import AllChem
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
 functionals  =  ["B3LYP"]
-bases        =  ["6-31g"]
+bases        =  ["6-31pgs"]
 target_mols  =  ["./example/404771460.sdf"]
 ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 

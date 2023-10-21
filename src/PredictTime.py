@@ -111,6 +111,7 @@ def MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile):
 
    return dv_magn[0]
 
+
 def MWIfunct(ref_chemspace,chemspace):
 
    dv_magn=1.0
