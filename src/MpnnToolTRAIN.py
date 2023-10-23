@@ -65,7 +65,8 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname,map_location=th.device('cpu'))
+        # model = th.load(modelname,map_location=th.device('cpu'))
+        model = th.load(modelname)
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
@@ -183,7 +184,8 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
-        model = th.load(modelname,map_location=th.device('cpu'))
+        #model = th.load(modelname,map_location=th.device('cpu'))
+        model = th.load(modelname)
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
@@ -410,7 +412,8 @@ class MpnnTool(ModelTool):
         os.remove(modelName_tmp)
         pic_dir = os.getcwd() + '/Result_b/mpnn'
         if not os.path.exists(pic_dir):
-            os.mkdir(pic_dir) 
+            os.mkdir(pic_dir)
+        '''        
         pic_name = pic_dir + '/' + self.chemspace + '.png'#+ "_" + mol_size 
         title = "MPNN_" + self.chemspace #+ "_" + mol_size
         x_1 = np.arange(0, 250, 10)
@@ -424,6 +427,7 @@ class MpnnTool(ModelTool):
         plt.legend()
         plt.savefig(pic_name) 
         plt.show()
+        '''
         return minMre
 
 
