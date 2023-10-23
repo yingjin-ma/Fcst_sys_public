@@ -6,9 +6,9 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
-folder0 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.01/B3LYP_6-31pgs"
-folder1 = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/G09data.3D/B3LYP_6-31pgs"
-sdf0    = "/home/molaaa/Desktop/Fcst_sys_public/database/rawdata/Arxiv1911.05569v1_sdfs_H"
+folder0 = "../database/rawdata/G09data.01/M062x_6-31pgs"
+folder1 = "../database/rawdata/G09data.3D/M062x_6-31pgs"
+sdf0    = "../database/rawdata/Arxiv1911.05569v1_sdfs_H"
 
 lists=[]
 for root,dirs,files in os.walk(folder0):
