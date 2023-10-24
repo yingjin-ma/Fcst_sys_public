@@ -26,6 +26,113 @@ class MpnnTool(ModelTool):
         ModelTool.__init__(self,chemspace,config,sdf_dir,target)
         self.suits1=suits1
 
+    def evalsuit(self, modelname, chemspace="B3LYP_6-31g", path='./', write=False):
+        '''
+        predicting the timing basing on the specified model
+        path: path of testing suits; default as 'data/tes_'+self.chemspace+'.txt'
+        write: check whether into xlsx format
+        '''
+
+        dft = chemspace.split("_")[0]
+        basis = chemspace.split("_")[1]
+
+        tra_size = self.config.tra_size
+        print("self.suits1  : ", self.suits1)
+        print("self.sdf_dir : ", self.sdf_dir)
+
+
+
+        names = []
+        mollist = []
+        baslist = []
+        basveclist = []
+        basnumlist = []
+        for isuit in self.suits1:
+            imol = self.sdf_dir + "/" + isuit
+            basis_num, nbasis, basvec = getNbasis(bas=basis, sdf=imol)
+            # ibas = getNbasis_noRDkit(bas=basis,sdf=imol)
+            print("imol : ", imol, " ibas : ", nbasis)
+            mollist.append(imol)
+            baslist.append(nbasis)
+            names.append(isuit)
+            basveclist.append(basvec)
+            basnumlist.append(basis_num)
+
+            # print(" mollist ", mollist )
+        # print(" baslist ", baslist )
+
+        pdata = [mollist, basnumlist, baslist, basveclist]
+
+        dataset = TADataset(mode='pred', rootdir=path, chemspace=self.chemspace, folder_sdf=self.sdf_dir, pdata=pdata,
+                            tra_size=tra_size, target=self.target)
+
+        loader = DataLoader(dataset=dataset,
+                            batch_size=self.config.batch_size,
+                            collate_fn=batcher(),
+                            shuffle=False,
+                            num_workers=0)
+
+        if not os.path.exists(modelname):
+            print(modelname + " does not exist!")
+            return
+        model = th.load(modelname)
+        model.to(self.device)
+
+        model.eval()
+        bnums = []
+        bnums_s = []
+        times = []
+        preds = []
+
+        with th.no_grad():
+            err = 0
+            errs = []
+            j = 0
+            mae = 0.0
+            for idx, batch in enumerate(loader):
+                batch.graph = batch.graph.to(self.device)
+                batch.label = batch.label.to(self.device)
+                batch.basisnum = batch.basisnum.to(self.device)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res = model(batch.graph, batch.basisnums)
+                # batch.sdf=batch.basisnum.to(self.device)
+                res = res.to('cpu')
+                # mae = MAE_fn(res, batch.label)
+                # w_mae += mae.detach().item()
+                reslist = res.numpy()
+                # print("reslist  : ",reslist)
+                reslist = res.tolist()
+                batch.label = batch.label.to('cpu')
+                batch.basisnum = batch.basisnum.to('cpu')
+                batch.basisnums = batch.basisnums.to('cpu')
+                timelist = batch.label.numpy()
+                # print("timelist : ",timelist)
+                timelist = timelist.tolist()
+                bnumlist = batch.basisnum.numpy().tolist()
+                bnumslist = batch.basisnums.numpy().tolist()
+
+                for i in range(len(reslist)):
+                    # print(i, " ===> initial < === ", reslist[i])
+                    time = timelist[i][0]
+                    ares = reslist[i]
+                    bnum = bnumlist[i][0]
+                    bnum_s = bnumslist[i][0]
+
+                    # print(bnum)
+                    times.append(time)
+                    preds.append(ares)
+                    bnums.append(bnum)
+                    bnums_s.append(bnum_s)
+                    # sdflist.append(sdf)
+                    # print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
+
+        i = 0
+        print("len(names)", len(names), "len(preds)", len(preds))
+        for isuit in self.suits1:
+            print(i + 1, " ", names[i], " ", preds[i])
+            i = i + 1
+
+
     def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
         '''
         testing model

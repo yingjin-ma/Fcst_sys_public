@@ -8,7 +8,11 @@ from os.path import isfile, join
 hostname = socket.gethostname()
 PWD=os.getcwd()
 SRC=PWD+"/src"
-BAK=PWD+"/database/trained-models"
+is_local_model = input("Did you have trained locally? [y]/n:")
+if is_local_model == "y":
+   BAK=PWD+"/database/training-models"
+else:
+   BAK=PWD+"/database/training-models"
 PLYfile=PWD+"/database/polyfitted/data.TOTpolyfitted.2"
 
 # add the runtime environments
@@ -55,7 +59,7 @@ target_mols  =  ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
 #target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
 #target_mols  =  ["./updatedSDFs"]
 #target_smil  =  ["./TestSMI2"]
-ML_models    =  ["MGCN"]  # Maybe bug in MGCN
+ML_models    =  ["MPNN"]  # Maybe bug in MGCN
 
 ifmols = False
 ifsmil = False
@@ -153,7 +157,7 @@ for qc in QC_packages:
 
                # == decide the ref_chemspace == *
                # ref_funct & ref_basis
-               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0][0])
+               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0][0],is_local_model)
                #ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0])
 
                print("  ===>   Target    Space : ", funct,"/",basis)
