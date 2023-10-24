@@ -317,6 +317,27 @@ class TADataset(Dataset):
                 times.append(time)
                 sdfnames.append(sdfname)
 
+        if self.mode == 'test':
+            sdfs = self.pdata[0]
+            bnum_s = self.pdata[1]
+            bnums = self.pdata[2]
+            print(sdfs, bnum_s)
+            for i in range(len(sdfs)):
+                nsdf = len(sdfs[i].split("/"))
+                onesdf = sdfs[i].split("/")[nsdf - 1]
+                # print("onesdf : ",onesdf)
+                sdfnames.append(onesdf)
+                times.append(1)
+
+        if self.mode == 'pred':
+            ssdfs=self.pdata[0]
+            bnum_s=self.pdata[1]
+            bnums = self.pdata[2]
+            for isdf in sdfs:
+                sname = isdf.split("/")[len(isdf.split("/")) - 1].split(".")[0]
+                sdfnames.append(sname)
+                times.append(0)
+        '''
         if self.mode=='test' or self.mode=='pred':
             sdfs=self.pdata[0]
             bnum_s=self.pdata[1]
@@ -328,7 +349,7 @@ class TADataset(Dataset):
                #print("onesdf : ",onesdf)
                sdfnames.append(onesdf)
                times.append(1)
-
+        '''
         i=0
         for sdf_file in sdfs:
             print("sdf_file ",sdf_file)
