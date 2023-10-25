@@ -9,6 +9,140 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
+def getNbasis_noRDkit(bas="6-31g",sdf=""):
+
+   elemdict = {'H': 1, 'Li': 3, 'Be': '4', 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Si': 15, 'P': 16, 'S': 17, 'Cl': 18}
+
+   print("sdf",sdf)
+   D56=-1
+   if bas == "cc-pVDZ":
+      D56=1
+   elif bas == "cc-pVTZ":
+      D56=1
+   else:
+      bas=bas.replace('p','+').replace('s','*')
+
+   if bas == "SVP":
+      bas=bas.replace('SVP','SVP (Dunning-Hay)')
+      D56=1
+   if bas == "SV":
+      bas=bas.replace('SV','SV (Dunning-Hay)')
+
+   Nbasis=0
+   naos=0
+   basis_num = []
+   nao_s = nao_p = nao_d = nao_f = nao_g = nao_h = 0  # the number of s,p,d,f,g,h each in total
+   naos1 = naop1 = naod1 = naof1 = naog1 = naoh1 = 0
+   naos2 = naop2 = naod2 = naof2 = naog2 = naoh2 = 0
+   basvec1 = []
+   basvec2 = []
+
+   atoms=[]
+   with open(sdf,'r') as sdf_one:
+      lines = sdf_one.readlines()
+      print("lines[3] :",lines[3][0:3])
+      natoms=int(lines[3][0:3])
+      for i in range(natoms):
+         i = i+1
+         atoms.append(lines[3+i].split()[3])
+
+   #print(atoms)
+
+   for atom in atoms:
+      natom=elemdict[atom]
+      bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
+      ao1 = bs_str.split()[7].strip('(').strip(')').split(',')
+      ao2 = bs_str.split()[9].strip('[').strip(']').split(',')
+      naos3 = 0
+      naop3 = 0
+      naod3 = 0
+      naof3 = 0
+      naog3 = 0
+      naoh3 = 0
+      naos4 = 0
+      naop4 = 0
+      naod4 = 0
+      naof4 = 0
+      naog4 = 0
+      naoh4 = 0
+
+      '''
+      if (natom - len(bas_atom)) > 0:
+         index_natom = [0]*(natom - len(bas_atom))
+         bas_atom = bas_atom + index_natom
+         bas_atom.append(ao)
+      else:
+         bas_atom[natom] = ao
+
+      bas_atom[natom] = ao #e.g. bas_atom = {7 : ['3s','2p']}
+      '''
+      n2 = len(ao2)
+      for n in range(n2):
+         if ao2[n][1] == 's':
+            naos1 = naos1 + int(ao1[n][:-1])
+            naos2 = naos2 + int(ao2[n][:-1])
+            naos3 = int(ao1[n][:-1])
+            naos4 = int(ao2[n][:-1])
+         if ao2[n][1] == 'p':
+            naop1 = naop1 + 3 * int(ao1[n][:-1])
+            naop2 = naop2 + 3 * int(ao2[n][:-1])
+            naop3 = 3 * int(ao1[n][:-1])
+            naop4 = 3 * int(ao2[n][:-1])
+         if ao2[n][1] == 'd':
+            if D56 == -1:
+               naod1 = naod1 + 6 * int(ao1[n][:-1])
+               naod2 = naod2 + 6 * int(ao2[n][:-1])
+               naod3 = 6 * int(ao1[n][:-1])
+               naod4 = 6 * int(ao2[n][:-1])
+            elif D56 == 1:
+               naod1 = naod1 + 5 * int(ao1[n][:-1])
+               naod2 = naod2 + 5 * int(ao2[n][:-1])
+               naod3 = 5 * int(ao1[n][:-1])
+               naod4 = 5 * int(ao2[n][:-1])
+         if ao2[n][1] == 'f':
+            naof1 = naof1 + 7 * int(ao1[n][:-1])
+            naof2 = naof2 + 7 * int(ao2[n][:-1])
+            naof3 = 7 * int(ao1[n][:-1])
+            naof4 = 7 * int(ao2[n][:-1])
+         if ao2[n][1] == 'g':
+            naog1 = naog1 + 9 * int(ao1[n][:-1])
+            naog2 = naog2 + 9 * int(ao2[n][:-1])
+            naog3 = 9 * int(ao1[n][:-1])
+            naog4 = 9 * int(ao2[n][:-1])
+         if ao2[n][1] == 'h':
+            naoh1 = naoh1 + 11 * int(ao1[n][:-1])
+            naoh2 = naoh2 + 11 * int(ao2[n][:-1])
+            naoh3 = 11 * int(ao1[n][:-1])
+            naoh4 = 11 * int(ao2[n][:-1])
+
+      bas3 = [naos3, naop3, naod3, naof3, naog3, naoh3]
+      bas4 = [naos4, naop4, naod4, naof4, naog4, naoh4]
+      basvec1.append(bas3)
+      basvec2.append(bas4)
+      for n in range(n2):
+         if ao2[n][1] == 's':
+            nao_s = nao_s + int(ao2[n][:-1])
+         if ao2[n][1] == 'p':
+            nao_p = nao_p + 3 * int(ao2[n][:-1])
+         if ao2[n][1] == 'd':
+            if D56 == -1:
+               nao_d = nao_d + 6 * int(ao2[n][:-1])
+            elif D56 == 1:
+               nao_d = nao_d + 5 * int(ao2[n][:-1])
+         if ao2[n][1] == 'f':
+            nao_f = nao_f + 7 * int(ao2[n][:-1])
+         if ao2[n][1] == 'g':
+            nao_g = nao_g + 9 * int(ao2[n][:-1])
+         if ao2[n][1] == 'h':
+            nao_h = nao_h + 11 * int(ao2[n][:-1])
+
+      #   print("sdf \n",sdf," \n naos \n",naos)
+   basis_num = [nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
+   basis_num_s = nao_s + nao_p + nao_d + nao_f + nao_g + nao_h
+
+   #   return Nbasis, bas_atom
+   return basis_num, basis_num_s, basvec2
+
 
 def getNbasis(bas="6-31g",sdf=""):
 
@@ -122,9 +256,9 @@ def getNbasis(bas="6-31g",sdf=""):
          if ao2[n][1] == 'p':
             nao_p = nao_p + 3*int(ao2[n][:-1])
          if ao2[n][1] == 'd':
-            if D56 == -1: 
+            if D56 == -1:
                nao_d = nao_d + 6*int(ao2[n][:-1])
-            elif D56 == 1:  
+            elif D56 == 1:
                nao_d = nao_d + 5*int(ao2[n][:-1])
          if ao2[n][1] == 'f':
             nao_f = nao_f + 7*int(ao2[n][:-1])
@@ -136,7 +270,7 @@ def getNbasis(bas="6-31g",sdf=""):
 #   print("sdf \n",sdf," \n naos \n",naos)
    basis_num=[nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
    basis_num_s = nao_s + nao_p + nao_d + nao_f + nao_g +nao_h
-   
+
 
 #   return Nbasis, bas_atom
    return basis_num, basis_num_s, basvec2
