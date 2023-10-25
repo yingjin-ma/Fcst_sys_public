@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 from MPNN import MPNNModel
 from torch.utils.data import DataLoader
-from GDataSetEVAL import TADataset, batcher
+from GDataSetEVAL import TADataset, batcher, get_index
 import os
 import xlsxwriter
 from ModelTool import ModelTool
@@ -12,7 +12,8 @@ from ModelTool import ModelTool
 th.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis, getNbasis_noRDkit
+
 
 # MPNN模型的工具类
 class MpnnTool(ModelTool):
@@ -47,7 +48,8 @@ class MpnnTool(ModelTool):
 
         for isuit in self.suits1:
             imol = self.sdf_dir + "/" + isuit
-            obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            # obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            obasis, nbasis = getNbasis_noRDkit(bas=basis, sdf=imol)
             # ibas = getNbasis_noRDkit(bas=basis,sdf=imol)
             print("imol : ", imol, " ibas : ", nbasis)
             mollist.append(imol)
@@ -123,13 +125,21 @@ class MpnnTool(ModelTool):
                     # sdflist.append(sdf)
                     # print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
 
+        len_names = len(names)
+        not_in_names = get_index()
+        for i in range(len_names):
+            if i in not_in_names:
+                names.pop(i)
         i = 0
         print("len(names)", len(names), "len(preds)", len(preds))
         for isuit in self.suits1:
             print(i + 1, " ", names[i], " ", preds[i])
             i = i + 1
+            if i > len(names):
+                break
 
-    def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
+
+def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
         '''
         testing model
         path: data upper folder, default folder, data with data
