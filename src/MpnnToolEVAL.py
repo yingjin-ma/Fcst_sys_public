@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 from MPNN import MPNNModel
 from torch.utils.data import DataLoader
-from GDataSetEVAL import TADataset, batcher
+from GDataSetEVAL import TADataset, batcher, short_sdf_index
 import os
 import xlsxwriter
 from ModelTool import ModelTool
@@ -128,6 +128,11 @@ class MpnnTool(ModelTool):
                     # sdflist.append(sdf)
                     # print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
 
+
+        len_names = len(names)
+        for i in range(len_names):
+            if i in short_sdf_index:
+                names.pop(i)
         i = 0
         print("len(names)", len(names), "len(preds)", len(preds))
         for isuit in self.suits1:

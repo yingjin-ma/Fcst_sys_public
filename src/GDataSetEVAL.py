@@ -18,6 +18,7 @@ import basis_set_exchange as bse
 rewritten basing on Tencent Alchemy Tools (https://github.com/tencent-alchemy/Alchemy)
 """
 
+short_sdf_index = []
 
 # batch sample
 class AlchemyBatcher:
@@ -178,6 +179,8 @@ class TADataset(Dataset):
         # print("str(sdf_file) : ", str(sdf_file))
         sdf = open(str(sdf_file)).read()
         mol = Chem.MolFromMolBlock(sdf, removeHs=False)
+        if mol is None:
+            return None
 
         g = dgl.DGLGraph()
 
@@ -424,6 +427,8 @@ class TADataset(Dataset):
             print("times[i] ", times[i], " with i = ", i)
             result = self.sdf_to_dgl(sdf_file,bnum[i],bnum_s[i], bnum_q[i],times[i])
             if result is None:
+                short_sdf_index.append(i)
+                i += 1
                 continue
             print("sdf_file", sdf_file)
             self.graphs.append(result[0])
