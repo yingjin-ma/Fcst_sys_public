@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 from MPNN import MPNNModel
 from torch.utils.data import DataLoader
-from GDataSetEVAL import TADataset, batcher, short_sdf_index
+from GDataSetEVAL import TADataset, batcher, get_index
 import os
 import xlsxwriter
 from ModelTool import ModelTool
@@ -130,8 +130,9 @@ class MpnnTool(ModelTool):
 
 
         len_names = len(names)
+        not_in_names = get_index()
         for i in range(len_names):
-            if i in short_sdf_index:
+            if i in not_in_names:
                 names.pop(i)
         i = 0
         print("len(names)", len(names), "len(preds)", len(preds))
