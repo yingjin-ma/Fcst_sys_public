@@ -152,7 +152,100 @@ class LstmTool(ModelTool):
             padded_features.append(padded_feature)
         return padded_features
 
+    def evalsuit(self, modelname=None, path=None, chemspace="B3LYP_6-31g", BAK=None, write=False):
+        '''
+        Predicting
+        path: path of testing suits; default as 'data/tes_'+self.chemspace+'.txt'
+        write: check whether into xlsx format
+        '''
 
+        dft = chemspace.split("_")[0]
+        basis = chemspace.split("_")[1]
+
+        # tra_size=self.config.tra_size
+        print("self.suits1  : ", self.suits1)
+        print("self.sdf_dir : ", self.sdf_dir)
+
+        mollist = []
+        baslist = []
+        basisnums = []
+        times = []
+        slist = []
+        names = []
+        basisnumlist = []
+        for isuit in self.suits1:
+            print("isuit : ", isuit)
+            imol = self.sdf_dir + "/" + isuit
+            # ibas = getNbasis(bas=basis, sdf=imol)
+            obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            # obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
+            print("imol : ", imol, " ibas : ", nbasis)
+            mollist.append(imol)
+            baslist.append(nbasis)
+            basisnumlist.append(obasis)
+
+            basisnums.append(nbasis * 1.0)
+            times.append(1.0)
+            names.append(isuit)
+            suppl = Chem.SDMolSupplier(imol)
+            for imol in suppl:
+                smiles = Chem.MolToSmiles(imol)
+                slist.append(smiles)
+            # print("Done the suppl")
+
+        pdata = [mollist,basisnumlist, baslist]
+
+        model = torch.load(modelname)
+        model = model.to(self.device)
+        model.eval()
+
+        clist = LstmTool.seg(slist)
+        with open(BAK + '/wordToIndex.json', 'r', encoding='utf8') as f:
+            word_to_idx = json.load(f)
+        features = LstmTool.wToIdx(clist, word_to_idx)
+        padded_features = LstmTool.pad(features)
+        eval_features = torch.tensor(padded_features)
+        eval_basis = torch.tensor(basisnums)
+        eval_time = torch.tensor(times)
+        eval_basis = torch.tensor(basisnumlist)
+
+
+        eval_set = torch.utils.data.TensorDataset(eval_features, eval_basis, basisnumlist, eval_time)
+        eval_iter = torch.utils.data.DataLoader(eval_set, batch_size=self.config.batch_size, shuffle=False)
+
+        ij = 0
+        preds = []
+        with torch.no_grad():
+
+            err_mean = 0.0
+            errs = []
+            j = 0
+
+            ae = 0.0
+            for feature,basisnum,basisnums,time in eval_iter:
+                # j=0
+                feature = feature.to(self.device)
+                basisnum = basisnum.to(self.device)
+                basisnums = basisnums.to(self.device)
+
+                result = model(feature, basisnum, basisnums)
+                result = result.to('cpu')
+                resultlist = result.numpy().tolist()
+                preds.extend(resultlist)
+                basislist = basisnum.to('cpu').numpy().tolist()
+                timelist = time.numpy()
+                timelist = timelist.tolist()
+
+                ij = ij + 1
+                print("ij : ", ij)
+
+        i = 0
+        print("len(names)", len(names), "len(resultlist)", len(resultlist))
+        for isuit in self.suits1:
+            print(i + 1, " ", names[i], " ", resultlist[i])
+            i = i + 1
+
+        return resultlist
 
     def eval(self,modelname=None,path=None,chemspace="B3LYP_6-31g",mol="sample.sdf",write=False,BAK=None):
         '''
