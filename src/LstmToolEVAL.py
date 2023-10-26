@@ -178,8 +178,8 @@ class LstmTool(ModelTool):
             print("isuit : ", isuit)
             imol = self.sdf_dir + "/" + isuit
             # ibas = getNbasis(bas=basis, sdf=imol)
-            obasis, nbasis = getNbasis(bas=basis, sdf=imol)
-            # obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
+            # obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
             print("imol : ", imol, " ibas : ", nbasis)
             mollist.append(imol)
             baslist.append(nbasis)
