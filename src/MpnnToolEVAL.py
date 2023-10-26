@@ -135,7 +135,7 @@ class MpnnTool(ModelTool):
         for isuit in self.suits1:
             print(i + 1, " ", names[i], " ", preds[i])
             i = i + 1
-            if i > len(names):
+            if i >= len(names):
                 break
 
 
