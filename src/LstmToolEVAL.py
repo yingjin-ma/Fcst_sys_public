@@ -14,9 +14,10 @@ from ModelTool import ModelTool
 torch.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis, getNbasis_noRDkit
 
 # LSTM模型的工具类，用于模型的训练、测试、推断
+short_sdf_index = []
 
 class LstmTool(ModelTool):
 
@@ -188,8 +189,15 @@ class LstmTool(ModelTool):
             times.append(1.0)
             names.append(isuit)
             suppl = Chem.SDMolSupplier(imol)
+            i = 0
             for imol in suppl:
+                if imol is None:
+                    short_sdf_index.append(i)
+                    i += 1
+                    continue
                 smiles = Chem.MolToSmiles(imol)
+                i += 1
+
                 slist.append(smiles)
             # print("Done the suppl")
 
@@ -239,11 +247,17 @@ class LstmTool(ModelTool):
                 ij = ij + 1
                 print("ij : ", ij)
 
+        len_names = len(names)
+        for i in range(len_names):
+            if i in short_sdf_index:
+                names.pop(i)
         i = 0
-        print("len(names)", len(names), "len(resultlist)", len(resultlist))
+        print("len(names)", len(names), "len(preds)", len(preds))
         for isuit in self.suits1:
-            print(i + 1, " ", names[i], " ", resultlist[i])
+            print(i + 1, " ", names[i], " ", preds[i])
             i = i + 1
+            if i >= len(names):
+                break
 
         return resultlist
 

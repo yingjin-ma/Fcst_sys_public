@@ -59,7 +59,7 @@ bases = ["6-31pgs"]
 target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
 # target_mols  =  ["./updatedSDFs"]
 # target_smil  =  ["./TestSMI2"]
-ML_models = ["MPNN"]  # Maybe bug in MGCN
+ML_models = ["LSTM"]  # Maybe bug in MGCN
 
 ifmols = False
 ifsmil = False
