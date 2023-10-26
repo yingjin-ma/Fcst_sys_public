@@ -174,6 +174,7 @@ class LstmTool(ModelTool):
         slist = []
         names = []
         basisnumlist = []
+        suppl = []
         for isuit in self.suits1:
             print("isuit : ", isuit)
             imol = self.sdf_dir + "/" + isuit
@@ -188,32 +189,28 @@ class LstmTool(ModelTool):
             basisnums.append(nbasis * 1.0)
             times.append(1.0)
             names.append(isuit)
-            suppl = Chem.SDMolSupplier(imol)
-            i = 0
-            for imol in suppl:
-                if imol is None:
-                    short_sdf_index.append(i)
-                    i += 1
-                    continue
-                smiles = Chem.MolToSmiles(imol)
-                i += 1
+            suppl.append(Chem.SDMolSupplier(imol))
 
-                slist.append(smiles)
             # print("Done the suppl")
 
         pdata = [mollist,basisnumlist, baslist]
 
-        model = torch.load(modelname)
-        model = model.to(self.device)
-        model.eval()
-
-        len_names = len(names)
-        for i in range(len_names):
-            if i in short_sdf_index:
+        i = 0
+        for imol in suppl:
+            if imol is None:
                 names.pop(i)
                 basisnums.pop(i)
                 times.pop(i)
                 basisnumlist.pop(i)
+                i += 1
+                continue
+            smiles = Chem.MolToSmiles(imol)
+            i += 1
+            slist.append(smiles)
+        model = torch.load(modelname)
+        model = model.to(self.device)
+        model.eval()
+
 
         clist = LstmTool.seg(slist)
         with open(BAK + '/wordToIndex.json', 'r', encoding='utf8') as f:
@@ -221,12 +218,12 @@ class LstmTool(ModelTool):
         features = LstmTool.wToIdx(clist, word_to_idx)
         padded_features = LstmTool.pad(features)
         eval_features = torch.tensor(padded_features)
-        eval_basis = torch.tensor(basisnums)
+        eval_basis_s = torch.tensor(basisnums)
         eval_time = torch.tensor(times)
         eval_basis = torch.tensor(basisnumlist)
 
 
-        eval_set = torch.utils.data.TensorDataset(eval_features, basisnumlist, eval_basis, eval_time)
+        eval_set = torch.utils.data.TensorDataset(eval_features, eval_basis, eval_basis_s, eval_time)
         eval_iter = torch.utils.data.DataLoader(eval_set, batch_size=self.config.batch_size, shuffle=False)
 
         ij = 0
