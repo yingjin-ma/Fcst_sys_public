@@ -168,8 +168,7 @@ for qc in QC_packages:
 
                     for mol in mols:
                         # Predict basing on the ref_chemspace
-                        Ptime = PredictTime.EvalSuit(mod, ref_chemspace, PWDmol, NAMmol, BAK, QC_packages[0],
-                                                     Machines[0])
+                        Ptime = PredictTime.EvalSuit(mod, ref_chemspace, PWDmol, NAMmol, BAK, QC_packages[0],Machines[0])
                         exit(0)
 
                         # MWI correction for the predicted results

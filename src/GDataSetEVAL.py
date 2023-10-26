@@ -342,7 +342,7 @@ class TADataset(Dataset):
                 times.append(1)
 
         if self.mode == 'pred':
-            ssdfs=self.pdata[0]
+            sdfs=self.pdata[0]
             bnum_s=self.pdata[1]
             bnums = self.pdata[2]
             for isdf in sdfs:

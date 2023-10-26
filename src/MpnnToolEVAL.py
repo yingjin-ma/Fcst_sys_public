@@ -93,7 +93,7 @@ class MpnnTool(ModelTool):
                 batch.label = batch.label.to(self.device)
                 batch.basisnum = batch.basisnum.to(self.device)
                 batch.basisnums = batch.basisnums.to(self.device)
-                res = model(batch.graph, batch.basisnums)
+                res = model(batch.graph,batch.basisnum,batch.basisnums)
                 # batch.sdf=batch.basisnum.to(self.device)
                 res = res.to('cpu')
                 # mae = MAE_fn(res, batch.label)
@@ -139,7 +139,7 @@ class MpnnTool(ModelTool):
                 break
 
 
-def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
+    def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
         '''
         testing model
         path: data upper folder, default folder, data with data
