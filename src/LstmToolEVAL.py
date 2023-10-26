@@ -207,6 +207,14 @@ class LstmTool(ModelTool):
         model = model.to(self.device)
         model.eval()
 
+        len_names = len(names)
+        for i in range(len_names):
+            if i in short_sdf_index:
+                names.pop(i)
+                basisnums.pop(i)
+                times.pop(i)
+                basisnumlist.pop(i)
+
         clist = LstmTool.seg(slist)
         with open(BAK + '/wordToIndex.json', 'r', encoding='utf8') as f:
             word_to_idx = json.load(f)
@@ -218,7 +226,7 @@ class LstmTool(ModelTool):
         eval_basis = torch.tensor(basisnumlist)
 
 
-        eval_set = torch.utils.data.TensorDataset(eval_features, eval_basis, basisnumlist, eval_time)
+        eval_set = torch.utils.data.TensorDataset(eval_features, basisnumlist, eval_basis, eval_time)
         eval_iter = torch.utils.data.DataLoader(eval_set, batch_size=self.config.batch_size, shuffle=False)
 
         ij = 0
@@ -247,10 +255,7 @@ class LstmTool(ModelTool):
                 ij = ij + 1
                 print("ij : ", ij)
 
-        len_names = len(names)
-        for i in range(len_names):
-            if i in short_sdf_index:
-                names.pop(i)
+
         i = 0
         print("len(names)", len(names), "len(preds)", len(preds))
         for isuit in self.suits1:

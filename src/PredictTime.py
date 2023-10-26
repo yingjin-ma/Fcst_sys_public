@@ -51,7 +51,7 @@ def EvalSuit(model, ref_chemspace, PWDmol, NAMmol, BAK, QC_packages, Machines):
                                        target=aimming)
       # step-3 : get the predicted results
       RES_tot = MGCNtool.evalsuit(modelname=modelName, path=PWDmol, chemspace=ref_chemspace)
-   '''
+
    elif model == "LSTM":
       import LstmToolEVAL
 
@@ -69,7 +69,7 @@ def EvalSuit(model, ref_chemspace, PWDmol, NAMmol, BAK, QC_packages, Machines):
                                        target=aimming)
       # step-3 : get the predicted results
       RES_tot = LSTMtool.evalsuit(modelname=modelName, path=PWDmol, chemspace=ref_chemspace, BAK=BAK)
-
+   '''
    elif model == "RF":
       import RfToolEVAL
 
