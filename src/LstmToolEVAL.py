@@ -175,9 +175,13 @@ class LstmTool(ModelTool):
         names = []
         basisnumlist = []
         suppl = []
+        count = 0
         for isuit in self.suits1:
             print("isuit : ", isuit)
             imol = self.sdf_dir + "/" + isuit
+            count += 1
+            if count > 1651:
+                break
             # ibas = getNbasis(bas=basis, sdf=imol)
             # obasis, nbasis = getNbasis(bas=basis, sdf=imol)
             obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
@@ -195,18 +199,17 @@ class LstmTool(ModelTool):
 
         pdata = [mollist,basisnumlist, baslist]
 
-        i = 0
-        for imol in suppl:
-            if imol is None:
-                names.pop(i)
-                basisnums.pop(i)
-                times.pop(i)
-                basisnumlist.pop(i)
-                i += 1
-                continue
-            smiles = Chem.MolToSmiles(imol)
-            i += 1
-            slist.append(smiles)
+        for i in range(count):
+            for imol in suppl[i]:
+                if imol is None:
+                    names.pop(i)
+                    basisnums.pop(i)
+                    times.pop(i)
+                    basisnumlist.pop(i)
+                    break
+                smiles = Chem.MolToSmiles(imol)
+                slist.append(smiles)
+
         model = torch.load(modelname)
         model = model.to(self.device)
         model.eval()
