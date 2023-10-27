@@ -179,12 +179,13 @@ class LstmTool(ModelTool):
         for isuit in self.suits1:
             print("isuit : ", isuit)
             imol = self.sdf_dir + "/" + isuit
+
+            # if count > 1651:
+            #     break
             count += 1
-            if count > 1651:
-                break
             # ibas = getNbasis(bas=basis, sdf=imol)
-            # obasis, nbasis = getNbasis(bas=basis, sdf=imol)
-            obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
+            obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            # obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
             print("imol : ", imol, " ibas : ", nbasis)
             mollist.append(imol)
             baslist.append(nbasis)
