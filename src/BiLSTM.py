@@ -35,10 +35,10 @@ class BiLSTM(nn.Module):
         self.relu=nn.ReLU(inplace=True)
         self.tanh=nn.Tanh()
         self.decoder=nn.Linear(hidden_dim,output_dim)
-        self.bn=nn.BatchNorm1d(output_dim+7)#批标准化
+        self.bn=nn.BatchNorm1d(output_dim+1)#批标准化
         self.bn2=nn.BatchNorm1d(10)
         #5个全连接层，用于拟合
-        self.fc1=nn.Linear(output_dim+7,10)
+        self.fc1=nn.Linear(output_dim+1,10)
         self.fc2=nn.Linear(10,10)
         self.fc3=nn.Linear(10,10)
         self.fc4=nn.Linear(10,5)
@@ -66,10 +66,11 @@ class BiLSTM(nn.Module):
         atten_out=self.attention(states) #atten_out [batch_size,hidden_dim]
         decoder_out=self.decoder(atten_out) # [batch_size,output_dim]
         basisnums=torch.unsqueeze(basisnums,1)
-        inputbn=torch.cat((decoder_out,basisnum),1)
-        inputbn1=torch.cat((inputbn,basisnums),1)
+        inputbn = torch.cat((decoder_out, basisnums), 1)
+        # inputbn=torch.cat((decoder_out,basisnum),1)
+        # inputbn1=torch.cat((inputbn,basisnums),1)
         #print(inputbn)
-        inputfc1=self.bn(inputbn1)
+        inputfc1=self.bn(inputbn)
         #print(inputfc1)
         outputfc1=self.relu(self.fc1(inputfc1))
         outputfc2=self.relu(self.fc2(outputfc1))

@@ -479,7 +479,7 @@ class LstmTool(ModelTool):
               print(suit, " : ", icount)
         print("Total molecules in training suit : ", icount)
         bnum,bnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
-        
+
         #对smiles分词
         clist=LstmTool.seg(slist)
 
@@ -662,12 +662,24 @@ class LstmTool(ModelTool):
         print("trainning completed!")
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
+        data_path = os.getcwd() + '/eps/lstm/base/origin/'
+        if not os.path.exists(data_path):
+            os.makedirs(data_path)
+
         if self.chemspace == "B3LYP_6-31g":
-            np.save('a', y)
+            np.save(data_path + 'LSTM_B3LYP_6-31g', y)
         elif self.chemspace == "B3LYP_6-31gs":
-            np.save('b', y)
+            np.save(data_path + 'LSTM_B3LYP_6-31gs', y)
         else:
-            np.save('c', y)
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs', y)
+        '''
+        if mol_size == "small":
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_small', y)
+        elif mol_size == "middle":
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_middle', y)
+        else:
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_large', y)
+        '''
 
         return minMre    
 
