@@ -431,7 +431,7 @@ class LstmTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        '''
+
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -479,7 +479,7 @@ class LstmTool(ModelTool):
               print(suit, " : ", icount)
         print("Total molecules in training suit : ", icount)
         bnum,bnums,times,slist,names=LstmTool.readData([tmp1],self.sdf_dir,tra_size,self.target,basis=basis)
-
+        '''
         #对smiles分词
         clist=LstmTool.seg(slist)
 
@@ -662,21 +662,24 @@ class LstmTool(ModelTool):
         print("trainning completed!")
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelloc_tmp)
-        pic_dir = os.getcwd() + '/Result_c/lstm'
-        if not os.path.exists(pic_dir):
-            os.mkdir(pic_dir) 
-        pic_name = pic_dir + '/' + self.chemspace + '.png' #+ "_" + mol_size 
-        title = "LSTM_" + self.chemspace #+ "_" + mol_size
-        x = np.arange(0, 180)
-        plt.title(title) 
-        plt.xlabel("epoch") 
-        plt.ylabel("mre") 
-        #plt.plot(x_1,y_1,color='r',label='mre')
-        #plt.plot(x_2,y_2,color='b',label='MRE')
-        plt.plot(x,y)
-        plt.legend()
-        plt.savefig(pic_name) 
-        plt.show()
+
+        data_path = os.getcwd() + '/eps/lstm/size/improve1/'
+        if not os.path.exists(data_path):
+            os.makedirs(data_path)
+        '''
+        if self.chemspace == "B3LYP_6-31g":
+            np.save(data_path + 'LSTM_B3LYP_6-31g', y)
+        elif self.chemspace == "B3LYP_6-31gs":
+            np.save(data_path + 'LSTM_B3LYP_6-31gs', y)
+        else:
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs', y)
+        '''
+        if mol_size == "small":
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_small', y)
+        elif mol_size == "middle":
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_middle', y)
+        else:
+            np.save(data_path + 'LSTM_B3LYP_6-31pgs_large', y)
 
         return minMre    
 
