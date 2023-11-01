@@ -159,15 +159,16 @@ for qc in QC_packages:
 
                     # == decide the ref_chemspace == *
                     # ref_funct & ref_basis
-                    ref_funct, ref_basis = DecideRefSpace.RefBasisfunct(basis, funct, mols[0][0], is_local_model)
+                    # ref_funct, ref_basis = DecideRefSpace.RefBasisfunct(basis, funct, mols[0][0], is_local_model)
                     # ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mols[0])
 
                     print("  ===>   Target    Space : ", funct, "/", basis)
-                    print("  ===>   Reference Space : ", ref_funct, "/", ref_basis)
+                    # print("  ===>   Reference Space : ", ref_funct, "/", ref_basis)
                     print(" ")
 
                     # ref_chemspace = ref_funct + ref_basis
-                    ref_chemspace = ref_funct + "_" + ref_basis
+                    # ref_chemspace = ref_funct + "_" + ref_basis
+                    ref_chemspace = chemspace
 
                     for mol in mols:
                         # Predict basing on the ref_chemspace

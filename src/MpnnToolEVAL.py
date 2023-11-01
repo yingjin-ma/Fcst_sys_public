@@ -132,8 +132,11 @@ class MpnnTool(ModelTool):
                 names.pop(i)
         i = 0
         print("len(names)", len(names), "len(preds)", len(preds))
+        dest = os.getcwd() + "/P38_MPNN_631gss1_augV"
+        destData = open(dest, "w", encoding='utf-8')
         for isuit in self.suits1:
             print(i + 1, " ", names[i], " ", preds[i])
+            destData.write(str(preds[i]) + '\n')
             i = i + 1
             if i >= len(names):
                 break
