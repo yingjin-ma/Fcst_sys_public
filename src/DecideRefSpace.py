@@ -14,11 +14,13 @@ BASE=PWD+"/database"
 def getknownbasisfunct(is_local_model):
 
     TRmodels=[]
+    '''
     if is_local_model == "y":
       TRAINED=BASE+"/training-models"
     else:
       TRAINED=BASE+"/trained-models"
-    
+    '''
+    TRAINED = BASE + "/P38-models"
     print(TRAINED)
     for roots,dirs,files in os.walk(TRAINED):
        #print(roots," ++ ",dirs) 

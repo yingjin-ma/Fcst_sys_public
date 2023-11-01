@@ -273,8 +273,8 @@ class MpnnTool(ModelTool):
            os.mkdir("tmp")
         icount = icount_s = icount_m = icount_l = 0
         # The used training suits
-        
 
+        '''
         tmp1="./tmp/train-tmp_s"
         tmp2="./tmp/train-tmp_m"
         tmp3="./tmp/train-tmp_l"
@@ -320,7 +320,7 @@ class MpnnTool(ModelTool):
         print("Total molecules in training suit : ", icount)
 
         dataset=TencentAlchemyDataset(mode='train',rootdir=path,suits=tmp1,chemspace=self.chemspace,folder_sdf=self.sdf_dir,tra_size=tra_size, target = self.target)
-        '''
+
         loader=DataLoader(dataset     = dataset,
                           batch_size  = self.config.batch_size,
                           collate_fn  = batcher(),
@@ -342,7 +342,9 @@ class MpnnTool(ModelTool):
         elif self.target==6:
             targetName='ave'
 
-        modelName     = self.folder_mod + '/' + 'mpnn_' + self.chemspace + '_' + targetName + '.pkl'    
+        if not os.path.exists(self.folder_mod):
+            os.makedirs(self.folder_mod)
+        modelName     = self.folder_mod + '/' + 'mpnn_' + self.chemspace + '_' + targetName + '2.pkl'
         modelName_tmp = self.folder_mod + '/' + 'mpnn_' + self.chemspace + '_' + targetName + '_tmp.pkl'
 
         minMre=100.0
@@ -410,16 +412,18 @@ class MpnnTool(ModelTool):
         print("training done! Best epoch is "+str(bestEpoch))
         print("training done : keep the best model and delete the intermediate models")
         os.remove(modelName_tmp)
-        data_path = os.getcwd() + '/eps/mpnn/size/improve1/'
+        data_path = os.getcwd() + '/eps/mpnn/P38/improve1/'
         if not os.path.exists(data_path):
             os.makedirs(data_path)
-        '''
+
         if self.chemspace == "B3LYP_6-31g":
             np.save(data_path + 'MPNN_B3LYP_6-31g', y_2)
         elif self.chemspace == "B3LYP_6-31gs":
             np.save(data_path + 'MPNN_B3LYP_6-31gs', y_2)
-        else:
+        elif self.chemspace == "B3LYP_6-31pgs":
             np.save(data_path + 'MPNN_B3LYP_6-31pgs', y_2)
+        else:
+            np.save(data_path + 'MPNN_P38_631gss2', y_2)
         '''
         if mol_size == "small":
             np.save(data_path + 'MPNN_B3LYP_6-31pgs_small', y_2)
@@ -427,7 +431,7 @@ class MpnnTool(ModelTool):
             np.save(data_path + 'MPNN_B3LYP_6-31pgs_middle', y_2)
         else:
             np.save(data_path + 'MPNN_B3LYP_6-31pgs_large', y_2)
-
+        '''
         return minMre
 
 

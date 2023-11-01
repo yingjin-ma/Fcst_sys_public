@@ -10,7 +10,7 @@ from LBlibrary import *
 nnode = 50
 
 #dataR = "../example/test30_20%.pdb_GAU_DFT"
-dataX = "../Predicted_P38_LSTM_M062x-631gss"
+dataX = "../P38_MPNN_631gss1_augV"
 #dataX = "../Predicted_LSTM_Solvent"
 
 # Practical usage

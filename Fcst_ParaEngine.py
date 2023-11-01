@@ -9,10 +9,13 @@ hostname = socket.gethostname()
 PWD = os.getcwd()
 SRC = PWD + "/src"
 is_local_model = input("Did you have trained locally? [y]/n:")
+'''
 if is_local_model == "y":
     BAK = PWD + "/database/training-models"
 else:
     BAK = PWD + "/database/training-models"
+'''
+BAK = PWD + "/database/P38-models"
 PLYfile = PWD + "/database/polyfitted/data.TOTpolyfitted.2"
 
 # add the runtime environments
@@ -54,10 +57,10 @@ def add_nitrogen_charges(smiles):
 QC_packages = ["G09"]
 Machines = ["ERA"]
 functionals = ["M062x"]
-bases = ["6-31pgs"]
+bases = ["6-31gss"]
 # target_mols = ["./example/Arxiv1911.05569v1_sdfs_H_Part2"]
-target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
-# target_mols  =  ["./updatedSDFs"]
+# target_PDB   =  ["./example/LBtest29-6-80A_para.pdb"]
+target_mols  =  ["./updatedSDFs"]
 # target_smil  =  ["./TestSMI2"]
 ML_models = ["LSTM"]  # Maybe bug in MGCN
 
