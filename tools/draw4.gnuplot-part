@@ -1,0 +1,20 @@
+set key at 40,6000
+set key autotitle columnheader
+set auto x
+unset xtics
+# set xtics nomirror rotate by -45 scale 0
+set style data histogram
+set style histogram rowstacked
+set style fill solid border -1.0
+set boxwidth 0.5
+set multiplot layout 3, 1
+set ytics font 'times.ttf,10'
+set ylabel "time (sec)" font 'times.ttf,10'
+
+set yrange [0:6300]
+plot 'GNUPLOT-ELP-MLSLB-ONLY.dat' using 1:xtic(1), for [i=1:50] '' using i notitle
+set yrange [0:6300]
+plot 'CUSTOM-LSTM-GNUPLOT-ELP.dat' using 1:xtic(1), for [i=1:50] '' using i notitle
+set yrange [0:6300]
+plot 'CUSTOM-MPNN-GNUPLOT-ELP.dat' using 1:xtic(1), for [i=1:50] '' using i notitle
+unset multiplot

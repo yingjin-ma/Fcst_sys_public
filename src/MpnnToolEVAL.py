@@ -135,8 +135,9 @@ class MpnnTool(ModelTool):
         dest = os.getcwd() + "/P38_MPNN_631gss1_augV"
         destData = open(dest, "w", encoding='utf-8')
         for isuit in self.suits1:
-            print(i + 1, " ", names[i], " ", preds[i])
-            destData.write(str(preds[i]) + '\n')
+            destLineData = str(i + 1) +  " " + names[i] + " " + str(preds[i])
+            print(destLineData)
+            destData.write(destLineData + '\n')
             i = i + 1
             if i >= len(names):
                 break
