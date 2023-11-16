@@ -45,8 +45,8 @@ class MpnnTool(ModelTool):
         baslist=[] 
         for isuit in self.suits1:
            imol = self.sdf_dir + "/" + isuit
-           ibas = getNbasis(bas=basis,sdf=imol) 
-           #ibas = getNbasis_noRDkit(bas=basis,sdf=imol) 
+           #ibas = getNbasis(bas=basis,sdf=imol) 
+           ibas = getNbasis_noRDkit(bas=basis,sdf=imol) 
            print("imol : ",imol, " ibas : ",ibas) 
            mollist.append(imol) 
            baslist.append(ibas)            

@@ -10,11 +10,11 @@ from LBlibrary import *
 nnode = 50
 
 #dataR = "../example/test30_20%.pdb_GAU_DFT"
-dataX = "../Predicted_P38_LSTM_M062x-631gss"
+dataX = "../P38_LSTM_631gss2_augV"
 #dataX = "../Predicted_LSTM_Solvent"
 
 # Practical usage
-outfile = "LB-LSTM" + "_P38_" + str(nnode)
+outfile = "LB-LSTM" + "_P38_" + str(nnode) + "_631gss2_augV"
 #outfile = "LB-LSTM" + "_SLV2_" + str(nnode)
 write_outfile = True
 
@@ -49,15 +49,31 @@ dxdy=dxdy2
 # ==============================================
 # in order to match julia order 
 
+#print(len(dxdy))
+
+
+
 pair2frags(dxdy,frags)
+
+
+
 
 #print(frags)
 #exit(0)
 #readData3(dataX, frags)
-#print(len(frags))
+print(len(frags))
 #exit(0)
 #ideal(frags, nnode, outfile, write_outfile)  # without multi-nodes
+
+
+
+
+
 ideal2g(frags, nnode, outfile, write_outfile) #    with multi-nodes 
+
+
+
+
 
 # readData(dataR, frags)
 # ideal(frags, nnode, outfile, write_outfile)

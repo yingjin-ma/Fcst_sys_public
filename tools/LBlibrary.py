@@ -5,6 +5,7 @@ import sys
 import re
 from operator import attrgetter
 import math
+import numpy as np
 
 #os.chdir(sys.path[0])
 
@@ -156,6 +157,107 @@ def task_assignment3(frags, nnode, assigns):
 
     return assigns
 
+def ideal2g_coded(frags,Rfrags, nnode,RD, outfile, write_outfile):
+    multinodes = {}
+    rate = 0.90  # 假设任务跨节点的并行效率是90%
+
+    ii=0
+    while True:
+        ii=ii+1
+        #assigns = ideal(frags, nnode, outfile, False)  # 上一次规划结果
+        assigns = idealmn_coded(frags,Rfrags, nnode,RD, outfile, False, multinodes)  # 上一次规划结果
+        print("idealmn : ", ii, "times")
+
+        utilization = get_utilization(assigns)
+        if utilization > 0.9893039637275:
+        #if utilization > 0.9875:
+            print('do not need to cross nodes')
+            break
+        else:
+            print('need to cross nodes')
+            frags = sorted(frags, key=attrgetter("tcpu"), reverse=True)
+            maxfrag = frags.pop(0)
+            if (maxfrag.fname in multinodes):
+                multinodes[maxfrag.fname] += 1
+                nnodes = multinodes[maxfrag.fname]
+                maxfrag.tcpu = maxfrag.tcpu * (nnodes-1) / nnodes
+            else:
+                multinodes[maxfrag.fname] = 2
+                maxfrag.tcpu = maxfrag.tcpu / (rate * 2)
+            frags.append(maxfrag)
+            frags.append(maxfrag)
+
+            # for ifrag in frags:
+            #     print("fname : ", ifrag.fname, " Tcpu : ", ifrag.tcpu)
+
+    print('Done')
+    print("multinodes ---->   ", multinodes)
+    if write_outfile:
+        write_loadbalance2(outfile, assigns, multinodes)
+        write_crossnodes(outfile, multinodes)
+
+
+
+def idealmn_coded(frags,Rfrags, nnode,RD, outfile, write_outfile, multinodes):
+    frags = sorted(frags, key=attrgetter("tcpu"), reverse=True)
+    #i=0
+    #for ifrag in frags:
+    #     i=i+1
+         #print(i," nbas : ", ifrag.nbas, " Telp : ",ifrag.telp," Tcpu : ", ifrag.tcpu, " fname : ", ifrag.fname)
+    assigns = []
+    total_time = []
+    # task_assignment(frags, nnode, assigns)
+    task_assignment3_coded(frags,Rfrags, nnode,RD, assigns)
+    for assign in assigns:
+        total_time.append(assign[0])
+        # print(assign)
+    if write_outfile:
+        write_loadbalance(outfile, assigns)
+
+    print("==============================ideal==============================")
+    print(total_time)
+    print("end-time:\t" + str(max(total_time)))
+    print("utilization:\t" +
+          str(sum(total_time) / (max(total_time) * len(total_time))))
+    return assigns
+
+
+def task_assignment3_coded(frags,Rfrags, nnode,RD, assigns):
+    # assigns = []
+    for i in range(nnode):
+        assigns.append([0, []])
+
+    print(len(Rfrags))
+    B = get_B_matrix(nnode, RD)
+    count = np.ones(B.shape[1])
+    for i in range(B.shape[0]):
+        for j in range(B.shape[1]):
+            if B[i,j] == 0:
+                continue
+            assigns[i][0] += Rfrags[j].tcpu
+            assigns[i][1].append(Rfrags[j].fname +'.' +  str(int(count[j])))
+            count[j] += 1;
+
+
+    for ifrag in frags:
+        #print("ifrag : ",ifrag)
+        assigns.sort()
+        assigns[0][0] += ifrag.tcpu  # assigns[0][0] += ifrag.telp
+        # assigns[0][1].append(ifrag.fname)  # frag-name
+        assigns[0][1].append(ifrag.fname)
+
+    return assigns
+
+def get_B_matrix(n,s):
+    H = np.random.randn(s, n)
+    H[:, n - 1] = -np.sum(H[:, :n - 1], axis=1)
+    B = np.zeros((n, n))
+    for i in range(1,n + 1):
+        j = np.mod(np.arange(i - 1, s + i ), n)
+        B[i - 1, j] = np.concatenate(([1], -np.linalg.solve(H[:, j[1:s + 1]], H[:, j[0]])))
+    return B
+
+
 
 # static scheduling
 def ideal(frags, nnode, outfile, write_outfile):
@@ -290,6 +392,9 @@ def ideal2g(frags, nnode, outfile, write_outfile):
         write_crossnodes(outfile, multinodes)
 
 
+#get redundant frags for test
+def get_Redundant_frags(frags):
+    return frags[:50],frags[50:]
 
 
 # scheduling with multi-nodes
