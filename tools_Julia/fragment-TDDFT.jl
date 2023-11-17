@@ -11,10 +11,14 @@ include("fragment-TDDFT_lib.jl")
 target  =             ARGS[1]
 nbody   = parse(Int32,ARGS[2])
 
-ResID      = [1]       # The excited frag
+ResID      = [1]                   # The excited frags
+PreNAME    = "GFPA-snapshot-"      # folder's prename
 flagMODEL1 = "MODEL"
 flagMODEL2 = "ENDMD"
 flagADDH   = ""
+
+threshold1 = 5.0  # Considered interaction range for excited frags
+threshold2 = 3.0  # Considered interaction range for ground state frags
 
 if !isfile(target)
     println("The target file $(target) is not exist")
@@ -38,5 +42,22 @@ if flagADDH == "ADDH"
     atomlist=atomlist1
     fraglist=fraglist1
 end
+
+for i in 1:length(modelfrag)
+    idx  = lpad(i,8,"0")
+    ifilepdb = string(PreNAME,idx,".pdb")
+    #nfrags = model_nfrags[i]
+    global natoms12 = model_natoms[i] 
+    global fraglist12 = [] 
+    global atomlist12 = [] 
+    natoms12 = MFCC_TDDFT_PRE(modelfrag[i],modelpdb[i],ResID,threshold1,threshold2,fraglist12,atomlist12)
+    println("natoms12 : ",natoms12)
+    #println("fraglist12 : ",fraglist12)
+    #println("atomlist12 : ",atomlist12)
+    MFCC_TDDFT_GEN("PDB",ifilepdb,modelfrag[i],modelpdb[i],fraglist12,atomlist12) 
+    exit(1)
+end 
+
+
 
 
