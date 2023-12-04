@@ -1,0 +1,27 @@
+MGCN:
+functional     bases     tra_size    epoch       TrainRatio
+B3LYP         6-31g         50         180            0.3
+B3LYP         6-31gs        50         180            0.3
+B3LYP         6-31pgs       50         180            0.3
+bhandhlyp     6-31g         50         180            0.3
+bhandhlyp     6-31gs        50         180            0.3
+bhandhlyp     6-31pgs       50         180            0.3
+BLYP          6-31g         50         180            0.3
+BLYP          6-31gs        50         180            0.3
+BLYP          6-31pgs       50         180            0.3
+CAM-B3LYP     6-31g         50         180            0.3
+CAM-B3LYP     6-31gs        50         180            0.3
+CAM-B3LYP     6-31pgs       50         180            0.3
+LC-BLYP       6-31g         50         180            0.3
+LC-BLYP       6-31g         50         180            0.3
+LC-BLYP       6-31pgs       50         180            0.3
+M06           6-31g         50         180            0.3
+M06           6-31gs        50         180            0.3
+M06           6-31pgs       50         180            0.3
+M062x         6-31pgs       50         180            0.3
+PBE1PBE       6-31g         50         180            0.3
+PBE1PBE       6-31gs        50         180            0.3
+PBE1PBE       6-31pgs       50         180            0.3
+wb97xd        6-31g         50         180            0.3
+wb97xd        6-31gs        50         180            0.3
+wb97xd        6-31pgs       50         180            0.3

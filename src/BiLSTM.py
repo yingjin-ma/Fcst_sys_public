@@ -59,14 +59,16 @@ class BiLSTM(nn.Module):
         result=nn.Dropout()(result)
         return result
 
-    def forward(self,smiles,basisnums):
+    def forward(self,smiles,basisnum,basisnums):
         #smiles [batch_size, seq_len]  basisnums [batch_size]
         embeddings=self.embedding(smiles) #embeddings [batch_size, seq_len, embedsize]
         states , _ = self.lstm(embeddings) #states [batch_size, seq_len, hidden_dim*2]
         atten_out=self.attention(states) #atten_out [batch_size,hidden_dim]
         decoder_out=self.decoder(atten_out) # [batch_size,output_dim]
         basisnums=torch.unsqueeze(basisnums,1)
-        inputbn=torch.cat((decoder_out,basisnums),1)
+        inputbn = torch.cat((decoder_out, basisnums), 1)
+        # inputbn=torch.cat((decoder_out,basisnum),1)
+        # inputbn1=torch.cat((inputbn,basisnums),1)
         #print(inputbn)
         inputfc1=self.bn(inputbn)
         #print(inputfc1)

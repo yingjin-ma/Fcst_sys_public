@@ -80,8 +80,7 @@ class MGCNModel(nn.Module):
         self.mean_per_node = th.tensor(mean, device=device)
         self.std_per_node = th.tensor(std, device=device)
 
-    def forward(self, g,basisnum):
-
+    def forward(self, g,basisnum,basisnums):
         self.embedding_layer(g, "node_0")
         if self.atom_ref is not None:
             self.e0(g, "e0")
@@ -97,6 +96,10 @@ class MGCNModel(nn.Module):
         g.ndata["node"] = th.cat(node_embeddings, 1)
 
         # concat multilevel representations
+        '''
+        import pdb
+        pdb.set_trace()
+        '''
         node = self.node_dense_layer1(g.ndata["node"])
         node = self.activation(node)
         res = self.node_dense_layer2(node)
@@ -106,10 +109,13 @@ class MGCNModel(nn.Module):
             g.ndata["res"] = g.ndata["res"] + g.ndata["e0"]
 
         if self.norm:
-            g.ndata["res"] = g.ndata[
-                "res"] * self.std_per_node + self.mean_per_node
+            g.ndata["res"] = g.ndata["res"] * self.std_per_node + self.mean_per_node
+
         mgcnout = dgl.sum_nodes(g, "res")
-        out=th.cat((mgcnout,basisnum),1)
+        basisnum = basisnum.squeeze(1)
+        # out1=th.cat((mgcnout,basisnum),1)
+        # out=th.cat((out1,basisnums),1)
+        out = th.cat((mgcnout, basisnums), 1)
         out=self.bn1(out)
         res=self.fclayer1(out)
         #res=self.bn(res)

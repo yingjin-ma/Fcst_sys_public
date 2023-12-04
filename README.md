@@ -9,6 +9,7 @@
     - polyfitted : Fitted ploynormal equations for selected 89 reference DFT functionals
     - rawdata : The assembled Gaussuian09-D.01 timing data, and the separated sdf files with added H atoms
     - trained-models : Trained models for few DFT functional/basis set combinations
+    - training-models : Trained locally by using the rawdata for models in trained-models having no use in local os 
   - example : The sample molecule to be predicted 
   - src : source code folder
   - tools : Independent scripts 
@@ -19,7 +20,7 @@
 ### 2. Installation
   - Prerequisities
     - python3 with numpy, scipy, scikit-learn
-    - pytorch, with CUDA, cudatoolkit, torchvision, dgl, gensim 
+    - pytorch(cpu-only), torchvision, dgl(cpu), gensim 
     - basis_set_exchange, libxc
     - rdkit, openbabel
     - optional: xlsxwriter, pillow

@@ -4,7 +4,7 @@ import torch.nn as nn
 import numpy as np
 from MPNN import MPNNModel
 from torch.utils.data import DataLoader
-from GDataSetEVAL import TADataset, batcher
+from GDataSetEVAL import TADataset, batcher, get_index
 import os
 import xlsxwriter
 from ModelTool import ModelTool
@@ -12,7 +12,8 @@ from ModelTool import ModelTool
 th.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis, getNbasis_noRDkit
+
 
 # MPNN模型的工具类
 class MpnnTool(ModelTool):
@@ -26,6 +27,122 @@ class MpnnTool(ModelTool):
         ModelTool.__init__(self,chemspace,config,sdf_dir,target)
         self.suits1=suits1
 
+    def evalsuit(self, modelname, chemspace="B3LYP_6-31g", path='./', write=False):
+        '''
+        predicting the timing basing on the specified model
+        path: path of testing suits; default as 'data/tes_'+self.chemspace+'.txt'
+        write: check whether into xlsx format
+        '''
+
+        dft = chemspace.split("_")[0]
+        basis = chemspace.split("_")[1]
+
+        tra_size = self.config.tra_size
+        print("self.suits1  : ", self.suits1)
+        print("self.sdf_dir : ", self.sdf_dir)
+
+
+
+        names = []
+        mollist = []
+        baslist = []
+        basveclist = []
+        basnumlist = []
+        for isuit in self.suits1:
+            imol = self.sdf_dir + "/" + isuit
+            # basis_num, nbasis, basvec = getNbasis(bas=basis, sdf=imol)
+            basis_num, nbasis, basvec = getNbasis_noRDkit(bas=basis, sdf=imol)
+            # ibas = getNbasis_noRDkit(bas=basis,sdf=imol)
+            print("imol : ", imol, " ibas : ", nbasis)
+            mollist.append(imol)
+            baslist.append(nbasis)
+            names.append(isuit)
+            basveclist.append(basvec)
+            basnumlist.append(basis_num)
+
+            # print(" mollist ", mollist )
+        # print(" baslist ", baslist )
+
+        pdata = [mollist, basnumlist, baslist, basveclist]
+
+        dataset = TADataset(mode='pred', rootdir=path, chemspace=self.chemspace, folder_sdf=self.sdf_dir, pdata=pdata,
+                            tra_size=tra_size, target=self.target)
+
+        loader = DataLoader(dataset=dataset,
+                            batch_size=self.config.batch_size,
+                            collate_fn=batcher(),
+                            shuffle=False,
+                            num_workers=0)
+
+        if not os.path.exists(modelname):
+            print(modelname + " does not exist!")
+            return
+        model = th.load(modelname)
+        model.to(self.device)
+
+        model.eval()
+        bnums = []
+        bnums_s = []
+        times = []
+        preds = []
+
+        with th.no_grad():
+            err = 0
+            errs = []
+            j = 0
+            mae = 0.0
+            for idx, batch in enumerate(loader):
+                batch.graph = batch.graph.to(self.device)
+                batch.label = batch.label.to(self.device)
+                batch.basisnum = batch.basisnum.to(self.device)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res = model(batch.graph, batch.basisnums)
+                # batch.sdf=batch.basisnum.to(self.device)
+                res = res.to('cpu')
+                # mae = MAE_fn(res, batch.label)
+                # w_mae += mae.detach().item()
+                reslist = res.numpy()
+                # print("reslist  : ",reslist)
+                reslist = res.tolist()
+                batch.label = batch.label.to('cpu')
+                batch.basisnum = batch.basisnum.to('cpu')
+                batch.basisnums = batch.basisnums.to('cpu')
+                timelist = batch.label.numpy()
+                # print("timelist : ",timelist)
+                timelist = timelist.tolist()
+                bnumlist = batch.basisnum.numpy().tolist()
+                bnumslist = batch.basisnums.numpy().tolist()
+
+                for i in range(len(reslist)):
+                    # print(i, " ===> initial < === ", reslist[i])
+                    time = timelist[i][0]
+                    ares = reslist[i]
+                    bnum = bnumlist[i][0]
+                    bnum_s = bnumslist[i][0]
+
+                    # print(bnum)
+                    times.append(time)
+                    preds.append(ares)
+                    bnums.append(bnum)
+                    bnums_s.append(bnum_s)
+                    # sdflist.append(sdf)
+                    # print('i: ',i, ' sdf/mol: ', mollist[i],' basis num: ',bnum,' real time : ',time,' predicted time: ',ares)
+
+
+        len_names = len(names)
+        not_in_names = get_index()
+        for i in range(len_names):
+            if i in not_in_names:
+                names.pop(i)
+        i = 0
+        print("len(names)", len(names), "len(preds)", len(preds))
+        for isuit in self.suits1:
+            print(i + 1, " ", names[i], " ", preds[i])
+            i = i + 1
+            if i >= len(names):
+                break
+
+
     def eval(self,modelname,chemspace="B3LYP_6-31g",path='./',mol="sample.sdf",write=False):
         '''
         testing model
@@ -37,9 +154,9 @@ class MpnnTool(ModelTool):
         #print("dft ", dft ,"  basis", basis)        
         tra_size = self.config.tra_size
         molecule = path+"/"+mol
-        nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis)
-        pdata=[[molecule],[nbasis]]
+        basis_num, nbasis, basvec = getNbasis(bas=basis, sdf=molecule)
+        print(" nbasis ", nbasis, "molecule", molecule, "modelname", modelname)
+        pdata = [[molecule], [basis_num], [nbasis], [basvec]]
         #exit(0)
 
         #dataset = TencentAlchemyDataset(mode='valid',rootdir=path,chemspace=self.chemspace,tra_size=tra_size)
@@ -53,15 +170,17 @@ class MpnnTool(ModelTool):
         if not os.path.exists(modelname):
             print(modelname+" does not exist!")
             return
+        # model = th.load(modelname,map_location=th.device('cpu'))
         model = th.load(modelname)
         model.to(self.device)
 
         #loss_fn = nn.MSELoss()
         #MAE_fn = nn.L1Loss() 
         model.eval()
-        bnums   = []
-        times   = []
-        preds   = []
+        bnums = []
+        bnums_s = []
+        times = []
+        preds = []
         # sdflist = []
 
         with th.no_grad():
@@ -74,45 +193,46 @@ class MpnnTool(ModelTool):
             #print(ftmplines)   
 
             for idx,batch in enumerate(loader):
-                batch.graph=batch.graph.to(self.device)
+                batch.graph = batch.graph.to(self.device)
                 batch.label = batch.label.to(self.device)
-                batch.basisnum=batch.basisnum.to(self.device)
-                #batch.sdf=batch.basisnum.to(self.device)
-                res = model(batch.graph,batch.basisnum)
+                batch.basisnum = batch.basisnum.to(self.device)
+                batch.basisnums = batch.basisnums.to(self.device)
+                res = model(batch.graph, batch.basisnums)
                 res=res.to('cpu')
                 #mae = MAE_fn(res, batch.label)
                 #w_mae += mae.detach().item()
                 reslist=res.numpy()
                 #print(reslist)
-                reslist=res.tolist()
-                batch.label=batch.label.to('cpu')
-                batch.basisnum=batch.basisnum.to('cpu')
-                timelist=batch.label.numpy()
-                #print(timelist)
-                timelist=timelist.tolist()
-                bnumlist=batch.basisnum.numpy().tolist()
+                reslist = res.tolist()
+                batch.label = batch.label.to('cpu')
+                batch.basisnum = batch.basisnum.to('cpu')
+                batch.basisnums = batch.basisnums.to('cpu')
+                timelist = batch.label.numpy()
+                # print(timelist)
+                timelist = timelist.tolist()
+                bnumlist = batch.basisnum.numpy().tolist()
+                bnumslist = batch.basisnums.numpy().tolist()
 
                 for i in range(len(reslist)):
                     #print(i, " ===> initial < === ", reslist[i]) 
-                    reslist[i]=reslist[i]
-                    time=timelist[i][0]
-                    ares=reslist[i]
-                    #bnum=basisnums2[i]
-                    bnum=bnumlist[i][0]
-                       
-                    #print(bnum)
+                    time = timelist[i][0]
+                    ares = reslist[i]
+                    bnum = bnumlist[i][0]
+                    bnum_s = bnumslist[i][0]
+
+                    # print(bnum)
                     times.append(time)
                     preds.append(ares)
                     bnums.append(bnum)
-                    #sdflist.append(sdf) 
-                    err1=(float(time)-float(ares))/float(time)
+                    bnums_s.append(bnum_s)
+                    err1 = (float(time) - float(ares)) / float(time)
                     #print('i: ',i, ' sdf/mol: ', (ftmplines[i].split()[4]) ,' basis num: ',bnum,' real time : ',time,' predicted time: ',ares, 'err', err1)
-                    ae=abs(time-ares)
-                    single_err=ae/time
-                    err+=single_err
-                    mae+=ae
+                    ae = abs(time - ares)
+                    single_err = ae / time
+                    err += single_err
+                    mae += ae
                     errs.append(single_err)
-                    j+=1
+                    j += 1
             # err_mean=err/j
             # mae/=j
             # errs=np.array(errs)
