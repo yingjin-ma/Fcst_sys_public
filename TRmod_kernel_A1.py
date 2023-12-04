@@ -27,17 +27,17 @@ import Configs
 
 # ==> parameters to be used (IO later) 
 # ML models, related
-ML_models   =  ["RF"]
-TR_para     =  [100,200,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
-TR_dir      = PWD + "/database/training-models"
+ML_models   =  ["LSTM"]
+TR_para     =  [25,350,50,0.01,1.0,2] # [NtrainSet,Nepoch,BatchSize,LRstep,TrainRatio,ValidInt]
+TRM_dir      = PWD + "/database/P38-models"
 # SDFs and Crawled folder, related
-sdfsH       = RAW + "/Arxiv1911.05569v1_sdfs_H"
-setsDir     = RAW + "/G09data.01"
+sdfsH       = PWD+ "/updatedSDFs"
+setsDir     = RAW + "/P38data.updated1"
 # Functionals and basis sets, related
 #functionals = ['B3LYP','bhandhlyp','BLYP','CAM-B3LYP','LC-BLYP','M06','M062x','PBE1PBE','wb97xd']
-#bases       = ['6-31g','6-31gs','6-31pgs']
+# bases       = ['6-31g','6-31gs','6-31pgs']
 functionals = ['B3LYP']
-bases       = ['6-31g']
+bases       = ['6-31pgs']
 
 # training/validing/testing sets
 # ==> training sets, manual selections for adjusting the training models
@@ -56,10 +56,15 @@ suits_train.append("Gaussian_inputs_training5")
 # ==> validing/testing sets, manual selections for adjusting 
 suits_valid = []
 suits_valid.append("Gaussian_inputs_validing")
-#suits_valid.append("Gaussian_inputs_validing2")
+suits_valid.append("Gaussian_inputs_validing2")
 #suits_valid.append("Gaussian_inputs_testing")
 #suits_valid.append("Gaussian_inputs_testing2")
-
+train_tmp = [setsDir + "/train2.dat"]
+valid_tmp = [setsDir + "/valid2.dat"]
+TR_dir = TRM_dir + "/" + ML_models[0]
+chemspace = "P38_631gss"
+Models.TrainAndEval(TR_para=TR_para,TR_dir=TR_dir,chemspace=chemspace,folder_sdf=sdfsH,suits_train=train_tmp,suits_valid=valid_tmp,setsDir=setsDir,model=ML_models[0])
+'''
 # Training and validing/testing process
 for mod in ML_models:    # models
    #Models.prepare(mod)
@@ -78,12 +83,13 @@ for mod in ML_models:    # models
             valid_tmp.append(tmp)
 
          # Mkdir the "training" folder for usage
+         TR_dir = TRM_dir + "/" + "G09_ERA_" + funct + "_" + basis
          if not os.path.exists(TR_dir):
             os.mkdir(TR_dir)
 
          # Training and evaluating
          Models.TrainAndEval(TR_para=TR_para,TR_dir=TR_dir,chemspace=chemspace,folder_sdf=sdfsH,suits_train=train_tmp,suits_valid=valid_tmp,setsDir=setsDir,model=mod)
-
+'''
 
 print("All the models have been trained evaluated")
 

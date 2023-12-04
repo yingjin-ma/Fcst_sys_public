@@ -18,9 +18,19 @@ import basis_set_exchange as bse
 rewritten basing on Tencent Alchemy Tools (https://github.com/tencent-alchemy/Alchemy)
 """
 
+short_sdf_index = []
+
+def get_index():
+    global short_sdf_index
+    return short_sdf_index
+
+def set_index(i):
+    global short_sdf_index
+    short_sdf_index.append(i)
+
 #batch sample
 class AlchemyBatcher:
-    def __init__(self, graph=None, basisnum=None, label=None):
+    def __init__(self, graph=None, basisnum=None,basisnums=None, label=None):
         '''
         构造方法
         graph: 以图数据结构表示的分子特征集合
@@ -28,17 +38,19 @@ class AlchemyBatcher:
         label: 预测目标(时间)集合
         '''
         self.graph     = graph
+        self.basisnums = basisnums
         self.basisnum  = basisnum
         self.label     = label
 
 #generate batch, return AlchemyBatcher
 def batcher():
     def batcher_dev(batch):
-        graphs, basisnums, labels = zip(*batch)
+        graphs, basisnum, basisnums, labels = zip(*batch)
         batch_graphs = dgl.batch(graphs)
-        basisnums    = torch.stack(basisnums)
-        labels       = torch.stack(labels, 0)
-        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnums, label=labels)
+        basisnum = torch.stack(basisnum)
+        basisnums = torch.stack(basisnums)
+        labels = torch.stack(labels, 0)
+        return AlchemyBatcher(graph=batch_graphs, basisnum=basisnum, basisnums=basisnums, label=labels)
     return batcher_dev
 
 
@@ -56,35 +68,35 @@ class TADataset(Dataset):
             atom_feats_dict : dict
               Dictionary for atom features
         """
-        atom_feats_dict = defaultdict(list)
+        atom_feats_dict = defaultdict(list) # 创建元素为list的字典
         is_donor = defaultdict(int)
         is_acceptor = defaultdict(int)
 
-        fdef_name = osp.join(RDConfig.RDDataDir, 'BaseFeatures.fdef')
-        mol_featurizer = ChemicalFeatures.BuildFeatureFactory(fdef_name)
-        mol_feats = mol_featurizer.GetFeaturesForMol(mol)
-        mol_conformers = mol.GetConformers()
+        fdef_name = osp.join(RDConfig.RDDataDir, 'BaseFeatures.fdef') # 获取特征库，fdef_name 特征库文件
+        mol_featurizer = ChemicalFeatures.BuildFeatureFactory(fdef_name) # 构建特征工厂
+        mol_feats = mol_featurizer.GetFeaturesForMol(mol) # 使用特征工厂搜索特征
+        mol_conformers = mol.GetConformers() # 返回分子的所有构象
         assert len(mol_conformers) == 1
-        geom = mol_conformers[0].GetPositions()
+        geom = mol_conformers[0].GetPositions() # 返回分子中各个原子的坐标
 
         for i in range(len(mol_feats)):
-            if mol_feats[i].GetFamily() == 'Donor':
-                node_list = mol_feats[i].GetAtomIds()
+            if mol_feats[i].GetFamily() == 'Donor': # 获取特征所属的族，判断是否为电子供体
+                node_list = mol_feats[i].GetAtomIds() # 获取参与特征的原子id
                 for u in node_list:
                     is_donor[u] = 1
-            elif mol_feats[i].GetFamily() == 'Acceptor':
+            elif mol_feats[i].GetFamily() == 'Acceptor': # 获取特征所属的族，判断是否为电子受体
                 node_list = mol_feats[i].GetAtomIds()
                 for u in node_list:
                     is_acceptor[u] = 1
 
-        num_atoms = mol.GetNumAtoms()
+        num_atoms = mol.GetNumAtoms() # 获取分子中的原子数目
         for u in range(num_atoms):
-            atom = mol.GetAtomWithIdx(u)
-            symbol = atom.GetSymbol()
-            atom_type = atom.GetAtomicNum()
-            aromatic = atom.GetIsAromatic()
-            hybridization = atom.GetHybridization()
-            num_h = atom.GetTotalNumHs()
+            atom = mol.GetAtomWithIdx(u) # 获取特定的原子对象，u从0开始
+            symbol = atom.GetSymbol() # 获取原子元素符号
+            atom_type = atom.GetAtomicNum() # 获取原子序号
+            aromatic = atom.GetIsAromatic() # 判断该原子是否在芳香烃内
+            hybridization = atom.GetHybridization() # 返回原子杂交方式
+            num_h = atom.GetTotalNumHs() # 返回H原子总数
             atom_feats_dict['pos'].append(torch.FloatTensor(geom[u]))
             atom_feats_dict['node_type'].append(atom_type)
 
@@ -157,7 +169,7 @@ class TADataset(Dataset):
 
         return bond_feats_dict
 
-    def sdf_to_dgl(self, sdf_file,bnum, time,self_loop=False):
+    def sdf_to_dgl(self, sdf_file,bnum_s,bnum, time,self_loop=False):
         """
         Read sdf file and convert to dgl_graph
         Args:
@@ -170,6 +182,8 @@ class TADataset(Dataset):
         #print("str(sdf_file) : ", str(sdf_file))
         sdf = open(str(sdf_file)).read()
         mol = Chem.MolFromMolBlock(sdf, removeHs=False)
+        if mol is None:
+            return None
 
         g = dgl.DGLGraph()
 
@@ -198,10 +212,11 @@ class TADataset(Dataset):
 
         bond_feats = self.alchemy_edges(mol, self_loop)
         g.edata.update(bond_feats)
-        bnm =torch.FloatTensor([bnum])
+        bnm = torch.FloatTensor([bnum])
+        bnm_s = torch.FloatTensor([bnum_s])
         # for val/test set, labels are molecule ID
         l = torch.FloatTensor([time]) #if self.mode == 'train' or self.mode=='valid' else torch.LongTensor([int(sdf_file.stem)])
-        return (g, bnm, l)
+        return (g,bnm_s, bnm, l)
 
     def __init__(self, mode='train', rootdir='./',suits='',chemspace='m062x_6-31G#',folder_sdf='./' ,transform=None,pdata=None,tra_size=4000, target=2):
         '''
@@ -235,7 +250,8 @@ class TADataset(Dataset):
         self._load(tra_size,basis)
 
     def _load(self,tra_size,basis="6-31g"):
-        sdfs,bnums,times,self.graphs, self.basisnums,self.labels = [],[],[],[],[],[]
+        sdfs,bnum_s,bnums,times,self.graphs, self.basisnums,self.labels = [],[],[],[],[],[],[]
+        self.basisnum = []
         self.sdfnames = []
         sdfnames      = []
         target_file= self.suits
@@ -252,14 +268,27 @@ class TADataset(Dataset):
                     break
                 temp=line.strip(os.linesep).split()
                 time=float(temp[self.target])#时间
-                basisnum=float(temp[0])
-                basisnum2=float(Magnification.getNbasis(basis,sdf))
+
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnum2=Magnification.getNbasis(basis,sdf)
+                '''
                 if dv_magn_each=='false':
                    bnums.append(basisnum)
                 else :
                    bnums.append(basisnum2)
                    bnums2.append(basisnum)
-
+                '''   
+                bnums.append(basisnum)
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf[0]+'/'+sdfname+'.sdf'
                 sdfs.append(loc)
@@ -276,8 +305,18 @@ class TADataset(Dataset):
                 sdfname=str(temp[4]).split('_')[0]
                 loc=self.folder_sdf[0]+'/'+sdfname+'.sdf'
 
-                basisnum=float(temp[0])
-#                basisnum2=float(Magnification.getNbasis(basis,loc))
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+                        
+                basisnum = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]
+                basisnum2= Magnification.getNbasis(basis,loc)
 #                if dv_magn_each=='false':
 #                   bnums.append(basisnum)
 #                else :
@@ -290,28 +329,54 @@ class TADataset(Dataset):
                 times.append(time)
                 sdfnames.append(sdfname)
 
+        if self.mode == 'test':
+            sdfs = self.pdata[0]
+            bnum_s = self.pdata[1]
+            bnums = self.pdata[2]
+            print(sdfs, bnum_s)
+            for i in range(len(sdfs)):
+                nsdf = len(sdfs[i].split("/"))
+                onesdf = sdfs[i].split("/")[nsdf - 1]
+                # print("onesdf : ",onesdf)
+                sdfnames.append(onesdf)
+                times.append(1)
+
+        if self.mode == 'pred':
+            sdfs=self.pdata[0]
+            bnum_s=self.pdata[1]
+            bnums = self.pdata[2]
+            for isdf in sdfs:
+                sname = isdf.split("/")[len(isdf.split("/")) - 1].split(".")[0]
+                sdfnames.append(sname)
+                times.append(0)
+        '''
         if self.mode=='test' or self.mode=='pred':
             sdfs=self.pdata[0]
-            bnums=self.pdata[1]
-            print(sdfs,bnums)
+            bnum_s=self.pdata[1]
+            bnums = self.pdata[2]
+            print(sdfs,bnum_s,bnums)
             for i in range(len(sdfs)):
                nsdf=len(sdfs[i].split("/"))
                onesdf=sdfs[i].split("/")[nsdf-1]
                #print("onesdf : ",onesdf)
                sdfnames.append(onesdf)
                times.append(1)
-
+        '''
         i=0
         for sdf_file in sdfs:
             print("sdf_file ",sdf_file)
+            print("bnum_s[i] ",bnum_s[i]," with i = ",i )
             print("bnums[i] ",bnums[i]," with i = ",i )
             print("times[i] ",times[i]," with i = ",i )
-            result = self.sdf_to_dgl(sdf_file,bnums[i],times[i])
+            result = self.sdf_to_dgl(sdf_file,bnum_s[i],bnums[i],times[i])
             if result is None:
+                set_index(i)
+                i += 1
                 continue
             print("sdf_file",sdf_file)
             self.graphs.append(result[0])
-            self.basisnums.append(result[1])
+            self.basisnum.append(result[1])
+            self.basisnums.append(result[2])
 
 #            basisnum2=float(Magnification.getNbasis(basis,sdf_file))
 #            self.basisnums2.append(basisnum2)
@@ -338,10 +403,10 @@ class TADataset(Dataset):
         return len(self.graphs)
 
     def __getitem__(self, idx):
-        g,basisnum, l = self.graphs[idx], self.basisnums[idx],self.labels[idx]
+        g, basisnum, basisnums, l = self.graphs[idx], self.basisnum[idx], self.basisnums[idx], self.labels[idx]
         if self.transform:
             g = self.transform(g)
-        return g,basisnum, l
+        return g, basisnum, basisnums, l
 
 if __name__ == '__main__':
     alchemy_dataset = TADataset()

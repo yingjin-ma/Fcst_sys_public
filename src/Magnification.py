@@ -9,6 +9,80 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import basis_set_exchange as bse
 
+
+def getNbasis_noRDkit(bas="6-31g",sdf=""):
+
+   elemdict = {'H': 1, 'Li': 3, 'Be': '4', 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Si': 15, 'P': 16, 'S': 17, 'Cl': 18}
+
+   print("sdf",sdf)
+   D56=-1
+   if bas == "cc-pVDZ":
+      D56=1
+   elif bas == "cc-pVTZ":
+      D56=1
+   else:
+      bas=bas.replace('p','+').replace('s','*')
+
+   if bas == "SVP":
+      bas=bas.replace('SVP','SVP (Dunning-Hay)')
+      D56=1
+   if bas == "SV":
+      bas=bas.replace('SV','SV (Dunning-Hay)')
+
+   nao_s = nao_p = nao_d = nao_f = nao_g = nao_h = 0 # the number of s,p,d,f,g,h each in total
+
+   atoms=[]
+   with open(sdf,'r') as sdf_one:
+      lines = sdf_one.readlines()
+      print("lines[3] :",lines[3][0:3])
+      natoms=int(lines[3][0:3])
+      for i in range(natoms):
+         i = i+1
+         atoms.append(lines[3+i].split()[3])
+
+   #print(atoms)
+
+   for atom in atoms:
+      natom=elemdict[atom]
+      bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
+      ao = bs_str.split()[9].strip('[').strip(']').split(',')
+      '''
+      if (natom - len(bas_atom)) > 0:
+         index_natom = [0]*(natom - len(bas_atom))
+         bas_atom = bas_atom + index_natom
+         bas_atom.append(ao)
+      else:
+         bas_atom[natom] = ao
+
+      bas_atom[natom] = ao #e.g. bas_atom = {7 : ['3s','2p']}
+      '''
+      n2 = len(ao)
+      # print("basis : ",ao)
+      for n in range(n2):
+         if ao[n][1] == 's':
+            nao_s = nao_s + int(ao[n][:-1])
+         if ao[n][1] == 'p':
+            nao_p = nao_p + 3 * int(ao[n][:-1])
+         if ao[n][1] == 'd':
+            if D56 == -1:
+               nao_d = nao_d + 6 * int(ao[n][:-1])
+            elif D56 == 1:
+               nao_d = nao_d + 5 * int(ao[n][:-1])
+         if ao[n][1] == 'f':
+            nao_f = nao_f + 7 * int(ao[n][:-1])
+         if ao[n][1] == 'g':
+            nao_g = nao_g + 9 * int(ao[n][:-1])
+         if ao[n][1] == 'h':
+            nao_h = nao_h + 11 * int(ao[n][:-1])
+
+      #   print("sdf \n",sdf," \n naos \n",naos)
+   basis_num = [nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
+   basis_num_s = nao_s + nao_p + nao_d + nao_f + nao_g + nao_h
+
+   #   return Nbasis, bas_atom
+   return basis_num, basis_num_s
+
+
 def getNbasis(bas="6-31g",sdf=""):
 
    #print("sdf",sdf)
@@ -26,44 +100,67 @@ def getNbasis(bas="6-31g",sdf=""):
    if bas == "SV":   
       bas=bas.replace('SV','SV (Dunning-Hay)')
 
-   Nbasis=0
-   naos=0
+   basis_num=[]
+   nao_s = nao_p = nao_d = nao_f = nao_g = nao_h = 0 # the number of s,p,d,f,g,h each in total
    suppl=Chem.SDMolSupplier(sdf)
    mols = [x for x in suppl]
    mol=mols[0]
    AllChem.Compute2DCoords(mol)
    AllChem.EmbedMolecule(mol,randomSeed=0xf00d)
    molH = Chem.AddHs(mol)
+
+   # bas_atom is a dictionary storing each different atom's basis.
+   # The atomic numbers are the indexes of the list.
+   bas_atom = {}
+
+   
+
    for atom in molH.GetAtoms():
       natom  = atom.GetAtomicNum()
       bs_str = bse.get_basis(bas, elements=[natom], fmt='nwchem', header=False)
-      ao=bs_str.split()[8].strip('[').strip(']').split(',')
+      ao=bs_str.split()[9].strip('[').strip(']').split(',')
+      '''
+      if (natom - len(bas_atom)) > 0:
+         index_natom = [0]*(natom - len(bas_atom))
+         bas_atom = bas_atom + index_natom
+         bas_atom.append(ao)
+      else:
+         bas_atom[natom] = ao
+      
+      bas_atom[natom] = ao #e.g. bas_atom = {7 : ['3s','2p']}
+      '''
       n2=len(ao)
-#      print("basis : ",ao)
+      #print("basis : ",ao)
       for n in range(n2):
          if ao[n][1] == 's':
-            naos=naos+ int(ao[n][:-1])
+            nao_s = nao_s + int(ao[n][:-1])
          if ao[n][1] == 'p':
-            naos=naos+ 3*int(ao[n][:-1])
+            nao_p = nao_p + 3*int(ao[n][:-1])
          if ao[n][1] == 'd':
             if D56 == -1: 
-               naos=naos+ 6*int(ao[n][:-1])
+               nao_d = nao_d + 6*int(ao[n][:-1])
             elif D56 == 1:  
-               naos=naos+ 5*int(ao[n][:-1]) 
+               nao_d = nao_d + 5*int(ao[n][:-1]) 
          if ao[n][1] == 'f':
-            naos=naos+ 7*int(ao[n][:-1])
+            nao_f = nao_f + 7*int(ao[n][:-1])
          if ao[n][1] == 'g':
-            naos=naos+ 9*int(ao[n][:-1])
+            nao_g = nao_g + 9*int(ao[n][:-1])
          if ao[n][1] == 'h':
-            naos=naos+11*int(ao[n][:-1])
+            nao_h = nao_h +11*int(ao[n][:-1])
 
 #   print("sdf \n",sdf," \n naos \n",naos)
-   Nbasis=naos
+   basis_num=[nao_s, nao_p, nao_d, nao_f, nao_g, nao_h]
+   basis_num_s = nao_s + nao_p + nao_d + nao_f + nao_g +nao_h
+   
 
-   return Nbasis
+#   return Nbasis, bas_atom
+   return basis_num, basis_num_s
+
 
 def fitted_magns(basisnums,basisnums2,chemspace,ployfitted="test.log"):
 
+   import pdb
+   pdb.set_trace()
    dv_magns=[]
 
    dft  =chemspace.split("_")[0]

@@ -6,7 +6,12 @@ import socket
 hostname = socket.gethostname()
 PWD=os.getcwd()
 SRC=PWD+"/src"
-BAK=PWD+"/database/trained-models"
+
+is_local_model = input("Did you have trained locally? [y]/n:")
+if is_local_model == "y":
+   BAK=PWD+"/database/training-models"
+else:
+   BAK=PWD+"/database/training-models"
 PLYfile=PWD+"/database/polyfitted/data.TOTpolyfitted.2"
 
 # add the runtime environments
@@ -28,10 +33,11 @@ from rdkit.Chem import AllChem
 # parameters to be used (IO later)
 QC_packages  =  ["G09"]
 Machines     =  ["ERA"]
-functionals  =  ["LC-BLYP"]
-bases        =  ["cc-pVTZ"    ]
-target_mols  =  ["./example/46507409.sdf"]
+functionals  =  ["B3LYP"]
+bases        =  ["6-31g"]
+target_mols  =  ["./example/404771460.sdf"]
 ML_models    =  ["MPNN"]  # Maybe bug in MGCN
+
 
 # rdkit treatment of input molecule
 mols  =  [ mol for mol in Chem.SDMolSupplier(target_mols[0])]
@@ -75,7 +81,7 @@ for qc in QC_packages:
 
                # == decide the ref_chemspace == *
                # ref_funct & ref_basis
-               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol)
+               ref_funct,ref_basis=DecideRefSpace.RefBasisfunct(basis,funct,mol,is_local_model)
 
                print("  ===>   Target    Space : ", funct,"/",basis)
                print("  ===>   Reference Space : ", ref_funct,"/",ref_basis)
@@ -85,14 +91,16 @@ for qc in QC_packages:
 
                # Predict basing on the ref_chemspace 
                Ptime = PredictTime.Eval(mod,ref_chemspace,PWDmol,NAMmol,BAK,QC_packages[0],Machines[0]) 
+               #print("  ===>   The predicted computational CPU time with no correction is ", Ptime)
 
                # MWI correction for the predicted results
-               corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
+               #corr1 = PredictTime.MWIbasis(ref_chemspace,chemspace,PWDmol,NAMmol,PLYfile)
                corr2 = PredictTime.MWIfunct(ref_chemspace,chemspace)
 
-               print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
+               #print("  ===>   The correction for funct/basis are ",corr2," and ",corr1," , respectively.")
 
-               Ptime=Ptime*corr1*corr2
+               #Ptime=Ptime*corr1*corr2
+               Ptime=Ptime*corr2
                print("  ===>   The predicted computational CPU time is ", Ptime)
 
          print("  ")

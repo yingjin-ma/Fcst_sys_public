@@ -14,9 +14,10 @@ from ModelTool import ModelTool
 torch.manual_seed(2)
 
 import basis_set_exchange as bse
-from Magnification import getNbasis
+from Magnification import getNbasis, getNbasis_noRDkit
 
 # LSTM模型的工具类，用于模型的训练、测试、推断
+short_sdf_index = []
 
 class LstmTool(ModelTool):
 
@@ -51,8 +52,17 @@ class LstmTool(ModelTool):
                 time=float(temp[target])#时间
 
                 sdf=sdf_dir + "/" + temp[4].split('_')[0]+".sdf"
-                basisnum=float(temp[0])#基组数目
-                basisnums.append(basisnum)
+                for i in range(len(temp)):
+                    if temp[i] == 'contracted':
+                        basisnum_s = float(temp[i+2])
+                        basisnum_p = float(temp[i+3])
+                        basisnum_d = float(temp[i+4])
+                        basisnum_f = float(temp[i+5])
+                        basisnum_g = float(temp[i+6])
+                        basisnum_h = float(temp[i+7].strip(']'))
+                        break
+
+                basisnums = [basisnum_s, basisnum_p, basisnum_d, basisnum_f, basisnum_g, basisnum_h]#各个轨道总数目
                 name=temp[4]#.split('_')[1]
                 names.append(name)
                 times.append(time)
@@ -143,7 +153,123 @@ class LstmTool(ModelTool):
             padded_features.append(padded_feature)
         return padded_features
 
+    def evalsuit(self, modelname=None, path=None, chemspace="B3LYP_6-31g", BAK=None, write=False):
+        '''
+        Predicting
+        path: path of testing suits; default as 'data/tes_'+self.chemspace+'.txt'
+        write: check whether into xlsx format
+        '''
 
+        dft = chemspace.split("_")[0]
+        basis = chemspace.split("_")[1]
+
+        # tra_size=self.config.tra_size
+        print("self.suits1  : ", self.suits1)
+        print("self.sdf_dir : ", self.sdf_dir)
+
+        mollist = []
+        baslist = []
+        basisnums = []
+        times = []
+        slist = []
+        names = []
+        basisnumlist = []
+        suppl = []
+        count = 0
+        for isuit in self.suits1:
+            print("isuit : ", isuit)
+            imol = self.sdf_dir + "/" + isuit
+
+            # if count > 1651:
+            #     break
+            count += 1
+            # ibas = getNbasis(bas=basis, sdf=imol)
+            obasis, nbasis = getNbasis(bas=basis, sdf=imol)
+            # obasis, nbasis = getNbasis_noRDkit(bas=basis,sdf=imol)
+            print("imol : ", imol, " ibas : ", nbasis)
+            mollist.append(imol)
+            baslist.append(nbasis)
+            basisnumlist.append(obasis)
+
+            basisnums.append(nbasis * 1.0)
+            times.append(1.0)
+            names.append(isuit)
+            suppl.append(Chem.SDMolSupplier(imol))
+
+            # print("Done the suppl")
+
+        pdata = [mollist,basisnumlist, baslist]
+
+        for i in range(count):
+            for imol in suppl[i]:
+                if imol is None:
+                    names.pop(i)
+                    basisnums.pop(i)
+                    times.pop(i)
+                    basisnumlist.pop(i)
+                    break
+                smiles = Chem.MolToSmiles(imol)
+                slist.append(smiles)
+
+        model = torch.load(modelname)
+        model = model.to(self.device)
+        model.eval()
+
+
+        clist = LstmTool.seg(slist)
+        with open(BAK + '/wordToIndex.json', 'r', encoding='utf8') as f:
+            word_to_idx = json.load(f)
+        features = LstmTool.wToIdx(clist, word_to_idx)
+        padded_features = LstmTool.pad(features)
+        eval_features = torch.tensor(padded_features)
+        eval_basis_s = torch.tensor(basisnums)
+        eval_time = torch.tensor(times)
+        eval_basis = torch.tensor(basisnumlist)
+
+
+        eval_set = torch.utils.data.TensorDataset(eval_features, eval_basis, eval_basis_s, eval_time)
+        eval_iter = torch.utils.data.DataLoader(eval_set, batch_size=self.config.batch_size, shuffle=False)
+
+        ij = 0
+        preds = []
+        with torch.no_grad():
+
+            err_mean = 0.0
+            errs = []
+            j = 0
+
+            ae = 0.0
+            for feature,basisnum,basisnums,time in eval_iter:
+                # j=0
+                feature = feature.to(self.device)
+                basisnum = basisnum.to(self.device)
+                basisnums = basisnums.to(self.device)
+
+                result = model(feature, basisnum, basisnums)
+                result = result.to('cpu')
+                resultlist = result.numpy().tolist()
+                preds.extend(resultlist)
+                basislist = basisnum.to('cpu').numpy().tolist()
+                timelist = time.numpy()
+                timelist = timelist.tolist()
+
+                ij = ij + 1
+                print("ij : ", ij)
+
+
+        i = 0
+        print("len(names)", len(names), "len(preds)", len(preds))
+        dest = os.getcwd() + "/P38_LSTM_631gss1_augV"
+        destData = open(dest, "w", encoding='utf-8')
+        for isuit in self.suits1:
+            destLineData = str(i + 1) + " " + names[i] + " " + str(preds[i])
+            print(destLineData)
+            destData.write(destLineData + '\n')
+            i = i + 1
+            if i >= len(names):
+                break
+
+        return resultlist
 
     def eval(self,modelname=None,path=None,chemspace="B3LYP_6-31g",mol="sample.sdf",write=False,BAK=None):
         '''
@@ -160,9 +286,9 @@ class LstmTool(ModelTool):
 #        tra_size=self.config.tra_size
 
         molecule = path+"/"+mol
-        nbasis   = getNbasis(bas=basis,sdf=molecule)
-        print(" nbasis ", nbasis, " path ",path)
-        pdata=[[molecule],[nbasis]]
+        obasis, nbasis = getNbasis(bas=basis, sdf=molecule)
+        print(" nbasis ", nbasis)
+        pdata = [[molecule], [obasis], [nbasis]]
 
 #        if modelname==None:
 #            modelname=self.modelloc
@@ -177,11 +303,13 @@ class LstmTool(ModelTool):
         
         #basisnums,times,slist,names=LstmTool.readData(path,self.sdf_dir,tra_size,self.target,basis=basis)
 
+        basisnum = []
         basisnums=[]
         times=[]
         slist=[]
         names=[]
-        basisnums.append(nbasis*1.0)
+        basisnum.append(obasis)
+        basisnums.append(nbasis)
         times.append(1.0)
         names.append(mol)
         suppl=Chem.SDMolSupplier(molecule)
@@ -190,18 +318,19 @@ class LstmTool(ModelTool):
            slist.append(smiles)
 
         clist=LstmTool.seg(slist)
-        with open(BAK+'/wordToIndex.json','r',encoding='utf8') as f:
+        with open('./tmp/wordToIndex.json','r',encoding='utf8') as f:
             word_to_idx=json.load(f)
         features=LstmTool.wToIdx(clist,word_to_idx)
         padded_features=LstmTool.pad(features)
         eval_features=torch.tensor(padded_features)
-        eval_basis=torch.tensor(basisnums)
+        eval_basis=torch.tensor(basisnum)
+        eval_basis_s = torch.tensor(basisnums)
         eval_time=torch.tensor(times)
         #eval_names=torch.tensor(names)
         #nameDic={idx:name for idx,name in enumerate(names)}
         #eval_names=torch.tensor(nameDic.keys())
 
-        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_time)
+        eval_set=torch.utils.data.TensorDataset(eval_features,eval_basis,eval_basis_s,eval_time)
         eval_iter=torch.utils.data.DataLoader(eval_set,batch_size=self.config.batch_size,shuffle=False)
 
         preds=[]
@@ -215,18 +344,20 @@ class LstmTool(ModelTool):
             j=0
 
             ae=0.0
-            for feature,basisnum,time in eval_iter:
+            for feature,basisnum,basisnums,time in eval_iter:
                 #j=0
-                feature=feature.to(self.device)
-                basisnum=basisnum.to(self.device)
+                feature = feature.to(self.device)
+                basisnum = basisnum.to(self.device)
+                basisnums = basisnums.to(self.device)
 
-                result=model(feature,basisnum)
+                result=model(feature,basisnum,basisnums)
                 result=result.to('cpu')
                 resultlist=result.numpy().tolist()
                 preds.extend(resultlist)
-                basislist=basisnum.to('cpu').numpy().tolist()
-                timelist=time.numpy()
-                timelist=timelist.tolist()
+                basislist = basisnum.to('cpu').numpy().tolist()
+                basislist_s = basisnums.to('cpu').numpy().tolist()
+                timelist = time.numpy()
+                timelist = timelist.tolist()
                 #print("len(resultlist)",len(resultlist),"len(ftmplines)",len(ftmplines),"len(basisnums2)",len(basisnums2)) 
 #                for i in range(len(resultlist)):
 #                    #print("基组: %d, 预测值: %.5f, 预测值(corrected): %.5f, 真实值: %.5f"%(basislist[i],resultlist[i],resultlist[i]*dv_magn,timelist[i]))
